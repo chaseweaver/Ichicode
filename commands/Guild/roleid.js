@@ -2,8 +2,8 @@
 
 exports.run = async (client, msg, [role]) => {
   const rol = await msg.guild.roles.find('name', role);
-  if (!rol) return msg.channel.send('I cannot find that role!', { code: 'xl' });
-  return msg.channel.send(`${rol.name}\`s ID: ${rol.id}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
+  if (!rol) return msg.reply('I cannot find that role!');
+  return msg.send(`${rol.name} / ${rol.id}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
 };
 
 exports.conf = {
