@@ -8,6 +8,7 @@ Comming soon
 * Node >= 8.0
 * Discord.js 11.2
 * Komada.js
+* Moment.js
 
 # How to Run
 1. Create a new 'app' from https://discordapp.com/developers/applications/me

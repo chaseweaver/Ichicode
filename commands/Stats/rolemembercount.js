@@ -1,3 +1,5 @@
+/* Returns the member count per given role. */
+
 exports.run = async (client, msg, role) => {
   let str = `[${msg.guild.nameAcronym}] ${msg.guild.name}\n\n`;
   const roltmp = role.join(' ');
@@ -8,7 +10,7 @@ exports.run = async (client, msg, role) => {
       found = true;
     }
   });
-  if (!found) return msg.channel.send('I did not find that role!', { code: 'xl' }).catch(err => console.log(err, 'error'));
+  if (!found) return msg.reply('I did not find that role!').catch(err => console.log(err, 'error'));
   return msg.channel.send(str, { code: 'xl' }).catch(err => console.log(err, 'error'));
 };
 

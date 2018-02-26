@@ -1,3 +1,5 @@
+/* Returns member count for a given role. */
+
 exports.run = async (client, msg, [role]) => {
   let str = `[${msg.guild.nameAcronym}] ${msg.guild.name}\n\n`;
   let found = false;

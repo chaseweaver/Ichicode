@@ -1,3 +1,5 @@
+/* Fetches members joined over time. */
+
 const Moment = require('moment');
 exports.run = async (client, msg, [dateOne, dateTwo]) => {
   let start = msg.createdTimestamp;
@@ -41,7 +43,7 @@ exports.run = async (client, msg, [dateOne, dateTwo]) => {
     }
   }
 
-  if ((start || end) === (null || NaN)) return msg.channel.send('There was an error paring the date!', { code: 'xl' });
+  if ((start || end) === (null || NaN)) return msg.reply('There was an error paring the date!');
   if (start < end) end = [start, start = end][0];
   if (end < msg.guild.createdTimestamp) end = msg.guild.createdTimestamp;
 
@@ -49,8 +51,7 @@ exports.run = async (client, msg, [dateOne, dateTwo]) => {
     if (m.joinedTimestamp <= start && m.joinedTimestamp >= end) count++;
   });
 
-  let avatar = msg.guild.iconURL;
-  if (!avatar) avatar = 'https://imgur.com/ik9S8V5.png';
+  const avatar = msg.guild.iconURL ? msg.guild.iconURL : 'https://imgur.com/ik9S8V5.png';
   const embed = {
     color: 255106,
     title: 'Total Messages',

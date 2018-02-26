@@ -1,4 +1,4 @@
-/* Fetches the message count within a channel */
+/* Fetches the message count within a channel. */
 
 const Moment = require('moment');
 exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
@@ -9,7 +9,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   let active = true;
 
   chan = !msg.guild.channels.find('name', channel);
-  if (!chan) return msg.channel.send('I couldn\'t find that channel!');
+  if (!chan) return msg.reply('I couldn\'t find that channel!');
 
   if (channel && dateOne && !dateTwo) {
     start = msg.createdTimestamp;
@@ -48,7 +48,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
     }
   }
 
-  if ((start || end) === (null || NaN)) return msg.channel.send('There was an error paring the date!', { code: 'xl' });
+  if ((start || end) === (null || NaN)) return msg.reply('There was an error paring the date!');
   if (start < end) end = [start, start = end][0];
   if (end < chan.createdTimestamp) end = chan.createdTimestamp;
 
@@ -89,9 +89,9 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
           return m.edit({ embed }).catch(console.error);
         }
       })
-      .catch(function(err) {console.log(err);});
+      .catch(function(err) { console.log(err); });
   };
-  await msg.channel.send('Fetching messages . . .').then((m) => {fetch(msg.id, m);});
+  await msg.channel.send('Fetching messages . . .').then((m) => { fetch(msg.id, m); });
 };
 
 exports.conf = {

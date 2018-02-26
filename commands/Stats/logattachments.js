@@ -1,3 +1,5 @@
+/* DMs the author with a list of URLs within a channel. */
+
 exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   let start = msg.createdTimestamp;
   let end = start - (1000 * 60 * 60 * 24);

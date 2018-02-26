@@ -1,3 +1,5 @@
+/* Fetches the message count within a channel from a user. */
+
 const Moment = require('moment');
 exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   let start = msg.createdTimestamp;
@@ -7,10 +9,10 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   let active = true;
 
   chan = msg.guild.channels.find('name', channel);
-  if (!chan) return msg.channel.send('I couldn`t find that channel!', { code: 'xl' });
+  if (!chan) return msg.reply('I couldn`t find that channel!');
 
   const member = msg.mentions.members.first();
-  if (!member) return await msg.channel.send('I couldn`t find that member!', { code: 'xl' });
+  if (!member) return await msg.reply('I couldn`t find that member!');
 
   if (chan && dateOne && !dateTwo) {
     start = msg.createdTimestamp;
@@ -49,7 +51,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
     }
   }
 
-  if ((start || end) === (null || NaN)) return msg.channel.send('```There was an error paring the date!```');
+  if ((start || end) === (null || NaN)) return msg.reply('There was an error paring the date!');
   if (start < end) end = [start, start = end][0];
   if (end < chan.createdTimestamp) end = chan.createdTimestamp;
 
@@ -69,9 +71,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
       })
       .then(function() {
         if (!active) {
-          let avatar = m.author.avatarURL;
-          if (!avatar) avatar = m.author.defaultAvatarURL;
-
+          const avatar = m.author.avatarURL ? m.author.avatarURL : m.author.defaultAvatarURL;
           const embed = {
             color: 255106,
             title: 'Total Messages',
@@ -94,9 +94,9 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
           return m.edit({ embed }).catch(console.error);
         }
       })
-      .catch(function(err) {console.log(err);});
+      .catch(function(err) { console.log(err); });
   };
-  await msg.channel.send('Fetching messages . . .', { code: 'xl' }).then((m) => {fetch(msg.id, m);});
+  await msg.channel.send('Fetching messages . . .', { code: 'xl' }).then((m) => { fetch(msg.id, m); });
 };
 
 exports.conf = {
