@@ -1,3 +1,5 @@
+/* Returns the role ID. */
+
 exports.run = async (client, msg, [role]) => {
   const rol = await msg.guild.roles.find('name', role);
   if (!rol) return msg.channel.send('I cannot find that role!', { code: 'xl' });
