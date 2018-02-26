@@ -23,14 +23,14 @@ exports.run = async (client, msg) => {
     msg.channel.send(`Playing: **${song.title}** as requested by: **${song.requester}**!`)
       .catch(err => client.emit('log', err, 'error'));
 
-    return msg.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes: 2 })
+    return msg.guild.voiceConnection.play(yt(song.url, { audioonly: true }), { passes: 2 })
       .on('end', () => {
         setTimeout(() => {
           handler.songs.shift();
           play(handler.songs[0]);
         }, 100);
       })
-      .on('error', err => msg.channel.send(`error: ${err}`).then(() => {
+      .on('error', err => msg.send(`error: ${err}`).then(() => {
         handler.songs.shift();
         play(handler.songs[0]);
       }));
@@ -52,7 +52,7 @@ exports.conf = {
 
 exports.help = {
   name: 'play',
-  description: 'Plays the queue.',
+  description: 'Plays the song queue.',
   usage: '',
   usageDelim: '',
   extendedHelp: '',
