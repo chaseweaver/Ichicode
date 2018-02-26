@@ -28,7 +28,7 @@ exports.run = async (client, msg, [type, member, ...value]) => {
     }
     break;
   default:
-    return msg.send(`I cannot find the ID of ${value}`)
+    return msg.send(`I cannot find the ID of \`${value}\``)
       .catch(err => console.log(err, 'error'));
   }
 };
