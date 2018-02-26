@@ -15,7 +15,7 @@ exports.conf = {
 
 exports.help = {
   name: 'botavatar',
-  description: `Set's the bot's avatar.`,
+  description: 'Set\'s the bot\'s avatar.',
   usage: '<url:url>',
   usageDelim: '',
   extendedHelp: '',

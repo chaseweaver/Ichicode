@@ -1,6 +1,6 @@
 exports.run = async (client, msg, [channel]) => {
   const chan = await msg.guild.channels.find('name', channel);
-  if (!chan) return msg.channel.send(`I cannot find that channel!`, { code: 'xl' });
+  if (!chan) return msg.channel.send('I cannot find that channel!', { code: 'xl' });
   return msg.channel.send(`#${chan.name}\`s ID: ${chan.id}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
 };
 

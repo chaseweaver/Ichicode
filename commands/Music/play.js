@@ -1,8 +1,7 @@
 const yt = require('ytdl-core');
 
 exports.run = async (client, msg) => {
-  if (client.queue.has(msg.guild.id) === false) 
-    throw `Add some songs to the queue first with ${msg.guild.settings.prefix}add`;
+  if (client.queue.has(msg.guild.id) === false) {throw `Add some songs to the queue first with ${msg.guild.settings.prefix}add`;}
   if (!msg.guild.voiceConnection) {
     await client.commands.get('join').run(client, msg);
     return this.run(client, msg);
@@ -23,7 +22,7 @@ exports.run = async (client, msg) => {
     msg.channel.send(`Playing: **${song.title}** as requested by: **${song.requester}**!`)
       .catch(err => client.emit('log', err, 'error'));
 
-    return msg.guild.voiceConnection.playStream(yt(song.url, {audioonly: true}), {passes: 2})
+    return msg.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes: 2 })
       .on('end', () => {
         setTimeout(() => {
           handler.songs.shift();

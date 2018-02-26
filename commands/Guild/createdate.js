@@ -2,7 +2,7 @@ exports.run = async (client, msg, [channel]) => {
   let final;
   if (channel) final = msg.guild.channels.find('name', channel);
   else final = msg.guild;
-  return await msg.channel.send(`${final.name} / ${final.id}\nCreated on: ${final.createdAt}`, {code: 'xl'}).catch(err => console.log(err, 'error'));
+  return await msg.channel.send(`${final.name} / ${final.id}\nCreated on: ${final.createdAt}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
 };
 
 exports.conf = {

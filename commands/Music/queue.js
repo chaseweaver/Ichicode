@@ -1,4 +1,3 @@
-
 exports.run = (client, msg) => {
   const handler = client.queue.get(msg.guild.id);
   if (!handler) throw `Add some songs to the queue first with ${msg.guild.settings.prefix}add`;

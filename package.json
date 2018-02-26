@@ -1,0 +1,31 @@
+{
+  "name": "ichicode",
+  "version": "1.0.0",
+  "description": "Ichicode is a multi-purpose Discord bot built using Discord.js/Komada.js",
+  "main": "Ichicode.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaseweaver/Ichicode.git"
+  },
+  "keywords": [
+    "Ichicode",
+    "Discord",
+    "Discord.js",
+    "Komada.js"
+  ],
+  "author": "Chase Weaver",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chaseweaver/Ichicode/issues"
+  },
+  "homepage": "https://github.com/chaseweaver/Ichicode#readme",
+  "devDependencies": {
+    "eslint-config-google": "^0.9.1"
+  }
+}

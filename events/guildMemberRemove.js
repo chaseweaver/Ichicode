@@ -5,7 +5,7 @@ exports.run = (client, mem) => {
 
   const chan = mem.guild.channels.find('id', mem.guild.settings.memLogs);
   if(!chan) return;
-  
+
   let avaURL = mem.user.avatarURL;
   if (!avaURL) avaURL = mem.user.defaultAvatarURL;
 
@@ -17,15 +17,15 @@ exports.run = (client, mem) => {
       icon_url: avaURL,
     },
     fields: [{
-      name: `Joined At`,
+      name: 'Joined At',
       value: Moment(mem.joinedTimestamp).format('llll'),
     }, {
-      name: `Left At`,
+      name: 'Left At',
       value: Moment(new Date()).format('llll'),
     }],
-    timestamp: new Date()
+    timestamp: new Date(),
   };
 
-  chan.send({embed}).catch(err => console.log(err, 'error'));
+  chan.send({ embed }).catch(err => console.log(err, 'error'));
   console.log(`Member ${mem.name} joined ${mem.guild.name}.`);
 };

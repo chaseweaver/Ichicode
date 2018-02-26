@@ -12,4 +12,4 @@ exports.help = {
   name: 'nsfw',
   type: 'inhibitors',
   description: 'Commands marked as NSFW are only allowed in NSFW channels.',
-}
+};

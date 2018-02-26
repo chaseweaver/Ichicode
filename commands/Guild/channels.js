@@ -2,10 +2,10 @@ exports.run = async (client, msg) => {
   let str = `[${msg.guild.nameAcronym}] ${msg.guild.name} channels:\n\n`;
   let num = 1;
   msg.guild.channels.array().forEach(e => {
-      str += `${num}. #${e.name}\n`;
-      num++;
+    str += `${num}. #${e.name}\n`;
+    num++;
   });
-  return msg.channel.send(str, {code: 'xl'}).catch(err => console.log(err, 'error'));
+  return msg.channel.send(str, { code: 'xl' }).catch(err => console.log(err, 'error'));
 };
 
 exports.conf = {

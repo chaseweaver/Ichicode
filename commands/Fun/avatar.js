@@ -1,8 +1,8 @@
-exports.run = async (client, msg, args) => {
+exports.run = async (client, msg) => {
   if (!msg.mentions.users.size) await msg.channel.send(msg.author.avatarURL);
-    const avatarList = msg.mentions.users.map(user => {
-      return msg.channel.send(`${user.username}'s avatar: ${user.avatarURL}\n`);
-    });
+  msg.mentions.users.map(user => {
+    return msg.channel.send(`${user.username}'s avatar: ${user.avatarURL}\n`);
+  });
 };
 
 exports.conf = {

@@ -3,8 +3,8 @@ exports.run = async (client, msg, [role]) => {
   let found = false;
   msg.guild.roles.array().forEach(e => {
     if (e.name === role) {
-        str += `${e.name}: ${e.members.size} members\n`;
-        found = true;
+      str += `${e.name}: ${e.members.size} members\n`;
+      found = true;
     }
   });
   if (!found) str += 'Role is either invalid or missing!';

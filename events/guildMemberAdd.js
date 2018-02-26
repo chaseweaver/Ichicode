@@ -17,12 +17,12 @@ exports.run = (client, mem) => {
       icon_url: avaURL,
     },
     fields: [{
-      name: `Joined At`,
+      name: 'Joined At',
       value: Moment(mem.joinedTimestamp).format('llll'),
     }],
-    timestamp: new Date()
+    timestamp: new Date(),
   };
 
-  chan.send({embed}).catch(err => console.log(err, 'error'));
+  chan.send({ embed }).catch(err => console.log(err, 'error'));
   console.log(`Member ${mem.name} joined ${mem.guild.name}.`);
 };

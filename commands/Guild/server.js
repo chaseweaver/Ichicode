@@ -1,22 +1,18 @@
-const Moment = require('moment');
 exports.run = async (client, msg) => {
-  const master = `@Chaaaaaaase#0002`;
 
   let guildAvatar = msg.guild.iconURL;
   if (!guildAvatar) guildAvatar = 'https://imgur.com/ik9S8V5.png';
 
   let roles;
-  if (msg.guild.roles.array().length !== (null || NaN))
-    roles = msg.guild.roles.array().length;
+  if (msg.guild.roles.array().length !== (null || NaN)) {roles = msg.guild.roles.array().length;}
 
   let channelCount;
-  if (msg.guild.channels.array().length !== (null || NaN))
-    channelCount = msg.guild.channels.array().length;
+  if (msg.guild.channels.array().length !== (null || NaN)) {channelCount = msg.guild.channels.array().length;}
 
   const guildName = msg.guild.name;
   const guildAcro = msg.guild.nameAcronym;
   const guildID = msg.guild.id;
-  const memberCount = msg.guild.memberCount;        
+  const memberCount = msg.guild.memberCount;
   const owner = msg.guild.owner.user.tag;
   const ownerID = msg.guild.ownerID;
   const region = msg.guild.region;
@@ -30,7 +26,7 @@ exports.run = async (client, msg) => {
   let rtmp = '';
   msg.guild.roles.filter(r => rtmp += `${r.name}\t`);
 
-  let onlineCount = msg.guild.members.filter(m => m.presence.status === 'online');
+  const onlineCount = msg.guild.members.filter(m => m.presence.status === 'online');
 
   let verify = msg.guild.verificationLevel;
   if (verify === 0) verify = 'None';
@@ -41,44 +37,44 @@ exports.run = async (client, msg) => {
   let avatar = msg.guild.iconURL;
   if (!avatar) avatar = 'https://imgur.com/ik9S8V5.png';
 
-  let embed = {
+  const embed = {
     color: 255106,
-    thumbnail: {url: guildAvatar},
+    thumbnail: { url: guildAvatar },
     author: {
       name: `[${guildAcro}] ${guildName} / ${guildID}`,
       icon_url: guildAvatar,
     },
     fields: [{
       name: `Total Members [${memberCount}]`,
-      value: `${onlineCount.size} Online, ${memberCount - onlineCount.size} Offline`
+      value: `${onlineCount.size} Online, ${memberCount - onlineCount.size} Offline`,
     }, {
       name: 'Region',
-      value: region
+      value: region,
     }, {
       name: `Channels [${channelCount}]`,
-      value: cctmp
+      value: cctmp,
     }, {
       name: `Roles [${roles}]`,
-      value: rtmp
+      value: rtmp,
     }, {
       name: 'Verification Level',
-      value: verify
+      value: verify,
     }, {
       name: 'Default Role',
-      value: defaultRole
+      value: defaultRole,
     }, {
       name: 'Default Role ID',
-      value: defaultRoleID
+      value: defaultRoleID,
     }, {
       name: 'Created On',
-      value: createdAt
+      value: createdAt,
     }, {
       name: 'Server Owner',
-      value: `${owner} / ${ownerID}`
+      value: `${owner} / ${ownerID}`,
     }],
-    timestamp: new Date()
+    timestamp: new Date(),
   };
-  return await msg.channel.send({embed}).catch(console.error);
+  return await msg.channel.send({ embed }).catch(console.error);
 };
 exports.conf = {
   enabled: true,

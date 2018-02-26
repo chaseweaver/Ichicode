@@ -1,5 +1,5 @@
 const komada = require('komada');
- 
+
 const client = new komada.Client({
   ownerID : 'OWNER_ID',
   prefix: '+',
@@ -8,5 +8,5 @@ const client = new komada.Client({
   },
   cmdLogging: true,
 });
- 
+
 client.login('BOT_TOKEN');
