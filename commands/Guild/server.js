@@ -66,7 +66,7 @@ exports.run = async (client, msg) => {
     }],
     timestamp: new Date(),
   };
-  return await msg.channel.send({ embed }).catch(console.error);
+  return await msg.send({ embed }).catch(console.error);
 };
 exports.conf = {
   enabled: true,
