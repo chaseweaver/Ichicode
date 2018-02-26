@@ -1,7 +1,7 @@
 /* Returns a link to show a color. */
 
 exports.run = async (client, msg, [hex]) => {
-  return msg.channel.send(`https://dummyimage.com/256x256/${hex}/${hex}.jpg`).catch(err => console.log(err, 'error'));
+  return msg.send(`https://dummyimage.com/256x256/${hex}/${hex}.jpg`).catch(err => console.log(err, 'error'));
 };
 
 exports.conf = {
