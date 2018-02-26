@@ -10,7 +10,7 @@ exports.run = (client, msg) => {
     const cooldown = msg.guild.settings.cooldown;
     const msgTS = msg.createdTimestamp;
     const data = [];
-    msg.channel.fetchMessages({ limit: 15 })
+    msg.channel.messages.fetch({ limit: 15 })
       .then(m => {
         const arr = m.array();
         for (let i = 0; i < arr.length; i++) {
