@@ -24,7 +24,7 @@ exports.run = async (client, msg, [song]) => {
     requester: msg.author.username,
   });
 
-  return msg.send(`Added **${info.title}** to the queue.`);
+  return msg.reply(`Added **${info.title}** to the queue.`);
 };
 
 exports.conf = {
