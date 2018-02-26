@@ -35,7 +35,7 @@ exports.conf = {
 
 exports.help = {
   name: 'presence',
-  description: 'Set bot \'presence\'.',
+  description: 'Sets bot \'presence\'.',
   usage: '<status|game|watching|listening> [online|idle|invisible|dnd] [game:str] [watching:str] [listening:str]',
   usageDelim: ' ',
   extendedHelp: '',
