@@ -25,7 +25,7 @@ Ichicode is a multi-purpose Discord bot built using Discord.js/Komada.js
 * FINISH
 
 # Invite Link
-Comming soon
+Wanna add my bot to your server? Add it with this: **LINK COMING SOON**
 
 # Required Modules
 * Node   8.0.0+
