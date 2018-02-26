@@ -1,3 +1,5 @@
+/* Replies with response time/delay of bot. */
+
 exports.run = async (client, msg) => {
   const message = await msg.channel.sendMessage('Ping?').catch(err => console.log(err, 'error'));
   message.edit(`Pong! (took: ${message.createdTimestamp - msg.createdTimestamp}ms)`).then(() => msg.delete());
