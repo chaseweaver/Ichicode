@@ -1,0 +1,86 @@
+{
+  "prefix": {
+    "type": "String",
+    "default": "+",
+    "array": false,
+    "sql": "TEXT NOT NULL DEFAULT '+'"
+  },
+  "modRole": {
+    "type": "Role",
+    "default": "Moderator",
+    "array": false,
+    "sql": "TEXT"
+  },
+  "adminRole": {
+    "type": "Role",
+    "default": "Administrator",
+    "array": false,
+    "sql": "TEXT"
+  },
+  "muteRole": {
+    "type": "Role",
+    "default": "Muted",
+    "array": false,
+    "sql": "TEXT"
+  },
+  "logMsgDeleted": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
+  "logMsgUpdated": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
+  "logMemAdd": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
+  "logMemRemove": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
+  "cooldown": {
+    "type": "Float",
+    "default": 2.5,
+    "array": false,
+    "sql": "TEXT"
+  },
+  "antiSpam": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
+  "modLogs": {
+    "type": "Channel",
+    "default": [],
+    "array": false,
+    "sql": "TEXT"
+  },
+  "chatLogs": {
+    "type": "Channel",
+    "default": [],
+    "array": false,
+    "sql": "TEXT"
+  },
+  "memLogs": {
+    "type": "Channel",
+    "default": [],
+    "array": false,
+    "sql": "TEXT"
+  },
+  "disabledCommands": {
+    "type": "Command",
+    "default": [],
+    "array": true,
+    "sql": "TEXT DEFAULT '[]'"
+  }
+}
