@@ -1,3 +1,5 @@
+/* Fetches the message count within a channel */
+
 const Moment = require('moment');
 exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   let start = msg.createdTimestamp;
@@ -6,8 +8,8 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   let chan = channel;
   let active = true;
 
-  chan = msg.guild.channels.find('name', channel);
-  if (!chan) return msg.channel.send('I couldn\'t find that channel!', { code: 'xl' });
+  chan = !msg.guild.channels.find('name', channel);
+  if (!chan) return msg.channel.send('I couldn\'t find that channel!');
 
   if (channel && dateOne && !dateTwo) {
     start = msg.createdTimestamp;
@@ -64,8 +66,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
       })
       .then(function() {
         if (!active) {
-          let avatar = msg.guild.iconURL;
-          if (!avatar) avatar = 'https://imgur.com/ik9S8V5.png';
+          const avatar = msg.guild.iconURL ? msg.guild.iconURL : 'https://imgur.com/ik9S8V5.png';
           const embed = {
             color: 255106,
             title: 'Total Messages',
@@ -90,7 +91,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
       })
       .catch(function(err) {console.log(err);});
   };
-  await msg.channel.send('Fetching messages . . .', { code: 'xl' }).then((m) => {fetch(msg.id, m);});
+  await msg.channel.send('Fetching messages . . .').then((m) => {fetch(msg.id, m);});
 };
 
 exports.conf = {
