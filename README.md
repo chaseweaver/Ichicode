@@ -3,16 +3,16 @@ Ichicode is a multi-purpose Discord bot built using Discord.js/Komada.js
 
 # Features
 * bot
-* * botavatar   : Sets the bot's avatar.
-* * nickname    : Sets the bot's nickname.
-* * presence    : Sets the bot's Discord presence.
+  * botavatar   : Sets the bot's avatar.
+  * nickname    : Sets the bot's nickname.
+  * presence    : Sets the bot's Discord presence.
 * guild
-* * age         : View the age of the guild / member / channel / role.
-* * chat        : Send a chat between channels.
-* * id          : Returns the ID of the guild / member / channel / role.
-* * membercount : Returns the total members within a guild / role.
-* * memberlist  : DMs a list of members and member IDs.
-* * server      : Displays basic server information. 
+  * age         : View the age of the guild / member / channel / role.
+  * chat        : Send a chat between channels.
+  * id          : Returns the ID of the guild / member / channel / role.
+  * membercount : Returns the total members within a guild / role.
+  * memberlist  : DMs a list of members and member IDs.
+  * server      : Displays basic server information. 
 
 # Invite Link
 Comming soon
