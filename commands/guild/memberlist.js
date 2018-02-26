@@ -6,7 +6,8 @@ exports.run = async (client, msg) => {
 
   data.push(`[${msg.guild.nameAcronym}] ${msg.guild.name} member list:\n`);
   msg.guild.members.array().forEach(mem => {
-    data.push(`${ctr}. <${mem.user.id}> ${mem.user.username}`);
+    if (ctr <= 9) data.push(`0${ctr}. <${mem.user.id}> ${mem.user.username}`);
+    else data.push(`${ctr}. <${mem.user.id}> ${mem.user.username}`);
     ctr++;
   });
 

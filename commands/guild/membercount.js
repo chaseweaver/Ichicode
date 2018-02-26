@@ -2,9 +2,9 @@
 
 exports.run = async (client, msg) => {
   const onlineCount = msg.guild.members.filter(m => m.presence.status === 'online');
-  return await msg.guild.channel.send(`[${msg.guild.nameAcronym}] ${msg.guild.name}` +
+  return await msg.send(`[${msg.guild.nameAcronym}] ${msg.guild.name}` +
       `\n\nTotal guild members:    ${msg.guild.memberCount} members\n` +
-      `Online guild members:   ${onlineCount.size}members\n` +
+      `Online guild members:   ${onlineCount.size} members\n` +
       `Offline guild members:  ${msg.guild.memberCount - onlineCount.size} members`, { code: 'xl' })
     .catch(err => console.log(err, 'error'));
 };
