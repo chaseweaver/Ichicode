@@ -3,5 +3,3 @@ Ichicode.js
 /.vscode/
 /logs/
 /bwd/provider/
-/node_modules/
-package-lock.json
