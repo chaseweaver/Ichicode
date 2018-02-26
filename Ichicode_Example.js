@@ -5,6 +5,7 @@ const client = new komada.Client({
   prefix: '+',
   clientOptions: {
     fetchAllMembers: false,
+    sync: true,
   },
   cmdLogging: true,
 });
