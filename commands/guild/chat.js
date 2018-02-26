@@ -2,7 +2,7 @@
 
 exports.run = async (client, msg, [channel, chat]) => {
   const chan = await msg.guild.channels.find('name', channel);
-  if (!chan) return msg.channel.send('I cannot find that channel!');
+  if (!chan) return msg.send('I cannot find that channel!');
   return chan.send(chat).then(() => msg.delete()).catch(err => console.log(err, 'error'));
 };
 

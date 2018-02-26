@@ -1,11 +1,36 @@
-/* Returns the created date of the guild or channel. */
+/* Returns the created date of a guild/member/role/channel. */
 
-exports.run = async (client, msg, [channel]) => {
+exports.run = async (client, msg, [type, member, ...value]) => {
+  value = value.length ? value.join(' ') : null;
   let final;
-  if (channel) final = msg.guild.channels.find('name', channel);
-  else final = msg.guild;
-  return await msg.channel.send(`${final.name} / ${final.id}\nCreated on: ${final.createdAt}`, { code: 'xl' })
-    .catch(err => console.log(err, 'error'));
+  switch (type) {
+  case 'guild':
+    return msg.send(`${msg.guild.name} / ${msg.guild.id} / ${msg.guild.createdAt}`, { code: 'xl' })
+      .catch(err => console.log(err, 'error'));
+  case 'member':
+    if (member) {
+      return msg.send(`@${member.user.username} / ${member.id} / ${member.user.createdAt}`, { code: 'xl' })
+        .catch(err => console.log(err, 'error'));
+    }
+    break;
+  case 'role':
+    if (msg.guild.roles.find('name', value)) {
+      final = msg.guild.roles.find('name', value);
+      return msg.send(`${final.name} / ${final.id} / ${final.createdAt}`, { code: 'xl' })
+        .catch(err => console.log(err, 'error'));
+    }
+    break;
+  case 'channel':
+    if (msg.guild.channels.find('name', value)) {
+      final = msg.guild.channels.find('name', value);
+      return msg.send(`#${final.name} / ${final.id} / ${final.createdAt}`, { code: 'xl' })
+        .catch(err => console.log(err, 'error'));
+    }
+    break;
+  default:
+    return msg.send(`I cannot find the created date of \`${value}\``)
+      .catch(err => console.log(err, 'error'));
+  }
 };
 
 exports.conf = {
@@ -20,9 +45,9 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'createdate',
-  description: 'Returns date the guild or channel was created.',
-  usage: '[channel:str]',
-  usageDelim: '',
+  name: 'age',
+  description: 'Returns the created date of a guild/member/role/channel.',
+  usage: '<guild|member|role|channel> [member:member] [value:str]',
+  usageDelim: ' ',
   extendedHelp: '',
 };

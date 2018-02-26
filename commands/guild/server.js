@@ -2,7 +2,9 @@
 
 exports.run = async (client, msg) => {
 
-  const guildAvatar = msg.guild.iconURL ? msg.guild.iconURL : 'https://imgur.com/ik9S8V5.png';
+  console.log(msg.guild.iconURL({ format: 'png' }));
+
+  const guildAvatar = msg.guild.iconURL({ format: 'png' }) ? msg.guild.iconURL : 'https://imgur.com/ik9S8V5.png';
   const roles = msg.guild.roles.array().length ? msg.guild.roles.array().length : 'N/A';
   const channelCount = msg.guild.channels.array().length ? msg.guild.channels.array().length : 'N/A';
   const guildName = msg.guild.name;
@@ -27,37 +29,17 @@ exports.run = async (client, msg) => {
   else if (verify >= 4 && verify <= 7) verify = 'Medium';
   else if (verify >= 8) verify = 'High';
 
-  const embed = {
-    color: 255106,
-    thumbnail: { url: guildAvatar },
-    author: {
-      name: `[${guildAcro}] ${guildName} / ${guildID}`,
-      icon_url: guildAvatar,
-    },
-    fields: [{
-      name: `Total Members [${memberCount}]`,
-      value: `${onlineCount.size} Online, ${memberCount - onlineCount.size} Offline`,
-    }, {
-      name: 'Region',
-      value: region,
-    }, {
-      name: `Channels [${channelCount}]`,
-      value: cctmp,
-    }, {
-      name: `Roles [${roles}]`,
-      value: rtmp,
-    }, {
-      name: 'Verification Level',
-      value: verify,
-    }, {
-      name: 'Created On',
-      value: createdAt,
-    }, {
-      name: 'Server Owner',
-      value: `${owner} / ${ownerID}`,
-    }],
-    timestamp: new Date(),
-  };
+  const embed = new client.methods.Embed()
+    .setColor('#ff003c')
+    .setThumbnail(guildAvatar)
+    .setAuthor(`[${guildAcro}] ${guildName} / ${guildID}`, guildAvatar)
+    .addField(`Total Members [${memberCount}]`, `${onlineCount.size} Online, ${memberCount - onlineCount.size} Offline`)
+    .addField('Region', region)
+    .addField(`Channels [${channelCount}]`, cctmp)
+    .addField(`Roles [${roles}]`, rtmp)
+    .addField('Verification Level', verify)
+    .addField('Created On', createdAt)
+    .addField('Server Owner', `${owner} / ${ownerID}`);
   return await msg.send({ embed }).catch(console.error);
 };
 exports.conf = {

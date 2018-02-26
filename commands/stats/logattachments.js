@@ -79,7 +79,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
       })
       .catch(function(err) {console.log(err);});
   };
-  await msg.channel.send('Fetching attachments . . .').then((m) => { fetch(msg.id, m); });
+  await msg.send('Fetching attachments . . .').then((m) => { fetch(msg.id, m); });
 };
 
 exports.conf = {

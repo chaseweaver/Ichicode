@@ -10,7 +10,7 @@ exports.run = async (client, msg, [role]) => {
     }
   });
   if (!found) str += 'Role is either invalid or missing!';
-  return msg.channel.send(str, { code: 'xl' }).catch(err => console.log(err, 'error'));
+  return msg.send(str, { code: 'xl' }).catch(err => console.log(err, 'error'));
 };
 
 exports.conf = {
