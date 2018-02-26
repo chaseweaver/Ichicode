@@ -1,14 +1,10 @@
+/* Returns server information. */
+
 exports.run = async (client, msg) => {
 
-  let guildAvatar = msg.guild.iconURL;
-  if (!guildAvatar) guildAvatar = 'https://imgur.com/ik9S8V5.png';
-
-  let roles;
-  if (msg.guild.roles.array().length !== (null || NaN)) {roles = msg.guild.roles.array().length;}
-
-  let channelCount;
-  if (msg.guild.channels.array().length !== (null || NaN)) {channelCount = msg.guild.channels.array().length;}
-
+  const guildAvatar = msg.guild.iconURL ? msg.guild.iconURL : 'https://imgur.com/ik9S8V5.png';
+  const roles = msg.guild.roles.array().length ? msg.guild.roles.array().length : 'N/A';
+  const channelCount = msg.guild.channels.array().length ? msg.guild.channels.array().length : 'N/A';
   const guildName = msg.guild.name;
   const guildAcro = msg.guild.nameAcronym;
   const guildID = msg.guild.id;
@@ -19,6 +15,7 @@ exports.run = async (client, msg) => {
   const createdAt = msg.guild.createdAt;
   const defaultRole = msg.guild.defaultRole.name;
   const defaultRoleID = msg.guild.defaultRole.id;
+  const onlineCount = msg.guild.members.filter(m => m.presence.status === 'online');
 
   let cctmp = '';
   msg.guild.channels.filter(c => cctmp += `${c.name}\t`);
@@ -26,16 +23,11 @@ exports.run = async (client, msg) => {
   let rtmp = '';
   msg.guild.roles.filter(r => rtmp += `${r.name}\t`);
 
-  const onlineCount = msg.guild.members.filter(m => m.presence.status === 'online');
-
   let verify = msg.guild.verificationLevel;
   if (verify === 0) verify = 'None';
   else if (verify >= 1 && verify <= 3) verify = 'Low';
   else if (verify >= 4 && verify <= 7) verify = 'Medium';
   else if (verify >= 8) verify = 'High';
-
-  let avatar = msg.guild.iconURL;
-  if (!avatar) avatar = 'https://imgur.com/ik9S8V5.png';
 
   const embed = {
     color: 255106,
