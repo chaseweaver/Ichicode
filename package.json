@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/chaseweaver/Ichicode/issues"
   },
-  "homepage": "https://github.com/chaseweaver/Ichicode#readme"
+  "homepage": "https://github.com/chaseweaver/Ichicode#readme",
+  "dependencies": {
+    "moment": "^2.20.1"
+  }
 }

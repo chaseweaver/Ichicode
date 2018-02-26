@@ -1,5 +1,7 @@
+/* Ends current playing song. */
+
 exports.run = async (client, msg) => {
-  if (!msg.guild.voiceConnection) {throw `I am not connected in a voice channel, please add some songs to the queue first with ${msg.guild.settings.prefix}add`;}
+  if (!msg.guild.voiceConnection) throw 'I am not connected in a voice channel!';
   msg.guild.voiceConnection.dispatcher.end();
   return msg.send('Music ended!');
 };

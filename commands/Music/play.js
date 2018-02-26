@@ -1,7 +1,8 @@
-const yt = require('ytdl-core');
+/* Plays the song in the queue. */
 
+const yt = require('ytdl-core');
 exports.run = async (client, msg) => {
-  if (client.queue.has(msg.guild.id) === false) {throw `Add some songs to the queue first with ${msg.guild.settings.prefix}add`;}
+  if (!msg.guild.voiceConnection) throw 'I am not connected in a voice channel!';
   if (!msg.guild.voiceConnection) {
     await client.commands.get('join').run(client, msg);
     return this.run(client, msg);

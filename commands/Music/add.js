@@ -7,7 +7,7 @@ const exp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/\S*(?:(?:\/e(?:mbed)?)?
 
 exports.run = async (client, msg, [song]) => {
   const id = exp.exec(song);
-  if (id === null) throw 'You must provide a valid YouTube URL.';
+  if (id === null) throw 'You must provide a valid YouTube URL!';
   const info = await getInfoAsync(`https://youtu.be/${id[1]}`);
 
   if (!client.queue.has(msg.guild.id)) {
@@ -24,7 +24,7 @@ exports.run = async (client, msg, [song]) => {
     requester: msg.author.username,
   });
 
-  return msg.reply(`Added **${info.title}** to the queue.`);
+  return msg.send(`Added **${info.title}** to the queue.`);
 };
 
 exports.conf = {

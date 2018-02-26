@@ -1,3 +1,5 @@
+/* Displays the queue. */
+
 exports.run = (client, msg) => {
   const handler = client.queue.get(msg.guild.id);
   if (!handler) throw `Add some songs to the queue first with ${msg.guild.settings.prefix}add`;
@@ -8,7 +10,7 @@ exports.run = (client, msg) => {
   }
 
   return msg.channel.send([
-    `🗒 __**${msg.guild.name}'s Music Queue:**__ Currently **${output.length}** songs queued ${(handler.songs.length > 15 ? '*[Only next 15 shown]*' : '')}`,
+    `**${msg.guild.name}'s Music Queue:**__ Currently **${output.length}** songs queued ${(handler.songs.length > 15 ? '*[Only next 15 shown]*' : '')}`,
     `${'```'}${output.join('\n')}${'```'}`,
   ].join('\n'));
 };

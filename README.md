@@ -17,5 +17,5 @@ Comming soon
 4. Download this repo.
 5. Replace 'Ichicode_Example.js' with a name of your choice.
 6. Inside your newly created file, add your Discord bot token / your profile ID obtained from the 'app' page you just created.
-7. Run $node <YOUR_FILENAME_HERE>.js
+7. Run $ node <YOUR_FILENAME_HERE>
 8. Enjoy!
