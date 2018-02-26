@@ -9,7 +9,7 @@ exports.run = (client, msg) => {
     output.push(`${i + 1}. ${handler.songs[i].title} - Requested by: ${handler.songs[i].requester}`);
   }
 
-  return msg.channel.send([
+  return msg.send([
     `**${msg.guild.name}'s Music Queue:**__ Currently **${output.length}** songs queued ${(handler.songs.length > 15 ? '*[Only next 15 shown]*' : '')}`,
     `${'```'}${output.join('\n')}${'```'}`,
   ].join('\n'));
