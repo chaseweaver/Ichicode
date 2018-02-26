@@ -1,3 +1,5 @@
+/* Sets the avatar for the bot. */
+
 exports.run = async (client, msg, [url]) => {
   return await msg.client.user.setAvatar(url).then(() => msg.delete()).catch(console.error);
 };
@@ -15,7 +17,7 @@ exports.conf = {
 
 exports.help = {
   name: 'botavatar',
-  description: 'Set\'s the bot\'s avatar.',
+  description: 'Sets the bot\'s avatar.',
   usage: '<url:url>',
   usageDelim: '',
   extendedHelp: '',
