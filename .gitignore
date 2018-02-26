@@ -1,7 +1,7 @@
 Ichicode.js
-/test/
-/.vscode/
-/logs/
-/bwd/provider/
-/node_modules/
+test/
+.vscode/
+logs/
+bwd/provider/
+node_modules/
 package-lock.json
