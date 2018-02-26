@@ -1,8 +1,8 @@
 /* Returns mentioned user profile picture. */
 
 exports.run = async (client, msg) => {
-  if (!msg.mentions.users.size) await msg.send(msg.author.avatarURL);
-  msg.mentions.users.map(usr => { return msg.send(`${usr.username}'s avatar: ${usr.avatarURL}\n`); });
+  if (!msg.mentions.users.size) await msg.send(msg.author.displayAvatarURL({ size: 2048 }));
+  msg.mentions.users.map(usr => { return msg.send(`${usr.username}'s avatar: ${usr.displayAvatarURL({ size: 2048 })}\n`); });
 };
 
 exports.conf = {
