@@ -7,7 +7,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   const exp = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+';
 
   chan = msg.guild.channels.find('name', channel);
-  if (!chan) return msg.channel.send('I couldn`t find that channel!', { code: 'xl' });
+  if (!chan) return msg.reply('I couldn`t find that channel!');
 
   if (channel && dateOne && !dateTwo) {
     start = msg.createdTimestamp;
@@ -46,7 +46,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
     }
   }
 
-  if ((start || end) === (null || NaN)) return msg.channel.send('There was an error paring the date!', { code: 'xl' });
+  if ((start || end) === (null || NaN)) return msg.reply('There was an error paring the date!');
   if (start < end) end = [start, start = end][0];
   if (end < chan.createdTimestamp) end = chan.createdTimestamp;
 
@@ -69,15 +69,15 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
         if (!active) {
           msg.author.send(data, { split: true })
             .then(() => {
-              if (msg.channel.type !== 'dm') msg.reply('I`ve sent you a DM with the attachments!', { code: 'xl' });
+              if (msg.channel.type !== 'dm') msg.reply('I`ve sent you a DM with the attachments!');
               m.delete();
             })
-            .catch(() => msg.reply('It seems like I can`t DM you!', { code: 'xl' }));
+            .catch(() => msg.reply('It seems like I can`t DM you!'));
         }
       })
       .catch(function(err) {console.log(err);});
   };
-  await msg.channel.send('Fetching attachments . . .', { code: 'xl' }).then((m) => {fetch(msg.id, m);});
+  await msg.channel.send('Fetching attachments . . .').then((m) => { fetch(msg.id, m); });
 };
 
 exports.conf = {
