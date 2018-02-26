@@ -1,3 +1,5 @@
+/* Send a chat via the bot across channels. */
+
 exports.run = async (client, msg, [channel, chat]) => {
   const chan = await msg.guild.channels.find('name', channel);
   if (!chan) return msg.channel.send('I cannot find that channel!');
