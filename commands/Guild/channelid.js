@@ -1,3 +1,5 @@
+/* Returns the ID of the channel. */
+
 exports.run = async (client, msg, [channel]) => {
   const chan = await msg.guild.channels.find('name', channel);
   if (!chan) return msg.channel.send('I cannot find that channel!', { code: 'xl' });

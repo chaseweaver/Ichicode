@@ -1,3 +1,5 @@
+/* Returns a listing of guild channels. */
+
 exports.run = async (client, msg) => {
   let str = `[${msg.guild.nameAcronym}] ${msg.guild.name} channels:\n\n`;
   let num = 1;
