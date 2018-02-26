@@ -1,6 +1,7 @@
+/* Returns the guild ID. */
+
 exports.run = async (client, msg) => {
-  const gui = msg.guild;
-  return msg.channel.send(`${gui.name}\`s ID: ${gui.id}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
+  return msg.channel.send(`${msg.guildgui.name}\`s ID: ${msg.guild.id}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
 };
 
 exports.conf = {

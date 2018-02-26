@@ -1,3 +1,5 @@
+/* DMs a list of members. */
+
 exports.run = async (client, msg) => {
   const data = [];
   let ctr = 1;
@@ -9,8 +11,8 @@ exports.run = async (client, msg) => {
   });
 
   await msg.author.send(data, { code: 'xl', split: true })
-    .then(() => {if (msg.channel.type !== 'dm') msg.reply('I`ve sent you a DM with the member list!', { code: 'xl' });})
-    .catch(() => msg.reply('It seems like I can`t DM you!', { code: 'xl' }));
+    .then(() => {if (msg.channel.type !== 'dm') msg.reply('I`ve sent you a DM with the member list!');})
+    .catch(() => msg.reply('It seems like I can`t DM you!'));
 };
 
 exports.conf = {

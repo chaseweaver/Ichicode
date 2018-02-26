@@ -1,7 +1,10 @@
+/* Returns the member ID. */
+
 exports.run = async (client, msg) => {
   const mem = msg.mentions.members.first();
   if (msg.mentions.members.size === 0) return;
-  return msg.channel.send(`${mem.user.username}\`s ID: ${mem.user.id}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
+  return msg.channel.send(`${mem.user.username}\`s ID: ${mem.user.id}`, { code: 'xl' })
+    .catch(err => console.log(err, 'error'));
 };
 
 exports.conf = {
