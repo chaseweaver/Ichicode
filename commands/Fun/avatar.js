@@ -1,8 +1,8 @@
+/* Returns mentioned user profile picture. */
+
 exports.run = async (client, msg) => {
   if (!msg.mentions.users.size) await msg.channel.send(msg.author.avatarURL);
-  msg.mentions.users.map(user => {
-    return msg.channel.send(`${user.username}'s avatar: ${user.avatarURL}\n`);
-  });
+  msg.mentions.users.map(user => { return msg.channel.send(`${user.username}'s avatar: ${user.avatarURL}\n`); });
 };
 
 exports.conf = {
@@ -21,4 +21,5 @@ exports.help = {
   description: 'Get the avatar URL tagged member(s).',
   usage: '',
   usageDelim: '',
+  extendedHelp: '',
 };
