@@ -1,3 +1,5 @@
+/* Sets the presense of the bot as read by Discord. */
+
 exports.run = async (client, msg, [type, status = 'online', ...str]) => {
   str = str.length ? str.join(' ') : null;
   switch (type) {
