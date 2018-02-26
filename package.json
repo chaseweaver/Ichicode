@@ -17,7 +17,8 @@
     "Ichicode",
     "Discord",
     "Discord.js",
-    "Komada.js"
+    "Komada",
+    "Moment"
   ],
   "author": "Chase Weaver",
   "license": "MIT",
@@ -26,6 +27,8 @@
   },
   "homepage": "https://github.com/chaseweaver/Ichicode#readme",
   "dependencies": {
+    "discord.js": "github:hydrabolt/discord.js",
+    "komada": "^0.21.1",
     "moment": "^2.20.1"
   }
 }

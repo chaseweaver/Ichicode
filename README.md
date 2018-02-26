@@ -5,10 +5,11 @@ Ichicode is a multi-purpose Discord bot built using Discord.js/Komada.js
 Comming soon
 
 # Required Modules
-* Node >= 8.0
-* Discord.js 11.2
-* Komada.js
-* Moment.js
+* Node >= 8.0.0
+* Discord.js github:hydrabolt/discord.js
+* Komada 0.21.1
+* Moment 2.20.1
+* node-opus
 
 # How to Run
 1. Create a new 'app' from https://discordapp.com/developers/applications/me
