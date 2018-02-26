@@ -13,15 +13,13 @@ exports.run = async (client, msg) => {
   const ownerID = msg.guild.ownerID;
   const region = msg.guild.region;
   const createdAt = msg.guild.createdAt;
-  const defaultRole = msg.guild.defaultRole.name;
-  const defaultRoleID = msg.guild.defaultRole.id;
   const onlineCount = msg.guild.members.filter(m => m.presence.status === 'online');
 
   let cctmp = '';
-  msg.guild.channels.filter(c => cctmp += `${c.name}\t`);
+  msg.guild.channels.filter(c => cctmp += `\`${c.name}\`\t`);
 
   let rtmp = '';
-  msg.guild.roles.filter(r => rtmp += `${r.name}\t`);
+  msg.guild.roles.filter(r => rtmp += `\`${r.name}\`\t`);
 
   let verify = msg.guild.verificationLevel;
   if (verify === 0) verify = 'None';
@@ -51,12 +49,6 @@ exports.run = async (client, msg) => {
     }, {
       name: 'Verification Level',
       value: verify,
-    }, {
-      name: 'Default Role',
-      value: defaultRole,
-    }, {
-      name: 'Default Role ID',
-      value: defaultRoleID,
     }, {
       name: 'Created On',
       value: createdAt,
