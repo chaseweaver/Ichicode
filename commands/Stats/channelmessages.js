@@ -8,7 +8,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   let chan = channel;
   let active = true;
 
-  chan = !msg.guild.channels.find('name', channel);
+  chan = msg.guild.channels.find('name', channel);
   if (!chan) return msg.reply('I couldn\'t find that channel!');
 
   if (channel && dateOne && !dateTwo) {
@@ -53,7 +53,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   if (end < chan.createdTimestamp) end = chan.createdTimestamp;
 
   const fetch = (id, m) => {
-    chan.fetchMessages({ limit: 100, before: id })
+    chan.messages.fetch({ limit: 100, before: id })
       .then(messages => {
         const arr = messages.array();
         let tmpID;
