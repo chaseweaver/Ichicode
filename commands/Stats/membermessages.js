@@ -56,7 +56,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
   if (end < chan.createdTimestamp) end = chan.createdTimestamp;
 
   const fetch = (id, m) => {
-    chan.fetchMessages({ limit: 100, before: id })
+    chan.messages.fetch({ limit: 100, before: id })
       .then(messages => {
         const arr = messages.array();
         let tmpID;
