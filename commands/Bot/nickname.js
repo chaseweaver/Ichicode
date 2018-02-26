@@ -1,3 +1,5 @@
+/* Sets the nickname for the bot. */
+
 exports.run = async (client, msg, [nick = '']) => {
   await msg.member.setNickname(nick);
   const text = nick.length > 0 ? `Nickname changed to ${nick}` : 'Nickname Cleared';
