@@ -5,6 +5,7 @@ exports.run = async (client, msg, [dateOne, dateTwo]) => {
   let start = msg.createdTimestamp;
   let end = start - (1000 * 60 * 60 * 24);
   let count = 0;
+  const timer = Date.now();
 
   if (dateOne && !dateTwo) {
     start = msg.createdTimestamp;
@@ -35,8 +36,7 @@ exports.run = async (client, msg, [dateOne, dateTwo]) => {
       end = msg.guild.createdTimestamp;
       break;
     }
-  }
-  else if (dateOne && dateTwo) {
+  } else if (dateOne && dateTwo) {
     if ((await new Date(dateOne) && await new Date(dateTwo)) !== (null || NaN)) {
       start = await new Date(dateOne).getTime();
       end = await new Date(dateTwo).getTime();
@@ -51,20 +51,17 @@ exports.run = async (client, msg, [dateOne, dateTwo]) => {
     if (m.joinedTimestamp <= start && m.joinedTimestamp >= end) count++;
   });
 
-  const avatar = msg.guild.iconURL ? msg.guild.iconURL : 'https://imgur.com/ik9S8V5.png';
-  const embed = {
-    color: 255106,
-    title: 'Total Messages',
-    author: {
-      name: `${msg.guild.name} / ${msg.guild.id}`,
-      icon_url: avatar,
-    },
-    fields: [{
-      name: `${Moment(end).format('llll')} - ${Moment(start).format('llll')}`,
-      value: `Members joined: ${count}`,
-    }],
-    timestamp: new Date(),
-  };
+  const avatar = msg.guild.iconURL() ? msg.guild.iconURL() : 'https://imgur.com/ik9S8V5.png';
+  const embed = new client.methods.Embed()
+    .setColor('#00bbff')
+    .setTitle('Members Joined')
+    .setThumbnail(avatar)
+    .setAuthor(`${msg.guild.name} / ${msg.guild.id}`, avatar)
+    .addField('Time Frame', `${Moment(end).format('llll')} - ${Moment(start).format('llll')}`)
+    .addField('Members Joined', count)
+    .addField('Total Processing Time', `${(msg.createdTimestamp - timer) / 1000}s`, true)
+    .addField('Client-Server Ping', `${Math.round(client.ping)}ms`, true)
+    .setTimestamp(new Date());
   return msg.send({ embed }).catch(err => console.log(err, 'error'));
 };
 
@@ -82,7 +79,7 @@ exports.conf = {
 exports.help = {
   name: 'membersjoined',
   description: 'Returns number of new members.',
-  usage: '<dateOne:str> [dateTwo:str]',
+  usage: '[dateOne:str] [dateTwo:str]',
   usageDelim: ' ',
   extendedHelp: '',
 };
