@@ -57,7 +57,7 @@ exports.run = async (client, msg, [dateOne, dateTwo]) => {
     .setTitle('Members Joined')
     .setThumbnail(avatar)
     .setAuthor(`${msg.guild.name} / ${msg.guild.id}`, avatar)
-    .addField('Time Frame', `${Moment(end).format('llll')} - ${Moment(start).format('llll')}`)
+    .addField('Time Frame', `${Moment.utc(end).format('llll')} UTC-0 - ${Moment.utc(start).format('llll')} UTC-0`)
     .addField('Members Joined', count)
     .addField('Total Processing Time', `${(msg.createdTimestamp - timer) / 1000}s`, true)
     .addField('Client-Server Ping', `${Math.round(client.ping)}ms`, true)

@@ -8,7 +8,7 @@ exports.conf = {
   enabled: true,
   runIn: ['text', 'dm', 'group'],
   aliases: [],
-  permLevel: 0,
+  permLevel: 2,
   botPerms: [],
   requiredFuncs: [],
   cooldown: 2500,

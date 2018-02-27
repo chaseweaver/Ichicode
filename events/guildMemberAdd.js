@@ -4,6 +4,7 @@ exports.run = (client, mem) => {
   try {
     /* Send welcome message if enabled. */
     if (mem.guild.settings.welcomeMsg && mem.guild.settings.welcomeMem && mem.guild.settings.welcomeChan) {
+      if (!mem.guild.settings.welcomeMem) return;
       let build = `Welcome, ${mem.user.tag}!`;
       const chan = mem.guild.channels.find('id', mem.guild.settings.welcomeChan);
       const message = mem.guild.settings.welcomeMsg;
@@ -12,7 +13,7 @@ exports.run = (client, mem) => {
     }
 
     /* Log member joined if enabled. */
-    if (mem.guild.settings.logMemAdd && mem.guild.settings.memLogs && mem.guild.settings.memLogs) {
+    if (mem.guild.settings.logMemAdd && mem.guild.settings.memLogs) {
       const chan = mem.guild.channels.find('id', mem.guild.settings.memLogs);
       const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
 
@@ -20,7 +21,7 @@ exports.run = (client, mem) => {
         .setColor('#00ffbb')
         .setThumbnail(avatar)
         .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
-        .addField('Joined At', Moment(mem.joinedTimestamp).format('llll'))
+        .addField('Joined At', `${Moment.utc(mem.joinedTimestamp).format('llll')} UTC-0`)
         .setTimestamp(new Date());
       chan.send({ embed }).catch(err => console.log(err, 'error'));
     }

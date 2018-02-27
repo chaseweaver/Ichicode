@@ -19,7 +19,7 @@ exports.conf = {
 
 exports.help = {
   name: 'botnickname',
-  description: 'Set\'s the bot\'s nickname',
+  description: 'Sets the bot\'s nickname',
   usage: '[nick:str]',
   usageDelim: '',
   extendedHelp: '',

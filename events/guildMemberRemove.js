@@ -20,8 +20,8 @@ exports.run = (client, mem) => {
         .setColor('#ff003c')
         .setThumbnail(avatar)
         .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
-        .addField('Joined At', Moment(mem.joinedTimestamp).format('llll'))
-        .addField('Left At', Moment(new Date()).format('llll'))
+        .addField('Joined At', `${Moment.utc(mem.joinedTimestamp).format('llll')} UTC-0`)
+        .addField('Left At', `${Moment.utc(new Date()).format('llll')} UTC-0`)
         .setTimestamp(new Date());
       chan.send({ embed }).catch(err => console.log(err, 'error'));
     }

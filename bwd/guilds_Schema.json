@@ -17,6 +17,12 @@
     "array": false,
     "sql": "TEXT"
   },
+  "developerRole": {
+    "type": "Role",
+    "default": "Developer",
+    "array": false,
+    "sql": "TEXT"
+  },
   "muteRole": {
     "type": "Role",
     "default": "Muted",

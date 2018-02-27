@@ -90,7 +90,7 @@ exports.run = async (client, msg, [channel, member = null, dateOne, dateTwo]) =>
             .setAuthor(`${msg.guild.name} / ${msg.guild.id}`, avatar)
             .addField('Channel', `#${chan.name}`, true)
             .addField('Member', user, true)
-            .addField('Time Frame', `${Moment(end).format('llll')} - ${Moment(start).format('llll')}`)
+            .addField('Time Frame', `${Moment.utc(end).format('llll')} UTC-0 - ${Moment.utc(start).format('llll')} UTC-0`)
             .addField('Message Count', count)
             .addField('Total Processing Time', `${(Date.now() - timer) / 1000}s`, true)
             .addField('Client-Server Ping', `${Math.round(client.ping)}ms`, true)
