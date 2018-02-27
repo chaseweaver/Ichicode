@@ -92,7 +92,7 @@ exports.run = async (client, msg, [channel, member = null, dateOne, dateTwo]) =>
             .addField('Member', user, true)
             .addField('Time Frame', `${Moment(end).format('llll')} - ${Moment(start).format('llll')}`)
             .addField('Message Count', count)
-            .addField('Total Processing Time', `${(msg.createdTimestamp - timer) / 1000}s`, true)
+            .addField('Total Processing Time', `${(Date.now() - timer) / 1000}s`, true)
             .addField('Client-Server Ping', `${Math.round(client.ping)}ms`, true)
             .setTimestamp(new Date());
           return m.edit({ embed }).catch(console.error);

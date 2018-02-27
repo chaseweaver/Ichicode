@@ -40,8 +40,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
       end = chan.createdTimestamp;
       break;
     }
-  }
-  else if (channel && dateOne && dateTwo) {
+  } else if (channel && dateOne && dateTwo) {
     if ((await new Date(dateOne) && await new Date(dateTwo)) !== (null || NaN)) {
       start = await new Date(dateOne).getTime();
       end = await new Date(dateTwo).getTime();
@@ -62,8 +61,7 @@ exports.run = async (client, msg, [channel, dateOne, dateTwo]) => {
           if (arr[i].id !== (undefined || null)) tmpID = arr[i].id;
           if (arr[i].createdTimestamp <= start && arr[i].createdTimestamp >= end) {
             if (arr[i].content.match(exp)) data.push(arr[i].content.match(exp));
-          }
-          else {return active = false;}
+          } else { return active = false; }
         }
         if (active === true) fetch(tmpID, m);
       })

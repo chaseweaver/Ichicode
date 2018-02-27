@@ -4,7 +4,7 @@ exports.run = async (client, msg) => {
 
   console.log(msg.guild.iconURL({ format: 'png' }));
 
-  const guildAvatar = msg.guild.iconURL({ format: 'png' }) ? msg.guild.iconURL : 'https://imgur.com/ik9S8V5.png';
+  const avatar = msg.guild.iconURL() ? msg.guild.iconURL() : 'https://imgur.com/ik9S8V5.png';
   const roles = msg.guild.roles.array().length ? msg.guild.roles.array().length : 'N/A';
   const channelCount = msg.guild.channels.array().length ? msg.guild.channels.array().length : 'N/A';
   const guildName = msg.guild.name;
@@ -31,8 +31,8 @@ exports.run = async (client, msg) => {
 
   const embed = new client.methods.Embed()
     .setColor('#ff003c')
-    .setThumbnail(guildAvatar)
-    .setAuthor(`[${guildAcro}] ${guildName} / ${guildID}`, guildAvatar)
+    .setThumbnail(avatar)
+    .setAuthor(`[${guildAcro}] ${guildName} / ${guildID}`, avatar)
     .addField(`Total Members [${memberCount}]`, `${onlineCount.size} Online, ${memberCount - onlineCount.size} Offline`)
     .addField('Region', region)
     .addField(`Channels [${channelCount}]`, cctmp)
@@ -42,6 +42,7 @@ exports.run = async (client, msg) => {
     .addField('Server Owner', `${owner} / ${ownerID}`);
   return await msg.send({ embed }).catch(console.error);
 };
+
 exports.conf = {
   enabled: true,
   runIn: ['text'],
