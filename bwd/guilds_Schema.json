@@ -17,7 +17,7 @@
     "array": false,
     "sql": "TEXT"
   },
-  "developerRole": {
+  "devRole": {
     "type": "Role",
     "default": "Developer",
     "array": false,
