@@ -53,6 +53,12 @@
     "array": false,
     "sql": "TEXT"
   },
+  "welcomeMsg": {
+    "type": "String",
+    "default": "Welcome, ${user}! Kick back and stay a while!",
+    "array": true,
+    "sql": "TEXT DEFAULT '[]'"
+  },
   "cooldown": {
     "type": "Float",
     "default": 2.5,
@@ -88,11 +94,5 @@
     "default": [],
     "array": true,
     "sql": "TEXT DEFAULT '[]'"
-  },
-  "welcomeMsg": {
-    "type": "String",
-    "default": "Welcome, ${user}! Kick back and stay a while!",
-    "array": true,
-    "sql": "TEXT"
   }
 }
