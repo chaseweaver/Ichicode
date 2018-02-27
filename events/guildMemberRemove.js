@@ -1,31 +1,31 @@
 const Moment = require('moment');
 exports.run = (client, mem) => {
-  if (!mem.guild.settings.logMemRemove) return;
-  if (!mem.guild.settings.memLogs) return;
 
-  const chan = mem.guild.channels.find('id', mem.guild.settings.memLogs);
-  if(!chan) return;
+  try {
+    /* Send goodbye message if enabled. */
+    if (mem.guild.settings.goodbyeMsg && mem.guild.settings.goodbyeMem && mem.guild.settings.goodbyeChan) {
+      let build = `Goodbye, ${mem.user.tag}!`;
+      const chan = mem.guild.channels.find('id', mem.guild.settings.goodbyeChan);
+      const message = mem.guild.settings.goodbyeMsg;
+      if (message.search('$USER$')) build = message.replace('$USER$', mem.user);
+      chan.send(build).catch(err => console.log(err, 'error'));
+    }
 
-  let avaURL = mem.user.avatarURL;
-  if (!avaURL) avaURL = mem.user.defaultAvatarURL;
+    /* Log member removed if enabled. */
+    if (mem.guild.settings.logMemRemove && mem.guild.settings.memLogs && mem.guild.settings.memLogs) {
+      const chan = mem.guild.channels.find('id', mem.guild.settings.memLogs);
+      const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
 
-  const embed = {
-    color: 16711740,
-    title: 'Member Left',
-    author: {
-      name: `${mem.user.tag} / ${mem.user.id}`,
-      icon_url: avaURL,
-    },
-    fields: [{
-      name: 'Joined At',
-      value: Moment(mem.joinedTimestamp).format('llll'),
-    }, {
-      name: 'Left At',
-      value: Moment(new Date()).format('llll'),
-    }],
-    timestamp: new Date(),
-  };
+      const embed = new client.methods.Embed()
+        .setColor('#ff003c')
+        .setThumbnail(avatar)
+        .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
+        .addField('Joined At', Moment(mem.joinedTimestamp).format('llll'))
+        .addField('Left At', Moment(new Date()).format('llll'))
+        .setTimestamp(new Date());
+      chan.send({ embed }).catch(err => console.log(err, 'error'));
+    }
+  } catch (error) { console.log(error); }
 
-  chan.send({ embed }).catch(err => console.log(err, 'error'));
-  console.log(`Member ${mem.name} joined ${mem.guild.name}.`);
+  console.log(`Member ${mem.name} left ${mem.guild.name}.`);
 };
