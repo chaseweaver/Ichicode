@@ -1,28 +1,30 @@
 const Moment = require('moment');
 exports.run = (client, mem) => {
-  if (!mem.guild.settings.logMemAdd) return;
-  if (!mem.guild.settings.memLogs) return;
 
-  const chan = mem.guild.channels.find('id', mem.guild.settings.memLogs);
-  if(!chan) return;
+  try {
+    /* Send welcome message if enabled. */
+    if (mem.guild.settings.welcomeMsg && mem.guild.settings.welcomeMem && mem.guild.settings.welcomeChan) {
+      let build = `Welcome, ${mem.user.tag}!`;
+      const chan = mem.guild.channels.find('id', mem.guild.settings.welcomeChan);
+      const message = mem.guild.settings.welcomeMsg;
+      if (message.search('$USER$')) build = message.replace('$USER$', mem.user);
+      chan.send(build).catch(err => console.log(err, 'error'));
+    }
 
-  let avaURL = mem.user.avatarURL;
-  if (!avaURL) avaURL = mem.user.defaultAvatarURL;
+    /* Log member joined if enabled. */
+    if (mem.guild.settings.logMemAdd && mem.guild.settings.memLogs && mem.guild.settings.memLogs) {
+      const chan = mem.guild.channels.find('id', mem.guild.settings.memLogs);
+      const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
 
-  const embed = {
-    color: 65407,
-    title: 'Member Joined',
-    author: {
-      name: `${mem.user.tag} / ${mem.user.id}`,
-      icon_url: avaURL,
-    },
-    fields: [{
-      name: 'Joined At',
-      value: Moment(mem.joinedTimestamp).format('llll'),
-    }],
-    timestamp: new Date(),
-  };
+      const embed = new client.methods.Embed()
+        .setColor('#00ffbb')
+        .setThumbnail(avatar)
+        .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
+        .addField('Joined At', Moment(mem.joinedTimestamp).format('llll'))
+        .setTimestamp(new Date());
+      chan.send({ embed }).catch(err => console.log(err, 'error'));
+    }
+  } catch (error) { console.log(error); }
 
-  chan.send({ embed }).catch(err => console.log(err, 'error'));
-  console.log(`Member ${mem.name} joined ${mem.guild.name}.`);
+  console.log(`Member ${mem.user.tag} joined ${mem.guild.name}.`);
 };
