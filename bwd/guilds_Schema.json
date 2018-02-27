@@ -82,5 +82,11 @@
     "default": [],
     "array": true,
     "sql": "TEXT DEFAULT '[]'"
+  },
+  "welcomeMsg": {
+    "type": "String",
+    "default": "Welcome, ${user}! Kick back and stay a while!",
+    "array": true,
+    "sql": "TEXT"
   }
 }
