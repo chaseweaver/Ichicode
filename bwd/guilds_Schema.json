@@ -47,6 +47,12 @@
     "array": false,
     "sql": "TEXT"
   },
+  "welcomeMem": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
   "cooldown": {
     "type": "Float",
     "default": 2.5,
