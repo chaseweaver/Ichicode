@@ -4,7 +4,7 @@ const permStructure = new PermLevels()
   .addLevel(0, false, () => true)
   .addLevel(2, false, (client, msg) => {
     /* Dev + Mod + Admin */
-    if (!msg.guild || !msg.guild.settings.adminRole || !msg.get.settings.modRole || !msg.get.settings.devRole) return false;
+    if (!msg.guild || !msg.guild.settings.adminRole || !msg.guild.settings.modRole || !msg.guild.settings.devRole) return false;
     const adminRole = msg.guild.roles.get(msg.guild.settings.adminRole);
     const modRole = msg.guild.roles.get(msg.guild.settings.modRoles);
     const devRole = msg.guild.roles.get(msg.get.settings.devRole);
