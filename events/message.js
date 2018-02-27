@@ -3,10 +3,13 @@ exports.run = (client, msg) => {
   /* Put custom stuff here for tripping */
 
   /* This deletes messages that get spammed into chat */
-  if (msg.channel.type === 'dm') return;
   if (msg.author.bot) return;
   if (!msg.guild.settings.antiSpam || !msg.guild.settings.cooldown) return;
   if (msg.guild.settings.antiSpam && msg.guild.settings.cooldown) {
+    if (msg.member.roles.find('name', msg.guild.settings.modRole) ||
+      msg.member.roles.find('name', msg.guild.settings.adminRole) ||
+      (msg.member.id === client.ownerID)) return;
+    if (msg.channel.type === 'dm') return;
     const cooldown = msg.guild.settings.cooldown;
     const msgTS = msg.createdTimestamp;
     const data = [];
