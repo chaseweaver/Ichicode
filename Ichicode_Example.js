@@ -24,7 +24,7 @@ const permStructure = new PermLevels()
     const adminRole = msg.guild.roles.get(msg.guild.settings.adminRole);
     return ((adminRole && msg.member.roles.has(adminRole.id)));
   })
-  .addLevel(4, false, (client, msg) => msg.guild && msg.author.id === msg.guild.owner.id)
+  .addLevel(5, false, (client, msg) => msg.guild && msg.author.id === msg.guild.owner.id)
   .addLevel(9, true, (client, msg) => msg.author.id === client.config.ownerID)
   .addLevel(10, false, (client, msg) => msg.author.id === client.config.ownerID);
 
