@@ -55,9 +55,33 @@
   },
   "welcomeMsg": {
     "type": "String",
-    "default": "Welcome, ${user}! Kick back and stay a while!",
-    "array": true,
-    "sql": "TEXT DEFAULT '[]'"
+    "default": "Welcome, $USER$! Kick back and stay a while!",
+    "array": false,
+    "sql": "TEXT"
+  },
+  "welcomeChan": {
+    "type": "Channel",
+    "default": [],
+    "array": false,
+    "sql": "TEXT"
+  },
+  "goodbyeMem": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
+  "goodbyeMsg": {
+    "type": "String",
+    "default": "Goodbye, $USER$! It was fun while it lasted (or maybe not).",
+    "array": false,
+    "sql": "TEXT"
+  },
+  "goodbyeChan": {
+    "type": "Channel",
+    "default": [],
+    "array": false,
+    "sql": "TEXT"
   },
   "cooldown": {
     "type": "Float",
