@@ -14,7 +14,7 @@ exports.run = async (client, msg) => {
 
   (function play(song) {
     if (song === undefined) {
-      return msg.channel.send('The queue is empty!').then(() => {
+      return msg.send('The queue is empty!').then(() => {
         handler.playing = false;
         setTimeout(() => {
           return msg.member.voiceChannel.leave();
@@ -22,7 +22,7 @@ exports.run = async (client, msg) => {
       });
     }
 
-    msg.channel.send(`Playing: **${song.title}**\nRequested by: **${song.requester}**!`)
+    msg.send(`Playing: **${song.title}**\nRequested by: **${song.requester}**!`)
       .catch(err => client.emit('log', err, 'error'));
 
     return msg.guild.voiceConnection.play(yt(song.url, { audioonly: true, quality: 'highestaudio' }),
