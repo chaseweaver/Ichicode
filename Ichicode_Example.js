@@ -32,6 +32,7 @@ const client = new Client({
   ownerID : 'OWNER_ID',
   prefix: '+',
   permStructure,
+  youTubeAPI: 'API_KEY',
   clientOptions: {
     fetchAllMembers: false,
     sync: true,
