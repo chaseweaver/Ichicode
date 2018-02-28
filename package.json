@@ -28,7 +28,9 @@
   "homepage": "https://github.com/chaseweaver/Ichicode#readme",
   "dependencies": {
     "discord.js": "github:hydrabolt/discord.js",
+    "figlet": "^1.2.0",
     "komada": "^0.21.1",
-    "moment": "^2.20.1"
+    "moment": "^2.20.1",
+    "node-opus": "^0.2.7"
   }
 }

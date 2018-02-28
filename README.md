@@ -36,6 +36,9 @@ Ichicode is a multi-purpose mod / stat / fun Discord bot!
 * KOMADA
   * ADD INFORMATION
 
+# Additional Info
+If you are like me and want to be able to send bot commands across channels and have the bot respond to them, you need to replace 'node_modules/Komada/src/events/message.js' with 'replacement/message.js'.
+
 # Invite Link
 Wanna add my bot to your server? Add it with this: https://discordapp.com/oauth2/authorize?client_id=415589284955947018&permissions=70257664&scope=bot
 

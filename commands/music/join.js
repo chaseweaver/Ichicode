@@ -16,10 +16,10 @@ exports.conf = {
   enabled: true,
   runIn: ['text'],
   aliases: [],
-  permLevel: 2,
+  permLevel: 0,
   botPerms: ['CONNECT', 'SPEAK'],
   requiredFuncs: [],
-  cooldown: 2500,
+  cooldown: 2,
   nsfw: false,
 };
 

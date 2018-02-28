@@ -1,5 +1,13 @@
 exports.run = (client, msg) => {
-  if (msg.author.bot) return;
+
+  /* Lets the bot run it's own commands. */
+
+  // console.log(client.user.id);
+  // const attachment = msg.attachments.array();
+  // console.log(attachment);
+
+  // console.log(msg.attachments.array().find('attachment'));
+
   /* Put custom stuff here for tripping */
 
   try {

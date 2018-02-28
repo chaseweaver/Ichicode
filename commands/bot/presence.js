@@ -29,7 +29,7 @@ exports.conf = {
   permLevel: 10,
   botPerms: [],
   requiredFuncs: [],
-  cooldown: 2500,
+  cooldown: 2,
   nsfw: false,
 };
 

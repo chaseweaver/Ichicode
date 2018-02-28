@@ -13,7 +13,7 @@ exports.conf = {
   permLevel: 10,
   botPerms: ['CHANGE_NICKNAME'],
   requiredFuncs: [],
-  cooldown: 2500,
+  cooldown: 2,
   nsfw: false,
 };
 

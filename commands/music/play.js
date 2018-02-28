@@ -23,7 +23,7 @@ exports.run = async (client, msg) => {
     msg.channel.send(`Playing: **${song.title}** as requested by: **${song.requester}**!`)
       .catch(err => client.emit('log', err, 'error'));
 
-    return msg.guild.voiceConnection.play(yt(song.url, { audioonly: true }), { passes: 2 })
+    return msg.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes: 2 }, { quality: 'highestaudio' })
       .on('end', () => {
         setTimeout(() => {
           handler.songs.shift();
@@ -43,10 +43,10 @@ exports.conf = {
   enabled: true,
   runIn: ['text'],
   aliases: [],
-  permLevel: 2,
+  permLevel: 0,
   botPerms: [],
   requiredFuncs: [],
-  cooldown: 2500,
+  cooldown: 2,
   nsfw: false,
 };
 
