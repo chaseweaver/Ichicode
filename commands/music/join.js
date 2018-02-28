@@ -9,7 +9,7 @@ exports.run = async (client, msg) => {
   if (!permissions.has('SPEAK')) throw 'I am missing the \'SPEAK\' permission.';
 
   await voiceChannel.join();
-  return msg.send(`Connected to the voice channel ${voiceChannel}.`);
+  return msg.send(`Connected to the voice channel ${voiceChannel}.`).then(() => msg.delete());
 };
 
 exports.conf = {

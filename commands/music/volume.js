@@ -31,5 +31,5 @@ exports.help = {
   description: 'Sets the voice connection volume.',
   usage: '[vol:int]',
   usageDelim: '',
-  extendedHelp: '',
+  extendedHelp: 'Enter an integer between 1 - 200. 50% volume is default.',
 };

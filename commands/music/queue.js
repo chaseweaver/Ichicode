@@ -6,11 +6,11 @@ exports.run = (client, msg) => {
 
   const output = [];
   for (let i = 0; i < Math.min(handler.songs.length, 15); i++) {
-    output.push(`${i + 1}. ${handler.songs[i].title} - Requested by: ${handler.songs[i].requester}`);
+    const tmp = ((i + 1) <= 9) ? `0${i + 1}` : `${i + 1}`;
+    output.push(`${tmp}. ${handler.songs[i].title}\nRequested by: ${handler.songs[i].requester}\n`);
   }
-
   return msg.send([
-    `**${msg.guild.name}'s Music Queue:**__ Currently **${output.length}** songs queued ${(handler.songs.length > 15 ? '*[Only next 15 shown]*' : '')}`,
+    `**${msg.guild.name}'s Music Queue:** Currently **${output.length}** songs queued ${(handler.songs.length > 15 ? '*[Only next 15 shown]*' : '')}`,
     `${'```'}${output.join('\n')}${'```'}`,
   ].join('\n'));
 };
