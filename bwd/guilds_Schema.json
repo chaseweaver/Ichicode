@@ -23,6 +23,18 @@
     "array": false,
     "sql": "TEXT"
   },
+  "extRole": {
+    "type": "Role",
+    "default": "EXT",
+    "array": false,
+    "sql": "TEXT"
+  },
+  "musicRole": {
+    "type": "Role",
+    "default": "DJ",
+    "array": false,
+    "sql": "TEXT"
+  },
   "muteRole": {
     "type": "Role",
     "default": "Muted",
@@ -67,7 +79,7 @@
   },
   "welcomeChan": {
     "type": "Channel",
-    "default": [],
+    "default": null,
     "array": false,
     "sql": "TEXT"
   },
@@ -85,7 +97,7 @@
   },
   "goodbyeChan": {
     "type": "Channel",
-    "default": [],
+    "default": null,
     "array": false,
     "sql": "TEXT"
   },
@@ -103,19 +115,19 @@
   },
   "modLogs": {
     "type": "Channel",
-    "default": [],
+    "default": null,
     "array": false,
     "sql": "TEXT"
   },
   "chatLogs": {
     "type": "Channel",
-    "default": [],
+    "default": null,
     "array": false,
     "sql": "TEXT"
   },
   "memLogs": {
     "type": "Channel",
-    "default": [],
+    "default": null,
     "array": false,
     "sql": "TEXT"
   },
@@ -124,5 +136,11 @@
     "default": [],
     "array": true,
     "sql": "TEXT DEFAULT '[]'"
+  },
+  "events": { 
+    "type": "String", 
+    "default": [], 
+    "array": true, 
+    "sql": "TEXT DEFAULT '[No upcomming events]'"
   }
 }
