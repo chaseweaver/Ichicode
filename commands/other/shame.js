@@ -1,4 +1,4 @@
-exports.run = (client, msg, [member]) => msg.channel.send(`🔔 SHAME 🔔 ${member} 🔔 SHAME 🔔`);
+exports.run = (client, msg, [member]) => msg.send(`🔔 SHAME 🔔 ${member} 🔔 SHAME 🔔`).then(() => msg.delete());
 
 exports.conf = {
   enabled: true,
