@@ -35,6 +35,12 @@
     "array": false,
     "sql": "TEXT"
   },
+  "banRole": {
+    "type": "Role",
+    "default": "BAN",
+    "array": false,
+    "sql": "TEXT"
+  },
   "muteRole": {
     "type": "Role",
     "default": "Muted",
