@@ -36,6 +36,6 @@ exports.help = {
   name: 'ban',
   description: 'Removes \'roleban\' role from a user.',
   usage: '<member:member> [reason:str]',
-  usageDelim: '',
+  usageDelim: ' ',
   extendedHelp: '',
 };
