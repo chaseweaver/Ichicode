@@ -4,12 +4,13 @@ exports.run = async (client, msg, [mem, reason]) => {
   reason = 'N/A';
   if (msg.guild.settings.banRole) {
     const role = msg.guild.roles.find('id', msg.guild.settings.banRole);
-    if (mem.roles.find(role)) return msg.send(`${mem.author.tag} is already RoleUnbanned!`);
-    await mem.removeRole(role, reason).catch(error => msg.reply(`I couldn't RoleUnban because of : ${error}`));
+    if (mem.roles.find('id', role)) return msg.send(`${mem.author.tag} is already RoleUnbanned!`);
+    await mem.roles.remove(role, reason).catch(error => msg.reply(`I couldn't RoleUnban because of : ${error}`));
+    msg.send(`**${role}** has been removed from **${mem.user.tag}**.`);
     if (msg.guild.settings.modLogs) {
       const chan = msg.guild.channels.find('id', msg.guild.settings.modLogs);
       const embed = new client.methods.Embed()
-        .setColor('#ff003c')
+        .setColor('#00ff7b')
         .setTitle('Member RoleUnbanned')
         .setThumbnail(mem.user.displayAvatarURL)
         .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)

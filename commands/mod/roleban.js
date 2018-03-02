@@ -4,8 +4,9 @@ exports.run = async (client, msg, [mem, reason]) => {
   reason = 'N/A';
   if (msg.guild.settings.banRole) {
     const role = msg.guild.roles.find('id', msg.guild.settings.banRole);
-    if (mem.roles.find(role)) return msg.send(`${mem.author.tag} is already rolebanned!`);
-    await mem.addRole(role, reason).catch(error => msg.reply(`I couldn't roleban because of : ${error}`));
+    if (mem.roles.find('id', role)) return msg.send(`${mem.author.tag} is already rolebanned!`);
+    await mem.roles.add(role, reason).catch(error => msg.reply(`I couldn't roleban because of : ${error}`));
+    msg.send(`**${role}** has been added to **${mem.user.tag}**.`);
     if (msg.guild.settings.modLogs) {
       const chan = msg.guild.channels.find('id', msg.guild.settings.modLogs);
       const embed = new client.methods.Embed()
@@ -36,6 +37,6 @@ exports.help = {
   name: 'roleban',
   description: 'Assigns a \'roleban\' role.',
   usage: '<member:member> [reason:str]',
-  usageDelim: '',
+  usageDelim: ' ',
   extendedHelp: '',
 };
