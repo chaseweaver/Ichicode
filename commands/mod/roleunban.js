@@ -2,8 +2,8 @@
 
 exports.run = async (client, msg, [mem, reason]) => {
   reason = 'N/A';
-  if (msg.guild.settings.roleBan) {
-    const role = msg.guild.roles.find('id', msg.guild.settings.roleBan);
+  if (msg.guild.settings.banRole) {
+    const role = msg.guild.roles.find('id', msg.guild.settings.banRole);
     if (mem.roles.find(role)) return msg.send(`${mem.author.tag} is already RoleUnbanned!`);
     await mem.removeRole(role, reason).catch(error => msg.reply(`I couldn't RoleUnban because of : ${error}`));
     if (msg.guild.settings.modLogs) {
