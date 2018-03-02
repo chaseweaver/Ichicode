@@ -65,6 +65,12 @@
     "array": false,
     "sql": "TEXT"
   },
+  "logRoleChange": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
   "logMemRemove": {
     "type": "Boolean",
     "default": false,

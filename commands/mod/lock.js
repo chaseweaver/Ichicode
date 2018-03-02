@@ -1,4 +1,4 @@
-/* Kicks a mentioned user. */
+/* Locks a channel  . */
 
 exports.run = async (client, msg, [mem, reason]) => {
   if (!reason) reason = 'N/A';

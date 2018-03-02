@@ -1,7 +1,7 @@
 /* Rolebans a mentioned user. */
 
 exports.run = async (client, msg, [mem, reason]) => {
-  reason = 'N/A';
+  if (!reason) reason = 'N/A';
   if (msg.guild.settings.banRole) {
     const role = msg.guild.roles.find('id', msg.guild.settings.banRole);
     if (mem.roles.find('id', role)) return msg.send(`${mem.author.tag} is already rolebanned!`);
