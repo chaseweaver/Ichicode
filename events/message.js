@@ -1,21 +1,20 @@
 exports.run = (client, msg) => {
-
-  /* Lets the bot run it's own commands. */
-
   // console.log(client.user.id);
   // const attachment = msg.attachments.array();
   // console.log(attachment);
-
   // console.log(msg.attachments.array().find('attachment'));
 
   /* Put custom stuff here for tripping */
+
+  /* My own amusment */
+  if (msg.author.id === client.config.ownerID) msg.react('♥');
 
   try {
     /* This deletes messages that get spammed into chat */
     if (msg.guild.settings.antiSpam && msg.guild.settings.cooldown) {
       if (msg.member.roles.find('name', msg.guild.settings.modRole) ||
         msg.member.roles.find('name', msg.guild.settings.adminRole) ||
-        (msg.member.id === client.ownerID)) return;
+        (msg.member.id === client.config.ownerID)) return;
       if (msg.channel.type === 'dm') return;
       const cooldown = msg.guild.settings.cooldown;
       const msgTS = msg.createdTimestamp;
