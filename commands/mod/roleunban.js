@@ -33,7 +33,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'ban',
+  name: 'roleunban',
   description: 'Removes \'roleban\' role from a user.',
   usage: '<member:member> [reason:str]',
   usageDelim: ' ',
