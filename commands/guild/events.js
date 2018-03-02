@@ -61,7 +61,7 @@ exports.conf = {
 exports.help = {
   name: 'events',
   description: 'Lists upcoming guild events.',
-  usage: '[add|remove|list] [eve:str] [date:str] [time:str]',
+  usage: '<add|remove|list> [eve:str] [date:str] [time:str]',
   usageDelim: ' | ',
   extendedHelp: '',
 };
