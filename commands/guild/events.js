@@ -2,6 +2,7 @@
 
 exports.run = async (client, msg, [action, eve, date, time]) => {
   const parseEvent = client.funcs.parseEvent;
+  const permissions = client.funcs.permissions;
   const pOne = [];
   const pTwo = [];
   let output = '';
@@ -9,6 +10,8 @@ exports.run = async (client, msg, [action, eve, date, time]) => {
   let data;
   let padTwo;
   let padOne;
+
+  if (!permissions(client, msg)) action = 'list';
 
   if (!client.settings.guilds.schema.events) await client.settings.guilds.add('events', { type: 'String', array: true });
 
@@ -51,7 +54,7 @@ exports.conf = {
   enabled: true,
   runIn: ['text'],
   aliases: [],
-  permLevel: 2,
+  permLevel: 0,
   botPerms: [],
   requiredFuncs: [],
   cooldown: 2,
