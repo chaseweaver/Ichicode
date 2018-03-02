@@ -27,5 +27,5 @@ exports.run = (client, mem) => {
     }
   } catch (error) { console.log(error); }
 
-  console.log(`Member ${mem.user.username} left ${mem.guild.name}. Account age ${mem.user.createdAt}.`);
+  console.log(`Member ${mem.user.tag} left ${mem.guild.name}. Account age ${mem.user.createdAt}.`);
 };

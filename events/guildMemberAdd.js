@@ -27,5 +27,5 @@ exports.run = (client, mem) => {
     }
   } catch (error) { console.log(error); }
 
-  console.log(`Member ${mem.user.tag} joined ${mem.guild.name}.`);
+  console.log(`Member '${mem.user.tag}' joined '${mem.guild.name}'. Account age '${mem.user.createdAt}'.`);
 };
