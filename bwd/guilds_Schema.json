@@ -1,7 +1,7 @@
 {
   "prefix": {
     "type": "String",
-    "default": ["+"],
+    "default": ["+", ";"],
     "array": true,
     "sql": "TEXT NOT NULL DEFAULT ['+']"
   },
