@@ -7,7 +7,7 @@ exports.run = (client, msg) => {
   /* Put custom stuff here for tripping */
 
   /* My own amusment */
-  if (msg.author.id === client.config.ownerID) msg.react('♥');
+  if (msg.author.id === client.config.ownerID && msg.guild.settings.emoji) msg.react('♥');
 
   try {
     /* This deletes messages that get spammed into chat */
