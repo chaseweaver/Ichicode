@@ -125,6 +125,12 @@
     "array": false,
     "sql": "TEXT"
   },
+  "emoji": {
+    "type": "Boolean",
+    "default": false,
+    "array": false,
+    "sql": "TEXT"
+  },
   "modLogs": {
     "type": "Channel",
     "default": null,
