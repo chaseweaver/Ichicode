@@ -1,7 +1,7 @@
 /* Kicks a mentioned user. */
 
-exports.run = async (client, msg, [mem, reason]) => {
-  if (!reason) reason = 'N/A';
+exports.run = async (client, msg, [mem, ...reason]) => {
+  reason = reason.length ? reason.join(' ') : 'N/A';
   await mem.kick(reason).catch(error => msg.reply(`I couldn't kick because of : ${error}`));
   if (msg.guild.settings.memLogs && msg.guild.settings.goodbyeMem) {
     const chan = msg.guild.channels.find('id', msg.guild.settings.memLogs);

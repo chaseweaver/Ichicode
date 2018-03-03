@@ -1,7 +1,7 @@
 /* Bans a mentioned user. */
 
-exports.run = async (client, msg, [mem, reason]) => {
-  if (!reason) reason = 'N/A';
+exports.run = async (client, msg, [mem, ...reason]) => {
+  reason = reason.length ? reason.join(' ') : 'N/A';
   await mem.ban(reason).catch(error => msg.reply(`Sorry ${msg.author} I couldn't ban because of : ${error}`));
   if (msg.guild.settings.memLogs && msg.guild.settings.goodbyeMem) {
     const chan = msg.guild.channels.find('id', msg.guild.settings.memLogs);

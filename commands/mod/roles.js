@@ -5,8 +5,6 @@ exports.run = async (client, msg, [action, role, mem]) => {
   if (!mem) return msg.send('I couldn\'t find that member!');
   const rol = msg.guild.roles.find('name', role);
 
-  console.log(rol);
-
   switch (action) {
   case 'add':
     if (mem.roles.find('name', role)) return msg.send(`${mem.user.username} already has that role!`);
