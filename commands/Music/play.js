@@ -55,7 +55,7 @@ module.exports = class extends Command {
           .setTimestamp();
         msg.sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
 
-        if (!handler.songs[0].upload) this.client.user.setActivity(song.title, { type: 'LISTENING' });
+        if (!handler.songs[0].upload) msg.client.user.setActivity(song.title, { type: 'LISTENING' });
 
         if (!handler.songs[0].upload) {
           return msg.guild.voiceConnection.play(yt(song.url, { audioonly: true, quality: 'highestaudio' }),
