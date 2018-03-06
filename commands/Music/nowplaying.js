@@ -35,7 +35,7 @@ module.exports = class extends Command {
         .setColor('#ff003c')
         .setTitle('Now Playing')
         .setThumbnail(handler.songs[0].thumbnail)
-        .setAuthor(msg.client.user.username, msg.client.user.avatarURL)
+        .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
         .addField('Song', handler.songs[0].title)
         .addField('Time Remaining', timeRemaining, true)
         .addField('Length', handler.songs[0].length, true)

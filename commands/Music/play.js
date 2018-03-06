@@ -48,7 +48,7 @@ module.exports = class extends Command {
           .setColor('#ff003c')
           .setTitle('Now Playing')
           .setThumbnail(song.thumbnail)
-          .setAuthor(msg.client.user.username, msg.client.user.avatarURL)
+          .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
           .addField('Song', song.title)
           .addField('Length', song.length, true)
           .addField('Requested By', song.requester, true)

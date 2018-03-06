@@ -40,7 +40,7 @@ module.exports = class extends Command {
         .setColor('#ff003c')
         .setTitle('Queue')
         .setThumbnail(handler.songs[0].thumbnail)
-        .setAuthor(msg.client.user.username, msg.client.user.avatarURL)
+        .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
         .addField('Total Time', totalTime)
         .addField(`Queue [${handler.songs.length}]`, output)
         .setTimestamp();

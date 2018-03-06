@@ -83,7 +83,7 @@ module.exports = class extends Command {
           .setColor('#ff003c')
           .setTitle('Song Added')
           .setThumbnail(info.thumbnail_url)
-          .setAuthor(this.client.user.username, this.client.user.avatarURL)
+          .setAuthor(this.client.user.username, this.client.user.displayAvatarURL())
           .addField('Song', info.title)
           .addField('Length', await this.fmtMMS(info.length_seconds), true)
           .addField('Requested By', msg.author.username, true)
