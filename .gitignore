@@ -3,5 +3,7 @@ test/
 logs/
 bwd/provider/
 node_modules/
+node_bak/
 package-lock.json
+_old/
 config.js

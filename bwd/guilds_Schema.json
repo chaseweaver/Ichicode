@@ -1,164 +1,263 @@
 {
   "prefix": {
     "type": "String",
-    "default": ["+", ";"],
-    "array": true,
-    "sql": "TEXT NOT NULL DEFAULT ['+']"
-  },
-  "modRole": {
-    "type": "Role",
-    "default": "Moderator",
+    "default": "+",
+    "min": null,
+    "max": 10,
     "array": false,
-    "sql": "TEXT"
+    "configurable": true,
+    "sql": "VARCHAR(10) NOT NULL DEFAULT '+'"
+  },
+  "language": {
+    "type": "Language",
+    "default": "en-US",
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "VARCHAR(5) NOT NULL DEFAULT 'en-US'"
+  },
+  "disableNaturalPrefix": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": false,
+    "sql": "BIT(1) NOT NULL DEFAULT 0"
   },
   "adminRole": {
     "type": "Role",
-    "default": "Administrator",
+    "default": null,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "modRole": {
+    "type": "Role",
+    "default": null,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
   "devRole": {
     "type": "Role",
-    "default": "Developer",
+    "default": null,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
   "extRole": {
     "type": "Role",
-    "default": "EXT",
+    "default": null,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
   "musicRole": {
     "type": "Role",
-    "default": "DJ",
+    "default": null,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
   "banRole": {
     "type": "Role",
-    "default": "BAN",
+    "default": null,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
   "muteRole": {
     "type": "Role",
-    "default": "Muted",
+    "default": null,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "logMsgDeleted": {
+  "logMessageDelete": {
     "type": "Boolean",
     "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "logMsgUpdated": {
+  "logMessageUpdate": {
     "type": "Boolean",
     "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "logMemAdd": {
+  "logMemberAdd": {
     "type": "Boolean",
     "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "logMemRemove": {
+  "logMemberRemove": {
     "type": "Boolean",
     "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
   "logRoleChange": {
     "type": "Boolean",
     "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "welcomeMem": {
+  "welcomeMemberActive": {
     "type": "Boolean",
     "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "welcomeMsg": {
+  "goodbyeMemberActive": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "welcomeChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "goodbyeChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "welcomeMessgage": {
     "type": "String",
     "default": "Welcome, $USER$! Kick back and stay a while!",
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "welcomeChan": {
-    "type": "Channel",
-    "default": null,
-    "array": false,
-    "sql": "TEXT"
-  },
-  "goodbyeMem": {
-    "type": "Boolean",
-    "default": false,
-    "array": false,
-    "sql": "TEXT"
-  },
-  "goodbyeMsg": {
+  "goodbyeMessage": {
     "type": "String",
-    "default": "Goodbye, $USER$! It was fun while it lasted (or maybe not).",
+    "default": "Goodbye, $USER$! It was fun while it lasted (or maybe not)! What do I know? I'm just a bot.",
+    "min": null,
+    "max": null,
     "array": false,
-    "sql": "TEXT"
-  },
-  "goodbyeChan": {
-    "type": "Channel",
-    "default": null,
-    "array": false,
-    "sql": "TEXT"
-  },
-  "cooldown": {
-    "type": "Float",
-    "default": 2.5,
-    "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
   "antiSpam": {
     "type": "Boolean",
     "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "emoji": {
-    "type": "Boolean",
+  "cooldown": {
+    "type": "Float",
+    "default": 2.5,
+    "min": 0,
+    "max": 10,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "modLogChannel": {
+    "type": "Channel",
     "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "modLogs": {
+  "chatLogChannel": {
     "type": "Channel",
-    "default": null,
+    "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "chatLogs": {
+  "memberLogChannel": {
     "type": "Channel",
-    "default": null,
+    "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
     "sql": "TEXT"
   },
-  "memLogs": {
+  "reportChannel": {
     "type": "Channel",
-    "default": null,
+    "default": false,
+    "min": null,
+    "max": null,
     "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "events": {
+    "type": "Command",
+    "default": [],
+    "min": null,
+    "max": null,
+    "array": true,
+    "configurable": true,
     "sql": "TEXT"
   },
   "disabledCommands": {
     "type": "Command",
     "default": [],
+    "min": null,
+    "max": null,
     "array": true,
-    "sql": "TEXT DEFAULT '[]'"
-  },
-  "events": { 
-    "type": "String", 
-    "default": [], 
-    "array": true, 
-    "sql": "TEXT DEFAULT '[No upcomming events]'"
+    "configurable": true,
+    "sql": "TEXT"
   }
 }

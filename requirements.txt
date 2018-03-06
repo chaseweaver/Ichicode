@@ -1,4 +1,0 @@
---production komada hydrabolt/discord.js
-moment
-ytdl-core
-nedb
