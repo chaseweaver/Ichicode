@@ -12,5 +12,10 @@ module.exports = class extends Monitor {
     });
   }
 
-  run(msg) { if (msg.content.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'&').includes(('&trap' || 'trap&' || ' trap '))) msg.send('<@158348884685357057>'); // eslint-dsable-line }
+  run(msg) {
+    // eslint-disable-next-line
+    if (msg.content.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'&').includes(('&trap' || 'trap&' || ' trap '))) {
+      msg.send('<@158348884685357057>');
+    }
+  }
 };
