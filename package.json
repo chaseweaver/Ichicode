@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/chaseweaver/Ichicode#readme",
   "dependencies": {
+    "azlyrics": "^1.0.2",
     "discord.js": "github:discordjs/discord.js#master",
     "djs-collection": "0.0.6",
     "enmap": "^0.4.6",
@@ -35,6 +36,7 @@
     "figlet": "^1.2.0",
     "fs-nextra": "^0.3.2",
     "klasa": "github:dirigeants/klasa",
+    "lyric-get": "^1.0.3",
     "node-opus": "^0.2.7",
     "ytdl-core": "^0.18.7"
   }
