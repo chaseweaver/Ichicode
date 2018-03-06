@@ -25,10 +25,12 @@ module.exports = class extends Command {
       const handler = this.client.queue.get(msg.guild.id);
       if (!handler) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
 
+      let total = 0;
       const output = [];
       for (let i = 0; i < Math.min(handler.songs.length, 15); i++) {
+        if (Number.isInteger(handler.songs[i].seconds)) total += handler.songs[i].seconds;
         const tmp = ((i + 1) <= 9) ? `0${i + 1}` : `${i + 1}`;
-        output.push(`${tmp}. ${handler.songs[i].title}\nRequested by: ${handler.songs[i].requester}\n`);
+        output.push(`${tmp}. ${handler.songs[i].title} [${handler.songs[i].length}]\nRequested by: ${handler.songs[i].requester}\n`);
       }
 
       const embed = new msg.client.methods.Embed()
@@ -36,6 +38,7 @@ module.exports = class extends Command {
         .setTitle('Queue')
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.avatarURL)
+        .addField('Total Time', total)
         .addField(`Queue [${handler.songs.length}]`, output)
         .setTimestamp();
       msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));

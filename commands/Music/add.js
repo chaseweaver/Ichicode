@@ -32,7 +32,6 @@ module.exports = class extends Command {
 
   async run(msg, [song]) {
     try {
-      console.log(msg.attachments.array().length);
       if (msg.attachments.array().length !== 0) {
         const ata = await JSON.stringify(msg.attachments);
         const final = await JSON.parse(ata);
