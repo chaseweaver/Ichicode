@@ -30,7 +30,7 @@ module.exports = class extends Command {
       }
 
       const handler = msg.client.queue.get(msg.guild.id);
-      if (handler.playing) msg.send('Already Playing!');
+      if (handler.playing) return msg.send('Already Playing!');
       handler.playing = true;
 
       (function play(song) {

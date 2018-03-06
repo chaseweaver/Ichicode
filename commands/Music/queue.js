@@ -1,6 +1,4 @@
 const { Command } = require('klasa');
-const moment = require('moment');
-require('moment-duration-format');
 
 module.exports = class extends Command {
   constructor(...args) {
@@ -36,7 +34,6 @@ module.exports = class extends Command {
         output.push(`${tmp}. ${handler.songs[i].title} [${handler.songs[i].length}]\nRequested by: ${handler.songs[i].requester}\n`);
       }
 
-      console.log(total);
       const totalTime = await this.fmtMMS(total);
 
       const embed = new msg.client.methods.Embed()
