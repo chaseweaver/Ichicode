@@ -12,10 +12,5 @@ module.exports = class extends Monitor {
     });
   }
 
-  run(msg) {
-    // eslint-disable-next-line
-    if (msg.content.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'&').includes(('&trap' || 'trap&' || ' trap '))) {
-      msg.send('<@158348884685357057>');
-    }
-  }
+  run(msg) { if (msg.content.toLowerCase().replace(/(?:^|\W)[tT][rR][aA][pP](?:$|\W)/g)) { msg.send('<@158348884685357057>');} }
 };
