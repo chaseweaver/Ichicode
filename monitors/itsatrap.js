@@ -12,5 +12,5 @@ module.exports = class extends Monitor {
     });
   }
 
-  run(msg) { if (msg.content.toLowerCase().includes('trap')) msg.send('<@158348884685357057>'); }
+  run(msg) { if (msg.content.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'&').includes(('&trap' || 'trap&' || ' trap '))) msg.send('<@158348884685357057>'); }
 };
