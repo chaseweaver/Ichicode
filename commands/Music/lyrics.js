@@ -10,14 +10,14 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 10,
+      permLevel: 0,
       botPerms: [],
       requiredConfigs: [],
       description: 'Fetches lyrics from a song.',
       quotedStringSupport: true,
       usage: '<song:str> <artist:str>',
       usageDelim: ' by ',
-      extendedHelp: 'No extended help available.',
+      extendedHelp: 'Needs to be exact. Fetches from ',
     });
   }
 

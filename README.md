@@ -1,6 +1,8 @@
 # Ichicode
 Ichicode is a multi-purpose mod / stat / fun Discord bot!
 
+# EVERYTHING IS OUTDATE RIGHT NOW
+
 # Features
 * BOT
   * botavatar   : Sets the bot's avatar.
