@@ -8,7 +8,7 @@ module.exports = class extends Command {
       runIn: ['text'],
       cooldown: 2,
       bucket: 1,
-      aliases: [],
+      aliases: ['stop'],
       permLevel: 0,
       botPerms: ['CONNECT', 'SPEAK'],
       requiredConfigs: [],
