@@ -44,7 +44,7 @@ module.exports = class extends Command {
         .addField('Total Time', totalTime)
         .addField(`Queue [${handler.songs.length}]`, output)
         .setTimestamp();
-      msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
+      return msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
 
     } catch (err) { console.log(err); }
   }
