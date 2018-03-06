@@ -21,7 +21,8 @@ module.exports = class extends Command {
   }
 
   async run(msg, [nick = '']) {
-    await msg.member.setNickname(nick);
+    const bot = msg.guild.members.get(this.client.user.id);
+    await bot.setNickname(nick);
     const text = nick.length > 0 ? `Nickname changed to ${nick}` : 'Nickname Cleared';
     return msg.send(text).then(m => m.delete(5000)).then(() => msg.delete()).catch(console.error);
   }
