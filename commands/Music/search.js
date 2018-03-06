@@ -9,7 +9,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 0,
+      permLevel: 10,
       botPerms: [],
       requiredConfigs: [],
       description: 'Fetches lyrics from a song.',
