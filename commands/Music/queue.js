@@ -1,4 +1,6 @@
 const { Command } = require('klasa');
+const moment = require('moment');
+require('moment-duration-format');
 
 module.exports = class extends Command {
   constructor(...args) {
@@ -33,12 +35,14 @@ module.exports = class extends Command {
         output.push(`${tmp}. ${handler.songs[i].title} [${handler.songs[i].length}]\nRequested by: ${handler.songs[i].requester}\n`);
       }
 
+      const totalTime = `${moment.duration((total * 1000) - msg.guild.voiceConnection.dispatcher.streamTime).format('h:mm:ss', { trim: false })}`;
+
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
         .setTitle('Queue')
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.avatarURL)
-        .addField('Total Time', total)
+        .addField('Total Time', totalTime)
         .addField(`Queue [${handler.songs.length}]`, output)
         .setTimestamp();
       msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
