@@ -31,11 +31,12 @@ module.exports = class extends Command {
       let total = 0;
       const output = [];
       for (let i = 0; i < Math.min(handler.songs.length, 15); i++) {
-        if (Number.isInteger(handler.songs[i].seconds)) total += handler.songs[i].seconds;
+        total += parseInt(handler.songs[i].seconds);
         const tmp = ((i + 1) <= 9) ? `0${i + 1}` : `${i + 1}`;
         output.push(`${tmp}. ${handler.songs[i].title} [${handler.songs[i].length}]\nRequested by: ${handler.songs[i].requester}\n`);
       }
 
+      console.log(total);
       const totalTime = await this.fmtMMS(total);
 
       const embed = new msg.client.methods.Embed()
