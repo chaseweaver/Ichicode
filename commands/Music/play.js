@@ -23,6 +23,8 @@ module.exports = class extends Command {
 
   async run(msg) {
     try {
+      const { voiceChannel } = msg.member;
+      if (!voiceChannel) return msg.send('You are not conected in a voice channel!');
       if (!msg.guild.voiceConnection) msg.send('I am not connected in a voice channel! Attempting now . . .');
       if (!msg.guild.voiceConnection) {
         await msg.client.commands.get('join').run(msg);
