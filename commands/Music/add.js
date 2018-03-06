@@ -32,6 +32,7 @@ module.exports = class extends Command {
 
   async run(msg, [song]) {
     try {
+      if (!song) return msg.send('Either a YouTube URL, ID, search parameter, or file upload is required!');
       if (msg.attachments.array().length !== 0) {
         const ata = await JSON.stringify(msg.attachments);
         const final = await JSON.parse(ata);
