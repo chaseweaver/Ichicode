@@ -23,7 +23,7 @@ module.exports = class extends Command {
     const path = '~/Ichicode/Ichicode/logs/err.log';
     const result = await this.client.methods.util.exec(`cat ${path}`, { timeout: 30000 })
       .catch(error => ({ stdout: null, stderr: error && error.message ? error.message : error }));
-    const output = result.stdout ? `OUTPUT:\n\n${result.stdout.substring(result.stdout.length - 1900, result.stdout.length - 1)}\n` : '';
+    const output = result.stdout ? `OUTPUT:\n\n${result.stdout.substring(result.stdout.length - 100, result.stdout.length - 1)}\n` : '';
     const outerr = result.stderr ? `ERROR:\n\n${result.stderr}\n` : '';
     return msg.send([output, outerr].join('\n'), { code: 'xl', split: true });
   }
