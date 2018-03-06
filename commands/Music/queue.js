@@ -22,6 +22,7 @@ module.exports = class extends Command {
     });
   }
 
+  async fmtMMS(s) { return(s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + s; } // eslint-disable-line yoda
   async run(msg) {
     try {
       const handler = this.client.queue.get(msg.guild.id);
@@ -35,7 +36,7 @@ module.exports = class extends Command {
         output.push(`${tmp}. ${handler.songs[i].title} [${handler.songs[i].length}]\nRequested by: ${handler.songs[i].requester}\n`);
       }
 
-      const totalTime = `${moment.duration((total * 1000)).format('h:mm:ss', { trim: false })}`;
+      const totalTime = await this.fmtMMS(total);
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
