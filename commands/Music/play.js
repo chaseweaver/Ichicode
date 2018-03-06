@@ -37,6 +37,7 @@ module.exports = class extends Command {
         if (song === undefined) {
           return msg.send('The queue is empty! Leaving voice channel in 5 minutes.').then(() => {
             handler.playing = false;
+            msg.client.user.setActivity(null);
             setTimeout(() => {
               return msg.member.voiceChannel.leave();
             }, 1000 * 60 * 5);
