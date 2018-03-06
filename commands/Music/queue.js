@@ -35,7 +35,7 @@ module.exports = class extends Command {
         output.push(`${tmp}. ${handler.songs[i].title} [${handler.songs[i].length}]\nRequested by: ${handler.songs[i].requester}\n`);
       }
 
-      const totalTime = `${moment.duration((total * 1000) - msg.guild.voiceConnection.dispatcher.streamTime).format('h:mm:ss', { trim: false })}`;
+      const totalTime = `${moment.duration((total * 1000)).format('h:mm:ss', { trim: false })}`;
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
