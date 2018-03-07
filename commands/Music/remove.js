@@ -25,7 +25,7 @@ module.exports = class extends Command {
       if (index <= 0) return msg.send('Please enter a valid index number!');
       const handler = this.client.queue.get(msg.guild.id);
       if (!handler) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
-      
+
       if (index == 1) {
         const id = handler.songs[0];
         if (id.requesterID !== msg.author.id && !msg.member.roles.find('id', msg.guild.configs.musicRole)) return msg.send('You cannot remove items from the queue you did not add!');
