@@ -8,7 +8,7 @@ module.exports = class extends Command {
       runIn: ['text'],
       cooldown: 2,
       bucket: 1,
-      aliases: [],
+      aliases: ['purge'],
       permLevel: 10,
       botPerms: ['MANAGE_MESSAGES'],
       requiredConfigs: [],
@@ -28,7 +28,8 @@ module.exports = class extends Command {
     }
     messages = messages.array().slice(0, limit);
     await msg.channel.bulkDelete(messages);
-    return msg.send(`Successfully deleted ${messages.length} messages from ${limit}.`);
+    // return msg.send(`Successfully deleted ${messages.length} messages from ${limit}.`);
+    return;
   }
 
   getFilter(msg, user, filter) {
