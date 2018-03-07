@@ -12,7 +12,7 @@ Client.defaultPermissionLevels
     const extRole = msg.guild.roles.get(msg.guild.configs.extRole);
     const musicRole = msg.guild.roles.get(msg.guild.configs.musicRole);
     return ((adminRole && msg.member.roles.has(adminRole.id)) || (modRole && msg.member.roles.has(modRole.id))
-    || (devRole && msg.member.roles.has(devRole.id)) || (extRole && msg.member.roles.has(extRole.id)) (extRole && msg.member.roles.has(musicRole.id)) || msg.author.id === client.user.id);
+    || (devRole && msg.member.roles.has(devRole.id)) || (extRole && msg.member.roles.has(extRole.id)) || (musicRole && msg.member.roles.has(musicRole.id)) || msg.author.id === client.user.id);
   })
   .add(3, (client, msg) => {
     // Dev + Mod + Admin + Ext
