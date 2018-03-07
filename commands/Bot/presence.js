@@ -9,7 +9,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 10,
+      permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
       description: 'Sets the bot\'s presence.',

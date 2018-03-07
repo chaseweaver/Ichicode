@@ -9,7 +9,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: ['c', 'echo'],
-      permLevel: 2,
+      permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
       description: 'Send a chat to another channel.',

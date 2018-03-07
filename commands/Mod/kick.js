@@ -9,7 +9,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 2,
+      permLevel: 3,
       botPerms: ['KICK_MEMBERS'],
       requiredConfigs: [],
       description: 'Kicks a mentioned user.',

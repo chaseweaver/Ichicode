@@ -14,14 +14,22 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Lists upcoming guild events.',
       quotedStringSupport: true,
-      usage: '<add|remove|list> [event:str] [date:date] [time:str]',
+      usage: '<add|remove|list> [event:str] [date:date] [time:time]',
       usageDelim: ' ',
       extendedHelp: 'No extended help available.',
     });
   }
 
   async init() { return; }
-  async run(msg, [action, eve, date, time]) { return this[action](msg, eve, date, time); }
+  async run(msg, [action, eve, date, time]) {
+    console.log(msg.content);
+    console.log(action);
+    console.log(eve);
+    console.log(date);
+    console.log(time);
+
+    // return this[action](msg, eve, date, time);
+  }
   async marry(msg, member) { return member; }
   async status(msg, member) { return member; }
   async divorce(msg, member) { return member; }

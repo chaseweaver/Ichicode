@@ -10,7 +10,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 2,
+      permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
       description: 'Replies with an ASCII banner.',
