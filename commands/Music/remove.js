@@ -49,7 +49,7 @@ module.exports = class extends Command {
         return msg.send(`**${id.title}** requested by **${id.requester}** has been removed!`);
       }
 
-      if (handler.songs[index]) {
+      if (handler.songs[index - 1]) {
         const id = handler.songs[index];
         handler.songs.splice(index - 1, 1);
         return msg.send(`**${id.title}** requested by **${id.requester}** has been removed!`);
