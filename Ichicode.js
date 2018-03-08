@@ -1,7 +1,8 @@
-const { master, token } = require('./config.js');
-const { Client } = require('klasa');
 
-Client.defaultPermissionLevels
+const { KlasaClient } = require('klasa');
+const { master, token } = require('./config.js');
+
+KlasaClient.defaultPermissionLevels
   .add(0, () => true)
   .add(2, (client, msg) => {
     // Dev + Mod + Admin + Ext + Music
@@ -52,7 +53,7 @@ Client.defaultPermissionLevels
   .add(9, (client, msg) => msg.author.id === master)
   .add(10, (client, msg) => msg.author.id === master);
 
-new Client({
+const client = new KlasaClient({
   ownerID : master,
   prefix: '+',
   cmdDeleting: true,
@@ -61,4 +62,28 @@ new Client({
   cmdPrompt: true,
   ignoreSelf: false,
   typing: true,
-}).login(token);
+  commandMessageLifetime: 60,
+  readyMessage: (client) => `Successfully initialized. Ready to serve ${client.guilds.size} guilds.`
+});
+
+client.gateways.register('birthdays', {
+  'users': {
+    'type': 'String',
+    'default': [],
+    'array': true,
+    'configurable': true,
+    'sql': 'TEXT',
+  },
+});
+
+client.gateways.register('events', {
+  'event': {
+    'type': 'String',
+    'default': [],
+    'array': true,
+    'configurable': true,
+    'sql': 'TEXT',
+  },
+});
+
+client.login(token);

@@ -29,7 +29,8 @@
   "homepage": "https://github.com/chaseweaver/Ichicode#readme",
   "dependencies": {
     "azlyrics": "^1.0.2",
-    "discord.js": "github:discordjs/discord.js#master",
+    "bufferutil": "^3.0.3",
+    "discord.js": "git+https://github.com/discordjs/discord.js.git#master",
     "djs-collection": "0.0.6",
     "enmap": "^0.4.6",
     "ffmpeg-binaries": "^3.2.2",
@@ -38,6 +39,8 @@
     "get-average-color": "0.0.6",
     "klasa": "github:dirigeants/klasa",
     "lyric-get": "^1.0.3",
+    "moment": "^2.21.0",
+    "moment-duration-format": "^2.2.2",
     "node-opus": "^0.2.7",
     "ytdl-core": "^0.18.7"
   }
