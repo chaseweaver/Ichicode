@@ -7,31 +7,31 @@ KlasaClient.defaultPermissionLevels
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
     const { adminRole, modRole, devRole, extRole, musicRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole.id || modRole.id || devRole || extRole || musicRole) || msg.author.id === (client.user.id || master);
+    return has(adminRole || modRole || devRole || extRole || musicRole) || msg.author.id === (client.user.id || master);
   })
   .add(3, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
     const { adminRole, modRole, devRole, extRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole.id || modRole.id || devRole || extRole) || msg.author.id === (client.user.id || master);
+    return has(adminRole || modRole || devRole || extRole) || msg.author.id === (client.user.id || master);
   })
   .add(4, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
     const { adminRole, modRole, devRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole.id || modRole.id || devRole) || msg.author.id === (client.user.id || master);
+    return has(adminRole || modRole || devRole) || msg.author.id === (client.user.id || master);
   })
   .add(5, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
     const { adminRole, modRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole.id || modRole.id) || msg.author.id === (client.user.id || master);
+    return has(adminRole || modRole) || msg.author.id === (client.user.id || master);
   })
   .add(6, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
     const { adminRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole.id) || msg.author.id === (client.user.id || master);
+    return has(adminRole) || msg.author.id === (client.user.id || master);
   })
   .add(7, (client, msg) => msg.guild && (msg.author.id === (msg.guild.owner.id || client.user.id)))
   .add(9, (client, msg) => msg.author.id === master)
