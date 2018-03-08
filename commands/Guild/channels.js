@@ -21,7 +21,7 @@ module.exports = class extends Command {
   }
 
   async run(msg, [type]) {
-    let str = `[${msg.guild.nameAcronym}] ${msg.guild.name} channels:\n\n`;
+    let str = `${msg.guild.name} channels:\n\n`;
     let num = 1;
     switch (type) {
     case 'text':
