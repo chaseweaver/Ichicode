@@ -3,8 +3,8 @@ const { Monitor } = require('klasa');
 module.exports = class extends Monitor {
   constructor(...args) {
     super(...args, {
-      name: 'itsatrap',
-      enabled: true,
+      name: 'hijack',
+      enabled: false,
       ignoreBots: false,
       ignoreSelf: false,
       ignoreOthers: false,
@@ -12,10 +12,5 @@ module.exports = class extends Monitor {
     });
   }
 
-  run(msg) {
-    if (msg.content.contains('https://i.imgur.com/VMoDwC5.gifv')) {
-      const final = msg.content;
-      msg.edit(final.replace('https://i.imgur.com/VMoDwC5.gifv', ''));
-    }
-  }
+  run(msg) { if (msg.content.includes('https://i.imgur.com/VMoDwC5.gifv')) { msg.delete(); }}
 };
