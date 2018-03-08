@@ -50,7 +50,7 @@ module.exports = class extends Command {
     */
     // msg.send(`**${bdayRole.name}** has been added to **${mem.user.tag}**.`).then(msg.delete(5000));
   }
-
+ 
   async remove(msg, [mem]) {
     if (!msg.guild.configs.birthdayRole) return msg.send('The birthday role is not set! Please set it in Guild configs!');
     if (!mem) return msg.send('I couldn\'t find that member!');
