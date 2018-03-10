@@ -3,12 +3,12 @@ const { Command } = require('klasa');
 module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
-      name: 'event',
+      name: 'events',
       enabled: true,
       runIn: ['text'],
       cooldown: 2,
       bucket: 1,
-      aliases: [],
+      aliases: ['event'],
       permLevel: 10,
       botPerms: [],
       requiredConfigs: [],
@@ -28,6 +28,7 @@ module.exports = class extends Command {
     let data;
     let padTwo;
     let padOne;
+    const parseDate = await this.parseDashDate(date);
 
     if (!action) action = 'list';
 
@@ -69,5 +70,11 @@ module.exports = class extends Command {
       }
       return msg.sendCode('asciidoc', output);
     }
+  }
+
+  /* MM-DD-YYYY */
+  async parseDashDate(date) {
+    const final = date.split('-');
+    return new Date(`${final[2]}.${final[0]}.${final[1]}`);
   }
 };
