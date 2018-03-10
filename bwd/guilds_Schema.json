@@ -179,7 +179,7 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "welcomeMessgage": {
+  "welcomeMessage": {
     "type": "String",
     "default": "Welcome, $USER$! Kick back and stay a while!",
     "min": null,
