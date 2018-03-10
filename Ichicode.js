@@ -6,32 +6,52 @@ KlasaClient.defaultPermissionLevels
   .add(2, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
-    const { adminRole, modRole, devRole, extRole, musicRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole || modRole || devRole || extRole || musicRole) || msg.author.id === (client.user.id || master);
+    const get = msg.guild.roles.get();
+    let adminRole, modRole, devRole, extRole, musicRole;
+    if (get(msg.guild.configs.adminRole)) adminRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.modRole)) modRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.devRole)) devRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.extRole)) extRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.musicRole)) musicRole = get(msg.guild.configs.adminRole);
+    return msg.author.id === (client.user.id || master) || has(adminRole || modRole || devRole || extRole || musicRole);
   })
   .add(3, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
-    const { adminRole, modRole, devRole, extRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole || modRole || devRole || extRole) || msg.author.id === (client.user.id || master);
+    const get = msg.guild.roles.get();
+    let adminRole, modRole, devRole, extRole;
+    if (get(msg.guild.configs.adminRole)) adminRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.modRole)) modRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.devRole)) devRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.extRole)) extRole = get(msg.guild.configs.adminRole);
+    return msg.author.id === (client.user.id || master) || has(adminRole || modRole || devRole || extRole);
   })
   .add(4, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
-    const { adminRole, modRole, devRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole || modRole || devRole) || msg.author.id === (client.user.id || master);
+    const get = msg.guild.roles.get();
+    let adminRole, modRole, devRole;
+    if (get(msg.guild.configs.adminRole)) adminRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.modRole)) modRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.devRole)) devRole = get(msg.guild.configs.adminRole);
+    return msg.author.id === (client.user.id || master) || has(adminRole || modRole || devRole);
   })
   .add(5, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
-    const { adminRole, modRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole || modRole) || msg.author.id === (client.user.id || master);
+    const get = msg.guild.roles.get();
+    let adminRole, modRole;
+    if (get(msg.guild.configs.adminRole)) adminRole = get(msg.guild.configs.adminRole);
+    if (get(msg.guild.configs.modRole)) modRole = get(msg.guild.configs.adminRole);
+    return msg.author.id === (client.user.id || master) || has(adminRole || modRole);
   })
   .add(6, (client, msg) => {
     if (!msg.guild) return false;
     const has = msg.member.roles.has();
-    const { adminRole } = msg.guild.roles.get(msg.guild.configs);
-    return has(adminRole) || msg.author.id === (client.user.id || master);
+    const get = msg.guild.roles.get();
+    let adminRole;
+    if (get(msg.guild.configs.adminRole)) adminRole = get(msg.guild.configs.adminRole);
+    return msg.author.id === (client.user.id || master) || has(adminRole);
   })
   .add(7, (client, msg) => msg.guild && (msg.author.id === (msg.guild.owner.id || client.user.id)))
   .add(9, (client, msg) => msg.author.id === master)
