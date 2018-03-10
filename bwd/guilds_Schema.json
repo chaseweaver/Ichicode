@@ -251,15 +251,6 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "events": {
-    "type": "Command",
-    "default": [],
-    "min": null,
-    "max": null,
-    "array": true,
-    "configurable": true,
-    "sql": "TEXT"
-  },
   "disabledCommands": {
     "type": "Command",
     "default": [],
@@ -268,5 +259,23 @@
     "array": true,
     "configurable": true,
     "sql": "TEXT"
+  },
+  "birthdays": {
+    "type": "String",
+    "default": [],
+    "min": null,
+    "max": null,
+    "array": true,
+    "configurable": true,
+    "sql": "TEXT '[]'"
+  },
+  "events": {
+    "type": "String",
+    "default": [],
+    "min": null,
+    "max": null,
+    "array": true,
+    "configurable": true,
+    "sql": "TEXT '[]'"
   }
 }

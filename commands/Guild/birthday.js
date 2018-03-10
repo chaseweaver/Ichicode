@@ -14,7 +14,7 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Add / Remove a birthday from a user',
       quotedStringSupport: true,
-      usage: '<add|remove|list> (member:member)',
+      usage: '[add|remove|list|get] [member:member]',
       usageDelim: ' ',
       extendedHelp: 'No extended help available.',
     });
@@ -22,9 +22,23 @@ module.exports = class extends Command {
 
   async run(msg, [action, ...params]) { return this[action](msg, params); }
 
+  async get(msg) {
+    
+  }
+
   async add(msg, [mem]) {
-    if (!msg.guild.configs.birthdayRole) return msg.send('The birthday role is not set! Please set it in Guild configs!');
-    const bdayRole = msg.guild.configs.birthdayRole;
+    /*
+    const { piece } = this.client.gateways.birthdays.getPath('users', { avoidUnconfigurable: true, piece: true });
+    return msg.sendMessage(msg.language.get('COMMAND_CONF_GET', piece.path, msg.guild.configs.resolveString(msg, piece)));
+    /*
+    console.log(msg.guild.birthdays);
+    const { errors, updated } = await msg.guild.gateways.birthdays.schema.updateArray('users', mem.id, msg.guild, { avoidUnconfigurable: true, action: 'add' });
+    if (errors.length) return msg.sendMessage(errors[0]);
+    if (!updated.length) return msg.sendMessage(msg.language.get('COMMAND_CONF_NOCHANGE', key));
+    return msg.sendMessage(msg.language.get('COMMAND_CONF_UPDATED', key, msg.guild.configs.resolveString(msg, updated[0].piece)));
+    */
+    // if (!msg.guild.configs.birthdayRole) return msg.send('The birthday role is not set! Please set it in Guild configs!');
+    // const bdayRole = msg.guild.configs.birthdayRole;
     // if (mem.roles.find('name', bdayRole.name)) return msg.send(`${mem.user.username} already has that role!`);
 
     // await msg.guild.birthdays.update('users', mem.id, msg.guild, { avoidUnconfigurable: true, action: 'remove' });
@@ -32,9 +46,9 @@ module.exports = class extends Command {
     // const { piece } =
     // msg.guild.configs.update('roles.administrator', '339943234405007361', msg.guild);
     // msg.guild.configs.birthdays.update('users', 'this is not a user', msg.guild);
-    const modRole = await this.provider.get('users', this.guild.id);
-    console.log(modRole);
-    console.log(this.client.gateways.birthdays.getPath('users', { avoidUnconfigurable: true, piece: true }));
+    // const modRole = await this.provider.get('users', this.guild.id);
+    // console.log(modRole);
+    // console.log(this.client.gateways.birthdays.getPath('users', { avoidUnconfigurable: true, piece: true }));
     // return msg.sendMessage(msg.language.get('COMMAND_CONF_GET', piece.path, msg.author.configs.resolveString(msg, piece)));
 
     // await mem.roles.add(bdayRole)
@@ -50,7 +64,7 @@ module.exports = class extends Command {
     */
     // msg.send(`**${bdayRole.name}** has been added to **${mem.user.tag}**.`).then(msg.delete(5000));
   }
- 
+
   async remove(msg, [mem]) {
     if (!msg.guild.configs.birthdayRole) return msg.send('The birthday role is not set! Please set it in Guild configs!');
     if (!mem) return msg.send('I couldn\'t find that member!');

@@ -1,1 +1,12 @@
-{"users":{"type":"String","default":[],"array":true,"configurable":true,"sql":"TEXT"}}
+{
+  "type": "Folder",
+  "nameOfStuff": {
+    "type": "string",
+    "array": true,
+    "default": [],
+    "min": null,
+    "max": null,
+    "sql": "TEXT DEFAULT '[]'",
+    "configurable": true
+  }
+}
