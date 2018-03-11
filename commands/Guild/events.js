@@ -32,14 +32,6 @@ module.exports = class extends Command {
     if (!action) action = 'list';
 
     switch (action) {
-    case 'remove':
-      if (!eve || eve <= 0 || eve > msg.guild.configs.events.length) return msg.send('You must provide a valid event index!');
-      this.client.configs.guilds.updateArray(msg.guild, 'remove', 'events', msg.guild.configs.events[eve - 1])
-        .catch(e => { console.log(e); msg.send(`**${eve}** is not a valid event index!`); });
-      data = Object.values(JSON.parse(msg.guild.settings.events[eve - 1]));
-      msg.send(`Successfully removed the event **${data[0]}** on **${data[1]}** at **${data[2]}**!`);
-      break;
-
     default:
       output = [`= Upcoming ${msg.guild.name} Events =\n`];
       if (msg.guild.configs.events.length === 0) return msg.send('There are no upcoming events scheduled!');
@@ -59,12 +51,24 @@ module.exports = class extends Command {
   }
 
   async add(msg, event, date, time) {
-    const { errors, updated } = await msg.guild.configs.update('events',
+    const { errors, updated } = await msg.guild.configs.update(msg.guild, 'add', 'events',
       JSON.stringify({ 'event': event, 'date': await this.parseDashDate(date), 'time': time }),
       msg.guild, { avoidUnconfigurable: true, action: 'add' });
     if (errors.length) return msg.sendMessage(errors[0]);
     if (!updated.length) return msg.sendMessage('Cannot add that event!');
     return msg.send(`Successfully added the event **${event}** on **${date}** at **${time}**!`);
+  }
+
+  async remove(msg, index) {
+    if (!index || index <= 0 || index > msg.guild.configs.events.length) return msg.send('You must provide a valid event index!');
+    msg.guild.configs.guilds.updateArray(msg.guild, 'remove', 'events', msg.guild.configs.events[index - 1])
+      .catch(e => { console.log(e); msg.send(`**${index}** is not a valid event index!`); });
+    const data = Object.values(JSON.parse(msg.guild.settings.events[index - 1]));
+    msg.send(`Successfully removed the event **${data[0]}** on **${data[1]}** at **${data[2]}**!`);
+  }
+
+  async list(msg) {
+    return msg;
   }
 
   /* MM-DD-YYYY */
