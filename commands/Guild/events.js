@@ -28,24 +28,10 @@ module.exports = class extends Command {
     let data;
     let padTwo;
     let padOne;
-    const parseDate = await this.parseDashDate(date);
 
     if (!action) action = 'list';
 
     switch (action) {
-    case 'add':
-      if (!eve) return msg.send('You must provide an event!');
-      if (!date) return msg.send('You must provide a date!');
-      if (!time) return msg.send('You must provide a time!');
-
-      /*
-      if (msg.guild.configs.events.array) {
-        await this.client.configs.guilds.updateArray(msg.guild, 'add', 'events', JSON.stringify(parseEvent(eve, date, time)));
-        return msg.send(`Successfully added the event **${eve}** on **${date}** at **${time}**!`);
-      }
-      */
-      break;
-
     case 'remove':
       if (!eve || eve <= 0 || eve > msg.guild.configs.events.length) return msg.send('You must provide a valid event index!');
       this.client.configs.guilds.updateArray(msg.guild, 'remove', 'events', msg.guild.configs.events[eve - 1])
@@ -70,6 +56,15 @@ module.exports = class extends Command {
       }
       return msg.sendCode('asciidoc', output);
     }
+  }
+
+  async add(msg, event, date, time) {
+    const { errors, updated } = await msg.guild.configs.update('events',
+      JSON.stringify({ 'event': event, 'date': await this.parseDashDate(date), 'time': time }),
+      msg.guild, { avoidUnconfigurable: true, action: 'add' });
+    if (errors.length) return msg.sendMessage(errors[0]);
+    if (!updated.length) return msg.sendMessage('Cannot add that event!');
+    return msg.send(`Successfully added the event **${event}** on **${date}** at **${time}**!`);
   }
 
   /* MM-DD-YYYY */
