@@ -14,7 +14,7 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Returns the created date of a guild/user/role/channel.',
       quotedStringSupport: true,
-      usage: '<guild|user|role|channel> [user:member] [value:str]',
+      usage: '<guild|member|role|channel> [member:member] [value:str]',
       usageDelim: ' ',
       extendedHelp: 'No extended help available.',
     });
@@ -31,9 +31,10 @@ module.exports = class extends Command {
       if (member) {
         return msg.send(`@${member.user.username} / ${member.id} / ${member.user.createdAt}`, { code: 'xl' })
           .catch(err => console.log(err, 'error'));
-      }
+      } else { return msg.send('Invalid name!'); }
       break;
     case 'role':
+      if (!value) return msg.send('Invalid name!');
       if (msg.guild.roles.find('name', value)) {
         final = msg.guild.roles.find('name', value);
         return msg.send(`${final.name} / ${final.id} / ${final.createdAt}`, { code: 'xl' })
@@ -45,7 +46,7 @@ module.exports = class extends Command {
         final = msg.guild.channels.find('name', value);
         return msg.send(`#${final.name} / ${final.id} / ${final.createdAt}`, { code: 'xl' })
           .catch(err => console.log(err, 'error'));
-      }
+      } else { if (!value) return msg.send('Invalid name!'); }
       break;
     default:
       return msg.send(`I cannot find the created date of \`${value}\``)
