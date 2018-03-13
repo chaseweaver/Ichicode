@@ -23,7 +23,7 @@ module.exports = class extends Command {
   async run(msg) {
     try {
       const { voiceChannel } = msg.member;
-      if (!voiceChannel) throw 'You are not conected in a voice channel!';
+      if (!voiceChannel) return msg.send('You are not conected in a voice channel!');
       await voiceChannel.join();
       return msg.send(`Connected to the voice channel ${voiceChannel}.`).then(() => msg.delete());
     } catch (err) { console.log(err); }
