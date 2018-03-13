@@ -89,6 +89,15 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "birthdayRole": {
+    "type": "Role",
+    "default": null,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "logMessageDelete": {
     "type": "Boolean",
     "default": false,
@@ -170,7 +179,7 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "welcomeMessgage": {
+  "welcomeMessage": {
     "type": "String",
     "default": "Welcome, $USER$! Kick back and stay a while!",
     "min": null,
@@ -242,15 +251,6 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "events": {
-    "type": "Command",
-    "default": [],
-    "min": null,
-    "max": null,
-    "array": true,
-    "configurable": true,
-    "sql": "TEXT"
-  },
   "disabledCommands": {
     "type": "Command",
     "default": [],
@@ -259,5 +259,23 @@
     "array": true,
     "configurable": true,
     "sql": "TEXT"
+  },
+  "birthdays": {
+    "type": "String",
+    "default": [],
+    "min": null,
+    "max": null,
+    "array": true,
+    "configurable": true,
+    "sql": "TEXT '[]'"
+  },
+  "events": {
+    "type": "String",
+    "default": [],
+    "min": null,
+    "max": null,
+    "array": true,
+    "configurable": true,
+    "sql": "TEXT '[]'"
   }
 }
