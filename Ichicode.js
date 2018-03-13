@@ -59,24 +59,4 @@ const client = new KlasaClient({
   commandMessageLifetime: 60,
 });
 
-client.gateways.register('birthdays', {
-  'users': {
-    'type': 'String',
-    'default': [],
-    'array': true,
-    'configurable': true,
-    'sql': 'TEXT',
-  },
-});
-
-client.gateways.register('events', {
-  'event': {
-    'type': 'String',
-    'default': [],
-    'array': true,
-    'configurable': true,
-    'sql': 'TEXT',
-  },
-});
-
 client.login(token);
