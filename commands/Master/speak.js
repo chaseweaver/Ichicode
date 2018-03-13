@@ -1,6 +1,5 @@
 const { Command } = require('klasa');
 const tts = require('google-tts-api');
-const yt = require('ytdl-core');
 
 module.exports = class extends Command {
   constructor(...args) {
@@ -23,7 +22,6 @@ module.exports = class extends Command {
   }
   async run(msg, message) {
     try {
-      console.log(message.join(' '));
       const { voiceChannel } = msg.member;
       if (!voiceChannel) return msg.send('You are not conected in a voice channel!');
       if (!msg.guild.voiceConnection) msg.send('I am not connected in a voice channel! Attempting now . . .');
@@ -33,16 +31,15 @@ module.exports = class extends Command {
       }
 
       await tts(message.join(' '), 'en', 1)
-        .then(function (url) {
-          console.log(url);
+        .then(function(url) {
           return msg.guild.voiceConnection.play((url), { passes: 2, bitrate: 'auto' })
             .on('error', err => msg.send(`Error: ${err}`).then(() => {
               msg.send('An error has occured. Perhaps the stream could not keep up. Please try again.');
             }));
         })
-        .catch(function (err) {
+        .catch(function(err) {
           console.error(err.stack);
         });
     } catch (err) { console.log(err); }
-  } 
+  }
 };
