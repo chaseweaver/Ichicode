@@ -14,7 +14,7 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Sets the bot\'s presence.',
       quotedStringSupport: true,
-      usage: '<status|game|watching|listening> [online|idle|invisible|dnd] [game:str] [watching:str] [listening:str]',
+      usage: '<status|playing|watching|listening|streaming> [online|idle|invisible|dnd] [playing:str] [watching:str] [listening:str] [streaming:url]',
       usageDelim: ' ',
       extendedHelp: 'No extended help available.',
     });
@@ -22,10 +22,6 @@ module.exports = class extends Command {
 
   async run(msg, [type, status = 'online', ...str]) {
     str = str.length > 0 ? str.join(' ') : null;
-    if (str.length < 4) {
-      return msg.send('Requires a char length of 5+!')
-        .then(m => m.delete(5000).then(() => msg.delete()).catch(console.error));
-    }
     switch (type) {
     case 'status':
       await this.client.user.setStatus(status);
@@ -38,6 +34,10 @@ module.exports = class extends Command {
     case 'listening':
       await this.client.user.setActivity(str, { type: 'LISTENING' });
       return msg.send(`${str ? `Listening changed to ***${str}***` : 'Listening cleared'}`)
+        .then(m => m.delete(5000)).then(() => msg.delete()).catch(console.error);
+    case 'streaming':
+      await this.client.user.setActivity(str, { type: 'STREAMING' });
+      return msg.send(`${str ? `Streaming changed to ***${str}***` : 'Streaming cleared'}`)
         .then(m => m.delete(5000)).then(() => msg.delete()).catch(console.error);
     default:
       await this.client.user.setActivity(str);
