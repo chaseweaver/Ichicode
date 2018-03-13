@@ -10,8 +10,5 @@ module.exports = class extends Event {
     });
   }
 
-  run() {
-    if(!this.guild.available) return;
-    console.log(`Guild Removed: ${this.guild.name}. Now at ${this.client.guilds.size}.`);
-  }
+  run() { console.log(`Guild Removed: ${this.guild.name}. Now at ${this.client.guilds.size}.`); }
 };
