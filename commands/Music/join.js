@@ -10,7 +10,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: ['summon'],
       permLevel: 0,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Joins the user\'s current voice channel.',
       quotedStringSupport: false,

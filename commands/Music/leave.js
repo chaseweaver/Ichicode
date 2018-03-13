@@ -10,7 +10,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: [],
       permLevel: 2,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Leaves the bots\'s current voice channel.',
       quotedStringSupport: false,

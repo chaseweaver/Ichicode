@@ -10,7 +10,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: ['q'],
       permLevel: 0,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Lists the music queue.',
       quotedStringSupport: false,

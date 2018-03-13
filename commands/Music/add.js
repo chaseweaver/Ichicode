@@ -16,7 +16,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: [],
       permLevel: 0,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Adds a song to queue from YouTube URL or search term.',
       quotedStringSupport: true,

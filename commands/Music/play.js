@@ -11,7 +11,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: [],
       permLevel: 0,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Plays a song from the queue.',
       quotedStringSupport: false,

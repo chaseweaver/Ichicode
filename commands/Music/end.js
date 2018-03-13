@@ -10,7 +10,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: ['stop'],
       permLevel: 0,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Ends the currently playing song.',
       quotedStringSupport: false,

@@ -12,7 +12,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: ['np'],
       permLevel: 0,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Shows the currently playing song.',
       quotedStringSupport: false,
