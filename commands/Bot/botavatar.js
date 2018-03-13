@@ -20,7 +20,5 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg, [url]) {
-    return await msg.client.user.setAvatar(url).then(() => msg.delete()).catch(console.error);
-  }
+  async run(msg, [url]) { return await msg.client.user.setAvatar(url).then(() => msg.delete()).catch(console.error); }
 };
