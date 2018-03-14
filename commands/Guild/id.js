@@ -23,6 +23,7 @@ module.exports = class extends Command {
   async run(msg, [type, member, ...value]) {
     value = value.length > 0 ? value.join(' ') : null;
     let final;
+    
     switch (type) {
     case 'guild':
       return msg.send(`${msg.guild.name} / ${msg.guild.id}`, { code: 'xl' })

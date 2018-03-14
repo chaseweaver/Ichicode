@@ -39,17 +39,16 @@ module.exports = class extends Command {
       msg.send(`**${rol.name}** has been removed from **${mem.user.tag}**.`).then(msg.delete(5000));
     }
 
-    if (msg.guild.settings.logRoleChange && msg.guild.settings.memLogChannel) {
-      const chan = msg.guild.channels.find('id', msg.guild.settings.memLogChannel);
+    if (msg.guild.configs.logRoleChange && msg.guild.configs.memberLogChannel) {
       const embed = new this.client.methods.Embed()
         .setColor('#faff00')
         .setTitle(`Role ${action}`)
         .setThumbnail(mem.user.displayAvatarURL)
         .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
-        .addField('memberber', `${mem.user.tag} / ${mem.user.id}`)
+        .addField('Member', `${mem.user.tag} / ${mem.user.id}`)
         .addField('Role', rol.name)
         .setTimestamp();
-      return await chan.send({ embed }).catch(console.error);
+      return await msg.guild.configs.memberLogChannel.send({ embed }).catch(console.error);
     }
   }
 };

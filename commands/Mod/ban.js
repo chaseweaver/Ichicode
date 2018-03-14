@@ -33,8 +33,7 @@ module.exports = class extends Command {
 
     await msg.guild.ban(user.id, options);
 
-    if (msg.guild.settings.memLogChannelID && msg.guild.settings.goodbyeMemberActive) {
-      const chan = msg.guild.channels.find('id', msg.guild.settings.memLogChannel);
+    if (msg.guild.configs.memberLogChannel && msg.guild.configs.goodbyeMemberActive) {
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
         .setTitle('Member Banned')
@@ -43,7 +42,7 @@ module.exports = class extends Command {
         .addField('Member', `${user.tag} / ${user.id}`)
         .addField('Reason', reason)
         .setTimestamp(new Date());
-      return await chan.send({ embed }).catch(console.error);
+      return await msg.guild.configs.memberLogChannel.send({ embed }).catch(console.error);
     }
   }
 };
