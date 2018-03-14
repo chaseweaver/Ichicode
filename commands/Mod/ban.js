@@ -21,7 +21,6 @@ module.exports = class extends Command {
   }
 
   async run(msg, [user, ...reason]) {
-    if (user.id === msg.author.id) throw 'Why would you ban yourself?';
     if (user.id === this.client.user.id) throw 'Have I done something wrong?';
 
     const member = await msg.guild.members.fetch(user).catch(() => null);
@@ -31,17 +30,17 @@ module.exports = class extends Command {
     reason = reason.length > 0 ? reason.join(' ') : null;
     if (reason) options.reason = reason;
 
-    await msg.guild.ban(user.id, options);
+    await msg.guild.ban(member.id, options);
 
     if (msg.guild.configs.memberLogChannel && msg.guild.configs.goodbyeMemberActive) {
-      const chan = mem.guild.channels.find('id', mem.guild.configs.memberLogChannel);
+      const chan = mem.guild.channels.find('id', member.guild.configs.memberLogChannel);
       if (!chan) return;
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
         .setTitle('Member Banned')
-        .setThumbnail(user.displayAvatarURL)
+        .setThumbnail(member.displayAvatarURL)
         .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
-        .addField('Member', `${user.tag} / ${user.id}`)
+        .addField('Member', `${member.tag} / ${member.id}`)
         .addField('Reason', reason)
         .setTimestamp(new Date());
       return await chan.send({ embed }).catch(console.error);

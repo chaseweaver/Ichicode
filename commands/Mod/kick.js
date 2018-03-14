@@ -14,22 +14,26 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Kicks a mentioned user.',
       quotedStringSupport: true,
-      usage: '<member:member> [reason:string]',
+      usage: '<member:user> [reason:string]',
       usageDelim: ' ',
       extendedHelp: 'Logs a report in channel \'memLogs\' if set and with \'goodbyeMem\' enabled.',
     });
   }
 
-  async run(msg, [member, ...reason]) {
-    if (member.id === msg.author.id) throw 'Why would you kick yourself?';
-    if (member.id === this.client.user.id) throw 'Have I done something wrong?';
-    if (member.kickable === false) throw 'I cannot kick this user.';
+  async run(msg, [user, ...reason]) {
+    if (user.id === this.client.user.id) throw 'Have I done something wrong?';
 
+    const member = await msg.guild.members.fetch(user).catch(() => null);
+    if (member) if (member.bannable === false) throw 'I cannot ban this user.';
+
+    const options = {};
     reason = reason.length > 0 ? reason.join(' ') : null;
-    await member.kick(reason);
+    if (reason) options.reason = reason;
 
-    if (msg.guild.configs.modLogChannel && msg.guild.configs.goodbyeMemberActive) {
-      const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
+    await msg.guild.kick(member.id, options);
+
+    if (msg.guild.configs.memberLogChannel && msg.guild.configs.goodbyeMemberActive) {
+      const chan = mem.guild.channels.find('id', member.guild.configs.memberLogChannel);
       if (!chan) return;
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
