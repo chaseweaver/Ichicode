@@ -24,8 +24,6 @@ module.exports = class extends Event {
       }
 
       if (mem.guild.configs.logMemberRemove && mem.guild.configs.memberLogChannel) {
-        const memChan = mem.guild.channels.find('id', mem.guild.configs.memberLogChannel);
-        if (!memChan) return;
         const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
         const embed = new this.client.methods.Embed()
           .setColor('#ff003c')
@@ -36,7 +34,7 @@ module.exports = class extends Event {
           .addField('Left At', `${Moment.utc(new Date()).format('llll')} UTC-0`)
           .addField('Account Age', `${Moment.utc(mem.user.createdAt).format('llll')} UTC-0`)
           .setTimestamp();
-        memChan.send({ embed }).catch(err => console.log(err, 'error'));
+          mem.guild.configs.memberLogChannel.send({ embed }).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
     console.log(`Member '${mem.user.tag}' left '${mem.guild.name}'. Account age '${mem.user.createdAt}'.`);
