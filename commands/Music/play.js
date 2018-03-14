@@ -46,17 +46,19 @@ module.exports = class extends Command {
           });
         }
 
-        const embed = new msg.client.methods.Embed()
-          .setColor('#ff003c')
-          .setTitle('Now Playing')
-          .setThumbnail(song.thumbnail)
-          .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
-          .addField('Song', song.title)
-          .addField('Length', song.length, true)
-          .addField('Requested By', song.requester, true)
-          .addField('Video URL', song.url, true)
-          .setTimestamp();
-        msg.sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
+        if (handler.songs.length !== 1) {
+          const embed = new msg.client.methods.Embed()
+            .setColor('#ff003c')
+            .setTitle('Now Playing')
+            .setThumbnail(song.thumbnail)
+            .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
+            .addField('Song', song.title)
+            .addField('Length', song.length, true)
+            .addField('Requested By', song.requester, true)
+            .addField('Video URL', song.url, true)
+            .setTimestamp();
+          msg.sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
+        }
 
         if (!handler.songs[0].upload) msg.client.user.setActivity(song.title, { type: 'LISTENING' });
 
