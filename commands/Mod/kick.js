@@ -33,7 +33,9 @@ module.exports = class extends Command {
     await member.kick(reason);
 
     if (msg.guild.configs.memberLogChannel && msg.guild.configs.goodbyeMemberActive) {
-      const chan = member.guild.configs.memberLogChannel;
+      console.log(member.guild.configs.memberLogChannel);
+      console.log(member.guild.channels.find('id', member.guild.configs.memberLogChannel))
+      const chan = member.guild.channels.find(member.guild.configs.memberLogChannel);
       if (!chan) return;
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
