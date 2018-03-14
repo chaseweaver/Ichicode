@@ -38,9 +38,9 @@ module.exports = class extends Command {
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
         .setTitle('Member Kicked')
-        .setThumbnail(member.displayAvatarURL)
+        .setThumbnail(member.displayAvatarURL())
         .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
-        .addField('Member', `${member.tag} / ${member.id}`)
+        .addField('Member', `${member.user.tag} / ${member.user.id}`)
         .addField('Reason', reason)
         .setTimestamp(new Date());
       return await chan.send({ embed }).catch(console.error);
