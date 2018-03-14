@@ -33,7 +33,7 @@ module.exports = class extends Event {
           .setThumbnail(avatar)
           .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
           .addField('Joined At', `${Moment.utc(mem.joinedTimestamp).format('llll')} UTC-0`)
-          .setTimestamp(new Date());
+          .setTimestamp();
         memChan.send({ embed }).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }

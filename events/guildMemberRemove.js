@@ -35,7 +35,7 @@ module.exports = class extends Event {
           .addField('Joined At', `${Moment.utc(mem.joinedTimestamp).format('llll')} UTC-0`)
           .addField('Left At', `${Moment.utc(new Date()).format('llll')} UTC-0`)
           .addField('Account Age', `${Moment.utc(mem.user.createdAt).format('llll')} UTC-0`)
-          .setTimestamp(new Date());
+          .setTimestamp();
         memChan.send({ embed }).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
