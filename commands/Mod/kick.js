@@ -30,7 +30,7 @@ module.exports = class extends Command {
     reason = reason.length > 0 ? reason.join(' ') : null;
     if (reason) options.reason = reason;
 
-    await msg.guild.kick(member.id, options);
+    await member.kick(reason);
 
     if (msg.guild.configs.memberLogChannel && msg.guild.configs.goodbyeMemberActive) {
       const chan = mem.guild.channels.find('id', member.guild.configs.memberLogChannel);
