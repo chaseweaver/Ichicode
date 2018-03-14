@@ -20,12 +20,16 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg, [mem]) {
+  async run(msg, [mem, ...reason]) {
     if (mem.roles.find('name', msg.guild.configs.muteRole)) return msg.send(`${mem.user.username} is already muted!`);
 
     await mem.roles.remove(msg.guild.configs.muteRole)
       .catch(error => msg.reply(`I couldn't unmute ${mem.user.tag} because of : ${error}`));
     msg.send(`**${msg.guild.configs.muteRole.name}** has been removed from **${mem.user.tag}**.`).then(msg.delete(5000));
+
+    const options = {};
+    reason = reason.length > 0 ? reason.join(' ') : null;
+    if (reason) options.reason = reason;
 
     if (msg.guild.configs.modLogChannel && msg.guild.configs.modLogChannel) {
       const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
@@ -33,10 +37,10 @@ module.exports = class extends Command {
       const embed = new this.client.methods.Embed() 
         .setColor('#faff00')
         .setTitle(`Member Unmuted`)
-        .setThumbnail(mem.user.displayAvatarURL)
-        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
+        .setThumbnail(mem.user.displayAvatarURL())
+        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL())
         .addField('Member', `${mem.user.tag} / ${mem.user.id}`)
-        .addField('Role', msg.guild.configs.muteRole)
+        .addField('Reason', reason)
         .setTimestamp();
       return await chan.send({ embed }).catch(console.error);
     }

@@ -14,29 +14,33 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Mutes a user.',
       quotedStringSupport: true,
-      usage: '<member:member>',
+      usage: '<member:member> [reason:str]',
       usageDelim: '',
       extendedHelp: 'No extended help available.',
     });
   }
 
-  async run(msg, [mem]) {
+  async run(msg, [mem, ...reason]) {
     if (mem.roles.find('name', msg.guild.configs.muteRole)) return msg.send(`${mem.user.username} is already muted!`);
 
     await mem.roles.add(msg.guild.configs.muteRole)
       .catch(error => msg.reply(`I couldn't mute ${mem.user.tag} because of : ${error}`));
     msg.send(`**${msg.guild.configs.muteRole.name}** has been added to **${mem.user.tag}**.`).then(msg.delete(5000));
 
+    const options = {};
+    reason = reason.length > 0 ? reason.join(' ') : null;
+    if (reason) options.reason = reason;
+    
     if (msg.guild.configs.modLogChannel && msg.guild.configs.modLogChannel) {
       const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
       if (!chan) return;
       const embed = new this.client.methods.Embed() 
         .setColor('#faff00')
         .setTitle(`Member Muted`)
-        .setThumbnail(mem.user.displayAvatarURL)
-        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
+        .setThumbnail(mem.user.displayAvatarURL())
+        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL())
         .addField('Member', `${mem.user.tag} / ${mem.user.id}`)
-        .addField('Role', msg.guild.configs.muteRole)
+        .addField('Reason', reason)
         .setTimestamp();
       return await chan.send({ embed }).catch(console.error);
     }
