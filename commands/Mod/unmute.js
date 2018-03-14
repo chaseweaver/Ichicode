@@ -14,7 +14,7 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Unmutes a user.',
       quotedStringSupport: true,
-      usage: '<member:member>',
+      usage: '<member:member> [reason:str]',
       usageDelim: '',
       extendedHelp: 'No extended help available.',
     });
@@ -25,10 +25,9 @@ module.exports = class extends Command {
 
     await mem.roles.remove(msg.guild.configs.muteRole)
       .catch(error => msg.reply(`I couldn't unmute ${mem.user.tag} because of : ${error}`));
-    msg.send(`**${msg.guild.configs.muteRole.name}** has been removed from **${mem.user.tag}**.`).then(msg.delete(5000));
 
     const options = {};
-    reason = reason.length > 0 ? reason.join(' ') : null;
+    reason = reason.length > 0 ? reason.join(' ') : 'N/A';
     if (reason) options.reason = reason;
 
     if (msg.guild.configs.modLogChannel && msg.guild.configs.modLogChannel) {

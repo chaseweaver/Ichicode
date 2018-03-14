@@ -14,7 +14,7 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Softbans a mentioned user.',
       quotedStringSupport: true,
-      usage: '<member:user> [days:int{1,7}] [reason:string]',
+      usage: '<member:user> [days:int{1,7}] [reason:str]',
       usageDelim: ' ',
       extendedHelp: 'Logs a report in channel \'memLogs\' if set and with \'goodbyeMem\' enabled.',
     });
@@ -28,7 +28,7 @@ module.exports = class extends Command {
     if (member) if (member.bannable === false) throw 'I cannot ban this user.';
 
     const options = { days };
-    reason = reason.length > 0 ? reason.join(' ') : null;
+    reason = reason.length > 0 ? reason.join(' ') : 'N/A';
     if (reason) options.reason = reason;
 
     await msg.guild.ban(user.id, options);

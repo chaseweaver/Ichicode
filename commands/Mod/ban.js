@@ -27,7 +27,7 @@ module.exports = class extends Command {
     if (member) if (member.bannable === false) throw 'I cannot ban this user.';
 
     const options = {};
-    reason = reason.length > 0 ? reason.join(' ') : null;
+    reason = reason.length > 0 ? reason.join(' ') : 'N/A';
     if (reason) options.reason = reason;
 
     await msg.guild.ban(member.id, options);
