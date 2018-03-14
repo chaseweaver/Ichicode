@@ -24,7 +24,7 @@ module.exports = class extends Event {
       }
 
       if (mem.guild.configs.logMemberRemove && mem.guild.configs.memberLogChannel) {
-        const memChan = mem.channels.find('id', mem.guild.configs.memberLogChannel);
+        const memChan = mem.guild.channels.find('id', mem.guild.configs.memberLogChannel);
         if (!memChan) return;
         const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
         const embed = new this.client.methods.Embed()
