@@ -25,7 +25,7 @@ module.exports = class extends Command {
 
     await mem.roles.add(msg.guild.configs.muteRole)
       .catch(error => msg.reply(`I couldn't mute ${mem.user.tag} because of : ${error}`));
-    msg.send(`**${msg.guild.configs.muteRole}** has been added to **${mem.user.tag}**.`).then(msg.delete(5000));
+    msg.send(`**${msg.guild.configs.muteRole.name}** has been added to **${mem.user.tag}**.`).then(msg.delete(5000));
 
     if (msg.guild.configs.modLogChannel && msg.guild.configs.modLogChannel) {
       const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
