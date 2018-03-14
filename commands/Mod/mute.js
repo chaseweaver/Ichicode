@@ -28,6 +28,8 @@ module.exports = class extends Command {
     msg.send(`**${msg.guild.configs.muteRole}** has been added to **${mem.user.tag}**.`).then(msg.delete(5000));
 
     if (msg.guild.configs.modLogChannel && msg.guild.configs.modLogChannel) {
+      const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
+      if (!chan) return;
       const embed = new this.client.methods.Embed() 
         .setColor('#faff00')
         .setTitle(`Member Muted`)
@@ -36,7 +38,7 @@ module.exports = class extends Command {
         .addField('Member', `${mem.user.tag} / ${mem.user.id}`)
         .addField('Role', msg.guild.configs.muteRole)
         .setTimestamp();
-      return await msg.guild.configs.modLogChannel.send({ embed }).catch(console.error);
+      return await chan.send({ embed }).catch(console.error);
     }
   }
 };

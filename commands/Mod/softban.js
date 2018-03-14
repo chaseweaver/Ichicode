@@ -35,6 +35,8 @@ module.exports = class extends Command {
     await msg.guild.unban(user.id, 'Softban released.');
 
     if (msg.guild.configs.modLogChannel && msg.guild.configs.goodbyeMemberActive) {
+      const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
+      if (!chan) return;
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
         .setTitle('Member Softbanned')
@@ -44,7 +46,7 @@ module.exports = class extends Command {
         .addField('Days', days)
         .addField('Reason', reason)
         .setTimestamp(new Date());
-      return await msg.guild.configs.modLogChannel.send({ embed }).catch(console.error);
+      return await chan.send({ embed }).catch(console.error);
     }
   }
 };
