@@ -33,7 +33,7 @@ module.exports = class extends Command {
         }, 1000 * 60 * 10);
       }
 
-      return msg.send(`Connected to the voice channel ${voiceChannel}.`).then(() => msg.delete());
+      return msg.send(`Connected to the voice channel ${voiceChannel}.`).then((m) => { m.delete(5000); msg.delete(); });
     } catch (err) { console.log(err); }
   }
 };
