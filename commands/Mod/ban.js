@@ -39,7 +39,7 @@ module.exports = class extends Command {
         .setColor('#ff003c')
         .setTitle('Member Banned')
         .setThumbnail(member.displayAvatarURL())
-        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
+        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL())
         .addField('Member', `${member.user.tag} / ${member.user.id}`)
         .addField('Reason', reason)
         .setTimestamp(new Date());

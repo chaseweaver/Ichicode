@@ -45,8 +45,8 @@ module.exports = class extends Command {
       const embed = new this.client.methods.Embed()
         .setColor('#faff00')
         .setTitle(`Role ${action}`)
-        .setThumbnail(mem.user.displayAvatarURL)
-        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
+        .setThumbnail(mem.user.displayAvatarURL())
+        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL())
         .addField('Member', `${mem.user.tag} / ${mem.user.id}`)
         .addField('Role', rol.name)
         .setTimestamp();
