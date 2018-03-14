@@ -24,8 +24,8 @@ module.exports = class extends Event {
       }
 
       if (mem.guild.configs.logMemberAdd && mem.guild.configs.memberLogChannel) {
-        const chan = mem.channels.find('id', mem.guild.configs.memberLogChannel);
-        if (!chan) return;
+        const memChan = mem.channels.find('id', mem.guild.configs.memberLogChannel);
+        if (!memChan) return;
         const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
         const embed = new this.client.methods.Embed()
           .setColor('#00ffbb')
@@ -34,7 +34,7 @@ module.exports = class extends Event {
           .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
           .addField('Joined At', `${Moment.utc(mem.joinedTimestamp).format('llll')} UTC-0`)
           .setTimestamp(new Date());
-        chan.send({ embed }).catch(err => console.log(err, 'error'));
+        memChan.send({ embed }).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
     console.log(`Member '${mem.user.tag}' joined '${mem.guild.name}'. Account age '${mem.user.createdAt}'.`);
