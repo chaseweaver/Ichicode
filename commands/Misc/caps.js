@@ -28,6 +28,6 @@ module.exports = class extends Command {
       if (i % 2 == 0) build += str.charAt(i).toLowerCase();
       else build += str.charAt(i).toUpperCase();
     }
-    return channel.send(build);
+    return channel.send(build).then(msg.delete());
   }
 };
