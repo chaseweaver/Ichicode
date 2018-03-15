@@ -14,18 +14,20 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'rEtUnRs WoRdS lIkE tHiS.',
       quotedStringSupport: true,
-      usage: '<message:str>',
-      usageDelim: '',
+      usage: '[channel:channel] <message:string> [...]',
+      usageDelim: ' ',
       extendedHelp: 'No extended help available.',
     });
   }
 
-  async run(msg, [str]) {
+  async run(msg, [channel = msg.channel, ...str]) {
+    if (channel.postable === false && channel !== msg.channel) msg.send('The selected channel is not postable.');
+    str = str.join(' ');
     let build = '';
     for (let i = 0; i < str.length; i++) {
       if (i % 2 == 0) build += str.charAt(i).toLowerCase();
       else build += str.charAt(i).toUpperCase();
     }
-    return msg.send(build);
+    return channel.send(build);
   }
 };
