@@ -13,12 +13,11 @@ module.exports = class extends Event {
 
   run(mem) {
     try {
-      if (mem.guild.configs.welcomeMessgage && mem.guild.configs.welcomeMemberActive && mem.guild.configs.welcomeChannel) {
-        if (!mem.guild.configs.welcomeMemberActive) return;
+      if (mem.guild.configs.welcomeMessage && mem.guild.configs.welcomeMemberActive && mem.guild.configs.welcomeChannel) {
         const chan = mem.guild.channels.find('id', mem.guild.configs.welcomeChannel);
-        const message = mem.guild.configs.welcomeMessgage;
-        if (message.search('$MENTION$')) message.replace('$MENTION$', mem.user);
-        if (message.search('$SERVER$')) message.replace('$SERVER$', mem.guild);
+        let message = mem.guild.configs.welcomeMessage;
+        message = message.replace('$MENTION$', mem.user);
+        message = message.replace('$SERVER$', mem.guild);
         chan.send(message).catch(err => console.log(err, 'error'));
       }
 
