@@ -30,10 +30,10 @@ module.exports = class extends Command {
     reason = reason.length > 0 ? reason.join(' ') : 'N/A';
     if (reason) options.reason = reason;
 
-    await msg.guild.ban(member.id, options);
+    await member.ban(options);
 
-    if (msg.guild.configs.memberLogChannel && msg.guild.configs.goodbyeMemberActive) {
-      const chan = member.guild.configs.memberLogChannel;
+    if (msg.guild.configs.modLogChannel && msg.guild.configs.goodbyeMemberActive) {
+      const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
       if (!chan) return;
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
@@ -43,7 +43,7 @@ module.exports = class extends Command {
         .addField('Member', `${member.user.tag} / ${member.user.id}`)
         .addField('Reason', reason)
         .setTimestamp(new Date());
-      return await chan.send({ embed }).catch(console.error);
+      return chan.send({ embed }).catch(console.error);
     }
   }
 };

@@ -24,7 +24,7 @@ module.exports = class extends Command {
   async run(msg) {
     try {
       const handler = this.client.queue.get(msg.guild.id);
-      if (!handler) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
+      if (!handler || handler.songs.length === 0) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
 
       let total = 0;
       const output = [];

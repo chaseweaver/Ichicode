@@ -30,7 +30,7 @@ module.exports = class extends Command {
       if (!handler || !handler.playing) {
         setTimeout(() => {
           if (!handler || !handler.playing) return msg.member.voiceChannel.leave();
-        }, 1000 * 60 * 10);
+        }, 1000 * 60 * 30);
       }
 
       return msg.send(`Connected to the voice channel \`${voiceChannel}\`.`).then((m) => { m.delete(5000); msg.delete(); });
