@@ -21,6 +21,7 @@ module.exports = class extends Command {
   }
 
   async run(msg, [user, ...reason]) {
+    if (user.id === this.client.owner.id) throw 'I will *not* kick my master!';
     if (user.id === this.client.user.id) throw 'Have I done something wrong?';
 
     const member = await msg.guild.members.fetch(user).catch(() => null);

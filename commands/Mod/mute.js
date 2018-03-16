@@ -21,6 +21,9 @@ module.exports = class extends Command {
   }
 
   async run(msg, [mem, ...reason]) {
+    if (user.id === this.client.owner.id) throw 'I will *not* mute my master!';
+    if (user.id === this.client.user.id) throw 'Have I done something wrong?';
+
     if (mem.roles.find('name', msg.guild.configs.muteRole)) return msg.send(`${mem.user.username} is already muted!`);
 
     await mem.roles.add(msg.guild.configs.muteRole)
