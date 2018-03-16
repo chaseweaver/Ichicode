@@ -12,13 +12,13 @@ module.exports = class extends Command {
       permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
-      description: 'DM a user.',
+      description: 'DMs user(s).',
       quotedStringSupport: true,
-      usage: '<member:member> <message:str>',
-      usageDelim: ' ',
+      usage: '[member:member] <message:str>',
+      usageDelim: '',
       extendedHelp: 'No extended help available.',
     });
   }
 
-  async run(msg, [mem, ...str]) { mem.send(str.join(' ')); }
+  async run(msg, [mem = msg.author, ...str]) { msg.mentions.users.map(mem => { return mem.send(str.join(' ')); }); }
 };
