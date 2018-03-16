@@ -20,5 +20,5 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg, [mem = msg.author, ...str]) { msg.mentions.users.map(mem => { return mem.send(str.join(' ')); }).then(msg.delete()); }
+  async run(msg, [mem = msg.author, ...str]) { msg.mentions.users.map(mem => { return mem.send(str.join(' ')); }); msg.delete(); }
 };
