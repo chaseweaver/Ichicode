@@ -15,7 +15,7 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Speak in a voice chat.',
       quotedStringSupport: true,
-      usage: '[speed:float{0, 2}] <message:str{0,200}>',
+      usage: '[speed:float{0,2}] <message:str{0,200}>',
       usageDelim: ' ',
       extendedHelp: 'Message must be less than 200 characters.',
     });
