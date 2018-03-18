@@ -7,7 +7,7 @@ KlasaClient.defaultPermissionLevels
     if (!msg.guild) return false;
     else if (msg.author.id === (client.user.id || master)) return true;
     else if (msg.guild.configs.adminRole && msg.member.roles.has(msg.guild.configs.adminRole)) return true;
-    else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.adminRole)) return true;
+    else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.modRole)) return true;
     else if (msg.guild.configs.devRole && msg.member.roles.has(msg.guild.configs.devRole)) return true;
     else if (msg.guild.configs.extRole && msg.member.roles.has(msg.guild.configs.extRole)) return true;
     else if (msg.guild.configs.musicRole && msg.member.roles.has(msg.guild.configs.musicRole)) return true;
@@ -17,7 +17,7 @@ KlasaClient.defaultPermissionLevels
     if (!msg.guild) return false;
     else if (msg.author.id === (client.user.id || master)) return true;
     else if (msg.guild.configs.adminRole && msg.member.roles.has(msg.guild.configs.adminRole)) return true;
-    else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.adminRole)) return true;
+    else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.modRole)) return true;
     else if (msg.guild.configs.devRole && msg.member.roles.has(msg.guild.configs.devRole)) return true;
     else if (msg.guild.configs.extRole && msg.member.roles.has(msg.guild.configs.extRole)) return true;
     else return false;
@@ -26,7 +26,7 @@ KlasaClient.defaultPermissionLevels
     if (!msg.guild) return false;
     else if (msg.author.id === (client.user.id || master)) return true;
     else if (msg.guild.configs.adminRole && msg.member.roles.has(msg.guild.configs.adminRole)) return true;
-    else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.adminRole)) return true;
+    else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.modRole)) return true;
     else if (msg.guild.configs.devRole && msg.member.roles.has(msg.guild.configs.devRole)) return true;
     else return false;
   })
@@ -34,7 +34,7 @@ KlasaClient.defaultPermissionLevels
     if (!msg.guild) return false;
     else if (msg.author.id === (client.user.id || master)) return true;
     else if (msg.guild.configs.adminRole && msg.member.roles.has(msg.guild.configs.adminRole)) return true;
-    else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.adminRole)) return true;
+    else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.modRole)) return true;
     else return false;
   })
   .add(6, (client, msg) => {

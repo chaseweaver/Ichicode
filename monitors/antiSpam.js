@@ -18,7 +18,7 @@ module.exports = class extends Monitor {
         
         if (msg.author.id === (client.user.id || master)) return;
         else if (msg.guild.configs.adminRole && msg.member.roles.has(msg.guild.configs.adminRole)) return;
-        else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.adminRole)) return;
+        else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.modRole)) return;
         else if (msg.guild.configs.devRole && msg.member.roles.has(msg.guild.configs.devRole)) return;
         else if (msg.guild.configs.extRole && msg.member.roles.has(msg.guild.configs.extRole)) return;
 
