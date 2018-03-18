@@ -27,11 +27,11 @@ module.exports = class extends Command {
       .setAuthor(`${msg.guild.name} / ${msg.guild.id}`,
         msg.guild.iconURL() ? msg.guild.iconURL() : 'https://imgur.com/ik9S8V5.png')
       .addField(`Total Members [${msg.guild.memberCount}]`,
-        `${msg.guild.members.filter(m => m.presence.status === 'online').size} Online, ${msg.guild.memberCount - msg.guild.members.filter(m => m.presence.status === 'online').size} Offline`)
-      .addField('Region', msg.guild.region)
+        `${msg.guild.members.filter(m => m.presence.status === 'online').size} Online, ${msg.guild.memberCount - msg.guild.members.filter(m => m.presence.status === 'online').size} Offline`, true)
+      .addField('Region', msg.guild.region, true)
       .addField(`Channels [${msg.guild.channels.array().length > 0 ? msg.guild.channels.array().length : '0'}]`, `For channel list, run \`${msg.guild.configs.prefix}channels\``)
       .addField(`Roles [${msg.guild.roles.array().length > 0 ? msg.guild.roles.array().length : '0'}]`, `For role list, run \`${msg.guild.configs.prefix}roles\``)
-      .addField(`Verification Level [${msg.guild.verificationLevel}]`)
+      .addField('Verification Level', msg.guild.verificationLevel)
       .addField('Created On', msg.guild.createdAt)
       .addField('Server Owner', `${msg.guild.owner.user.tag} / ${msg.guild.ownerID}`)
       .setTimestamp();
