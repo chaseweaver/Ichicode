@@ -15,9 +15,13 @@ module.exports = class extends Monitor {
   run(msg) {
     try {
       if (msg.guild.configs.antiSpam && msg.guild.configs.cooldown) {
-        if (msg.member.roles.find('name', msg.guild.configs.modRole) ||
-          msg.member.roles.find('name', msg.guild.configs.adminRole) ||
-          (msg.member.id === msg.client.owner.id)) return;
+        
+        if (msg.author.id === (client.user.id || master)) return;
+        else if (msg.guild.configs.adminRole && msg.member.roles.has(msg.guild.configs.adminRole)) return;
+        else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.adminRole)) return;
+        else if (msg.guild.configs.devRole && msg.member.roles.has(msg.guild.configs.devRole)) return;
+        else if (msg.guild.configs.extRole && msg.member.roles.has(msg.guild.configs.extRole)) return;
+
         if (msg.channel.type === 'dm') return;
         const cooldown = msg.guild.configs.cooldown;
         const msgTS = msg.createdTimestamp;
@@ -35,7 +39,7 @@ module.exports = class extends Monitor {
             if (msgTS <= oldTS + (cooldown * 1000)) msg.delete();
           })
           .catch(console.error);
-      }
+      } else return;
     } catch (error) { console.log(error); }
   }
 };
