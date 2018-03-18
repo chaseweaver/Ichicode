@@ -15,18 +15,18 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Speak in a voice chat.',
       quotedStringSupport: true,
-      usage: '<message:str{0,200}>',
-      usageDelim: '',
+      usage: '[speed:float{0, 2}] <message:str{0,200}>',
+      usageDelim: ' ',
       extendedHelp: 'Message must be less than 200 characters.',
     });
   }
-  async run(msg, message) {
+  async run(msg, [speed = 1, message]) {
     try {
       const { voiceChannel } = msg.member;
       if (!voiceChannel) return msg.send('You are not conected to a voice channel!');
       if (!msg.guild.voiceConnection) return msg.send(`I am not conected to a voice channel! Try ${msg.guild.configs.prefix}join`);
 
-      await tts(message.join(' '), 'en', 1)
+      await tts(message.join(' '), 'en', speed)
         .then(function(url) {
           msg.delete();
           return msg.guild.voiceConnection.play((url), { passes: 2, bitrate: 'auto' })
