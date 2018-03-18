@@ -21,35 +21,19 @@ module.exports = class extends Command {
   }
 
   async run(msg) {
-    const avatar = msg.guild.iconURL() ? msg.guild.iconURL() : 'https://imgur.com/ik9S8V5.png';
-    const roles = msg.guild.roles.array().length > 0 ? msg.guild.roles.array().length : 'N/A';
-    const channelCount = msg.guild.channels.array().length > 0 ? msg.guild.channels.array().length : 'N/A';
-    const guildName = msg.guild.name;
-    const guildID = msg.guild.id;
-    const memberCount = msg.guild.memberCount;
-    const owner = msg.guild.owner.user.tag;
-    const ownerID = msg.guild.ownerID;
-    const region = msg.guild.region;
-    const createdAt = msg.guild.createdAt;
-    const onlineCount = msg.guild.members.filter(m => m.presence.status === 'online');
-
-    let cctmp = '';
-    msg.guild.channels.filter(c => cctmp += `\`${c.name}\`\t`);
-
-    let rtmp = '';
-    msg.guild.roles.filter(r => rtmp += `\`${r.name}\`\t`);
-
     const embed = new this.client.methods.Embed()
       .setColor('#ff003c')
-      .setThumbnail(avatar)
-      .setAuthor(`${guildName} / ${guildID}`, avatar)
-      .addField(`Total Members [${memberCount}]`, `${onlineCount.size} Online, ${memberCount - onlineCount.size} Offline`)
-      .addField('Region', region)
-      .addField(`Channels [${channelCount}]`, cctmp)
-      .addField(`Roles [${roles}]`, rtmp)
-      .addField('Verification Level', msg.guild.verificationLevel)
-      .addField('Created On', createdAt)
-      .addField('Server Owner', `${owner} / ${ownerID}`)
+      .setThumbnail(msg.guild.iconURL() ? msg.guild.iconURL() : 'https://imgur.com/ik9S8V5.png')
+      .setAuthor(`${msg.guild.name} / ${msg.guild.id}`,
+        msg.guild.iconURL() ? msg.guild.iconURL() : 'https://imgur.com/ik9S8V5.png')
+      .addField(`Total Members [${msg.guild.memberCount}]`,
+        `${msg.guild.members.filter(m => m.presence.status === 'online').size} Online, ${msg.guild.memberCount - msg.guild.members.filter(m => m.presence.status === 'online').size} Offline`)
+      .addField('Region', msg.guild.region)
+      .addField(`Channels [${msg.guild.channels.array().length > 0 ? msg.guild.channels.array().length : '0'}]`, `For channel list, run \`${msg.guild.configs.prefix}channels\``)
+      .addField(`Roles [${msg.guild.roles.array().length > 0 ? msg.guild.roles.array().length : '0'}]`, `For role list, run \`${msg.guild.configs.prefix}roles\``)
+      .addField(`Verification Level [${msg.guild.verificationLevel}]`)
+      .addField('Created On', msg.guild.createdAt)
+      .addField('Server Owner', `${msg.guild.owner.user.tag} / ${msg.guild.ownerID}`)
       .setTimestamp();
     return await msg.sendEmbed(embed).catch(console.error);
   }
