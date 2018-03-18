@@ -8,7 +8,7 @@ module.exports = class extends Command {
       runIn: ['text'],
       cooldown: 2,
       bucket: 1,
-      aliases: [],
+      aliases: ['info'],
       permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
@@ -39,21 +39,15 @@ module.exports = class extends Command {
     let rtmp = '';
     msg.guild.roles.filter(r => rtmp += `\`${r.name}\`\t`);
 
-    let verify = msg.guild.verificationLevel;
-    if (verify === 0) verify = 'None';
-    else if (verify >= 1 && verify <= 3) verify = 'Low';
-    else if (verify >= 4 && verify <= 7) verify = 'Medium';
-    else if (verify >= 8) verify = 'High';
-
     const embed = new this.client.methods.Embed()
       .setColor('#ff003c')
       .setThumbnail(avatar)
-      .setAuthor(`[${guildName} / ${guildID}`, avatar)
+      .setAuthor(`${guildName} / ${guildID}`, avatar)
       .addField(`Total Members [${memberCount}]`, `${onlineCount.size} Online, ${memberCount - onlineCount.size} Offline`)
       .addField('Region', region)
       .addField(`Channels [${channelCount}]`, cctmp)
       .addField(`Roles [${roles}]`, rtmp)
-      .addField('Verification Level', verify)
+      .addField('Verification Level', msg.guild.verificationLevel)
       .addField('Created On', createdAt)
       .addField('Server Owner', `${owner} / ${ownerID}`)
       .setTimestamp();
