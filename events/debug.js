@@ -4,7 +4,7 @@ module.exports = class extends Event {
   constructor(...args) {
     super(...args, {
       name: 'debug',
-      enabled: true,
+      enabled: false,
       event: 'debug',
       once: false,
     });
