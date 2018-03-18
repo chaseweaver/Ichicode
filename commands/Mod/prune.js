@@ -14,13 +14,13 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Prunes a certain amount of messages w/o filter.',
       quotedStringSupport: true,
-      usage: '<link|invite|bots|you|me|upload|user:user> [limit:integer]',
+      usage: '[channel:channel] <link|invite|bots|you|me|upload|user:user> [limit:integer]',
       usageDelim: '',
       extendedHelp: 'No extended help available.',
     });
   }
-  async run(msg, [filter = 'me', limit = 50]) {
-    let messages = await msg.channel.messages.fetch({ limit: 100 });
+  async run(msg, [channel = msg.channel, filter = 'me', limit = 50]) {
+    let messages = await channel.fetch({ limit: 100 });
     if (filter) {
       const user = typeof filter !== 'string' ? filter : null;
       const type = typeof filter === 'string' ? filter : 'user';
