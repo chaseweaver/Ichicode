@@ -21,7 +21,7 @@ module.exports = class extends Command {
   }
 
   async run(msg, [channel = msg.channel, ...message]) {
-    if (channel.postable === false && channel !== msg.channel) return     msg.send('The selected channel is not postable.');
+    if (channel.postable === false && channel !== msg.channel) return msg.send('The selected channel is not postable.');
     return channel.send(message.join(' ') || message).then(() => msg.delete());
   }
 };
