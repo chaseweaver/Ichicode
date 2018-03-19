@@ -80,12 +80,19 @@ module.exports = class extends Command {
           upload: false,
         });
 
+        const handler = this.client.queue.get(msg.guild.id);
+        let total = 0;
+        for (let i = 0; i < Math.min(handler.songs.length - 1); i++) { total += parseInt(handler.songs[i].seconds); }
+        const totalTime = await this.fmtMMS(total);
+
         const embed = new this.client.methods.Embed()
           .setColor('#ff003c')
           .setTitle(info.title)
           .setThumbnail(info.thumbnail_url)
           .setAuthor(msg.author.username, msg.author.displayAvatarURL())
           .addField('Length', await this.fmtMMS(info.length_seconds), true)
+          .addField('Position in Queue', msg.client.queue.get(msg.guild.id).songs.length, true)
+          .addField('Estimated Time Until Playing', totalTime, true)
           .setURL(info.video_url)
           .setTimestamp();
         return msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
