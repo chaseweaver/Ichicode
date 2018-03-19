@@ -38,7 +38,7 @@ module.exports = class extends Command {
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
-        .setTitle('Queue')
+        .setTitle(`${msg.guild.name} Music Queue`)
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
         .addField('Total Time', totalTime)
