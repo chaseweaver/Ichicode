@@ -9,18 +9,18 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: ['purge'],
-      permLevel: 10,
+      permLevel: 3,
       botPerms: ['MANAGE_MESSAGES'],
       requiredConfigs: [],
       description: 'Prunes a certain amount of messages w/o filter.',
       quotedStringSupport: true,
-      usage: '<link|invite|bots|you|me|upload|user:user> [limit:integer]',
+      usage: '[channel:channel] <link|invite|bots|you|me|upload|user:user> [limit:integer]',
       usageDelim: '',
       extendedHelp: 'No extended help available.',
     });
   }
-  async run(msg, [filter = 'me', limit = 50]) {
-    let messages = await msg.channel.messages.fetch({ limit: 100 });
+  async run(msg, [channel = msg.channel, filter = 'me', limit = 50]) {
+    let messages = await channel.fetch({ limit: 100 });
     if (filter) {
       const user = typeof filter !== 'string' ? filter : null;
       const type = typeof filter === 'string' ? filter : 'user';
@@ -28,7 +28,6 @@ module.exports = class extends Command {
     }
     messages = messages.array().slice(0, limit);
     await msg.channel.bulkDelete(messages);
-    // return msg.send(`Successfully deleted ${messages.length} messages from ${limit}.`);
     return;
   }
 

@@ -14,28 +14,34 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Kicks a mentioned user.',
       quotedStringSupport: true,
-      usage: '<member:member> [reason:string]',
+      usage: '<member:user> [reason:string]',
       usageDelim: ' ',
       extendedHelp: 'Logs a report in channel \'memLogs\' if set and with \'goodbyeMem\' enabled.',
     });
   }
 
-  async run(msg, [member, ...reason]) {
-    if (member.id === msg.author.id) throw 'Why would you kick yourself?';
-    if (member.id === this.client.user.id) throw 'Have I done something wrong?';
-    if (member.kickable === false) throw 'I cannot kick this user.';
+  async run(msg, [user, ...reason]) {
+    if (user.id === this.client.owner.id) throw 'I will *not* kick my master!';
+    if (user.id === this.client.user.id) throw 'Have I done something wrong?';
 
-    reason = reason.length > 0 ? reason.join(' ') : null;
+    const member = await msg.guild.members.fetch(user).catch(() => null);
+    if (member) if (member.bannable === false) throw 'I cannot ban this user.';
+
+    const options = {};
+    reason = reason.length > 0 ? reason.join(' ') : 'N/A';
+    if (reason) options.reason = reason;
+
     await member.kick(reason);
 
-    if (msg.guild.settings.modLogChannel && msg.guild.settings.goodbyeMemberActive) {
-      const chan = msg.guild.channels.find('id', msg.guild.settings.memLogChannel);
+    if (msg.guild.configs.memberLogChannel && msg.guild.configs.goodbyeMemberActive) {
+      const chan = msg.guild.channels.find('id', msg.guild.configs.memberLogChannel);
+      if (!chan) return;
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
         .setTitle('Member Kicked')
-        .setThumbnail(member.displayAvatarURL)
-        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
-        .addField('Member', `${member.tag} / ${member.id}`)
+        .setThumbnail(member.user.displayAvatarURL())
+        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL())
+        .addField('Member', `${member.user.tag} / ${member.user.id}`)
         .addField('Reason', reason)
         .setTimestamp(new Date());
       return await chan.send({ embed }).catch(console.error);

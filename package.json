@@ -37,6 +37,7 @@
     "figlet": "^1.2.0",
     "fs-nextra": "^0.3.2",
     "get-average-color": "0.0.6",
+    "google-tts-api": "0.0.2",
     "klasa": "github:dirigeants/klasa",
     "lyric-get": "^1.0.3",
     "moment": "^2.21.0",

@@ -21,29 +21,30 @@ module.exports = class extends Command {
   }
 
   async run(msg, [user, ...reason]) {
-    if (user.id === msg.author.id) throw 'Why would you ban yourself?';
+    if (user.id === this.client.owner.id) throw 'I will *not* ban my master!';
     if (user.id === this.client.user.id) throw 'Have I done something wrong?';
 
     const member = await msg.guild.members.fetch(user).catch(() => null);
     if (member) if (member.bannable === false) throw 'I cannot ban this user.';
 
     const options = {};
-    reason = reason.length > 0 ? reason.join(' ') : null;
+    reason = reason.length > 0 ? reason.join(' ') : 'N/A';
     if (reason) options.reason = reason;
 
-    await msg.guild.ban(user.id, options);
+    await member.ban(options);
 
-    if (msg.guild.settings.memLogChannelID && msg.guild.settings.goodbyeMemberActive) {
-      const chan = msg.guild.channels.find('id', msg.guild.settings.memLogChannel);
+    if (msg.guild.configs.modLogChannel && msg.guild.configs.goodbyeMemberActive) {
+      const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
+      if (!chan) return;
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
         .setTitle('Member Banned')
-        .setThumbnail(user.displayAvatarURL)
-        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL)
-        .addField('Member', `${user.tag} / ${user.id}`)
+        .setThumbnail(member.user.displayAvatarURL())
+        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL())
+        .addField('Member', `${member.user.tag} / ${member.user.id}`)
         .addField('Reason', reason)
         .setTimestamp(new Date());
-      return await chan.send({ embed }).catch(console.error);
+      return chan.send({ embed }).catch(console.error);
     }
   }
 };

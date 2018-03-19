@@ -1,13 +1,12 @@
 # Ichicode
-Ichicode is a multi-purpose mod / stat / fun Discord bot!
+Ichicode is a multi-purpose mod / stat / fun / music / shitposting Discord bot!
 
-# EVERYTHING IS OUTDATE RIGHT NOW
-
-# Features
+# Commands
 * BOT
-  * botavatar   : Sets the bot's avatar.
-  * nickname    : Sets the bot's nickname.
-  * presence    : Sets the bot's Discord presence.
+  * botavatar       : Sets the bot's avatar.
+  * nickname        : Sets the bot's nickname.
+  * dm              : DMs a user.
+  * presence        : Sets the bot's Discord presence.
 * GUILD
   * age             : View the age of the guild / member / channel / role.
   * channels        : Displays channel listings.
@@ -15,47 +14,70 @@ Ichicode is a multi-purpose mod / stat / fun Discord bot!
   * id              : Returns the ID of the guild / member / channel / role.
   * membercount     : Returns the total members within a guild / role.
   * memberlist      : DMs a list of members and member IDs.
+  * roleinfo        : Fetches role permissions and info
   * server          : Displays basic server information. 
+* MASTER
+  * eval            : Evaluates an expression.
+  * exec            : Executes an expression.
+* MISC
+  * ascii           : Sends ascii art to a channel.
+  * avatar          : Fetches the mentioned member's avatar.
+  * caps            : rEtUrNs TeXt LiKe ThIs To A cHaNnEl.
+  * shame           : SHAME. SHAME.
+  * shameban        : BAN. BAN.
+* MOD
+  * ban             : Bans a mentioned member.
+  * info            : Fetches info about a member.
+  * kick            : Kicks a mentioned member.
+  * lock            : Locks a channel.
+  * Mute            : Mutes a member.
+  * prune           : Prunes messages in a channel with filter.
+  * role            : Adds / Removes roles from mentioned member.
+  * speak           : Has the bot speak in voice channel usign Google TTS.
+  * unlock          : Unlocks a channel.
+  * unmute          : Unmutes a mentioned member.
 * MUSIC
-  * add             : Adds a YouTube URL to the music queue.
+  * add             : Adds a YouTube URL / ID / Search Term / uploaded music file to the music queue.
   * end             : Ends the currently playing song.
   * join            : Have the bot join the author's current voice channel.
+  * leave           : Has the bot leave a voice channel.
+  * lyrics          : Scrapes AZLyrics for song lyrics.
+  * nowplaying      : Display the currently playing song.
   * pause           : Pause the currently playing song.
+  * play            : Auto joins a voice channel and plays the first song in queue.
   * queue           : Lists the song queue.
+  * remove          : Removes a songs from the queue if you queued it.
   * resume          : Resumes the currently playing song.
   * skip            : Skips the currently playing song.
   * time            : Returns the remaining time left in the song.
-* Other
-  * avatar          : Returns mentioned member's avatar.
-  * MORE COMING SOON
-* MOD
-  * MORE COMING SOON
+  * volume          : Adjusts stream volume (not client volume).
 * STATS
-  * logattachments  : Returns URLs within a channel.
   * membersjoined   : Returns members joined over a time period.
-  * messages        : Returns message counts per channel / user.
+  * messages        : Returns message counts per channel / member.
   * rolemembercount : Returns members in a role.
-* KOMADA
-  * ADD INFORMATION
 
-# Additional Info
-If you are like me and want to be able to send bot commands across channels and have the bot respond to them, you need to replace 'node_modules/Komada/src/events/message.js' with 'replacement/message.js'.
+# Events
+* debug             : Logs debug info.
+* error             : Logs error info.
+* guildCreate       : Logs guild add info.
+* guildDelete       : Logs guild delete info.
+* guildMemberAdd    : Logs guild member add info.
+* guildMemberRemove : Logs guild member remove info.
+* ready             : Logs ready info.
+
+# Monitors
+* antiSpam          : Prevents chat spamming guild wide.
 
 # Invite Link
-Wanna add my bot to your server? Add it with this: https://discordapp.com/oauth2/authorize?client_id=415589284955947018&permissions=70257664&scope=bot
-
-# Required Modules
-* Node   8.0.0+
-* Komada 0.21.1
-* Moment 2.20.1
-* Note:  Discord.js master branch gets installed by default with Komada.
+Maybe some day.
 
 # How to Run
 1. Create a new 'app' from https://discordapp.com/developers/applications/me
 2. Give it a fancy name / picture / description.inequality
 3. Click 'Create Bot User'.
 4. Download this repo.
-5. Replace 'Ichicode_Example.js' with a name of your choice.
+5. Modify 'config.ex.js' with 'config.js' and enter in your tokens.
 6. Inside your newly created file, add your Discord bot token / your profile ID obtained from the 'app' page you just created.
-7. Run $ node <YOUR_FILENAME_HERE>
-8. Enjoy!
+7. Run $ npm install
+8. Run $ node <YOUR_FILENAME_HERE>
+9. Enjoy!

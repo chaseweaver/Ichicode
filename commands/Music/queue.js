@@ -10,7 +10,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: ['q'],
       permLevel: 0,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Lists the music queue.',
       quotedStringSupport: false,
@@ -24,7 +24,7 @@ module.exports = class extends Command {
   async run(msg) {
     try {
       const handler = this.client.queue.get(msg.guild.id);
-      if (!handler) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
+      if (!handler || handler.songs.length === 0) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
 
       let total = 0;
       const output = [];
@@ -38,7 +38,7 @@ module.exports = class extends Command {
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
-        .setTitle('Queue')
+        .setTitle(`${msg.guild.name} Music Queue`)
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
         .addField('Total Time', totalTime)

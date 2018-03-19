@@ -3,22 +3,27 @@ const { Command } = require('klasa');
 module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
-      name: 'botavatar',
+      name: 'leave',
       enabled: true,
       runIn: ['text'],
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 10,
+      permLevel: 2,
       botPerms: [],
       requiredConfigs: [],
-      description: 'Sets the bot\'s avatar.',
-      quotedStringSupport: true,
-      usage: '<url:url>',
+      description: 'Leaves the bots\'s current voice channel.',
+      quotedStringSupport: false,
+      usage: '',
       usageDelim: '',
       extendedHelp: 'No extended help available.',
     });
   }
 
-  async run(msg, [url]) { return await msg.client.user.setAvatar(url).then(() => msg.delete()).catch(console.error); }
+  async run(msg) {
+    try {
+      await msg.member.voiceChannel.leave();
+      return msg.send(`Left ${msg.member.voiceChannel}.`).then(() => msg.delete());
+    } catch (err) { console.log(err); }
+  }
 };

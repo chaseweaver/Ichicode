@@ -8,7 +8,7 @@ module.exports = class extends Command {
       runIn: ['text'],
       cooldown: 2,
       bucket: 1,
-      aliases: ['c', 'echo'],
+      aliases: ['echo'],
       permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
@@ -21,7 +21,7 @@ module.exports = class extends Command {
   }
 
   async run(msg, [channel = msg.channel, ...message]) {
-    if (channel.postable === false && channel !== msg.channel) throw 'The selected channel is not postable.';
+    if (channel.postable === false && channel !== msg.channel) return msg.send('The selected channel is not postable.');
     return channel.send(message.join(' ') || message).then(() => msg.delete());
   }
 };

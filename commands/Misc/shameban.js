@@ -3,22 +3,22 @@ const { Command } = require('klasa');
 module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
-      name: 'botavatar',
+      name: 'shameban',
       enabled: true,
-      runIn: ['text'],
+      runIn: ['text', 'dm', 'group'],
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 10,
+      permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
-      description: 'Sets the bot\'s avatar.',
+      description: 'Shame bans a user.',
       quotedStringSupport: true,
-      usage: '<url:url>',
+      usage: '<member:member>',
       usageDelim: '',
       extendedHelp: 'No extended help available.',
     });
   }
 
-  async run(msg, [url]) { return await msg.client.user.setAvatar(url).then(() => msg.delete()).catch(console.error); }
+  async run(msg, [member]) { msg.send(`🔨 BAN 🔨 ${member} 🔨 BAN 🔨`).then(() => msg.delete()); }
 };

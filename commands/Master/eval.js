@@ -12,11 +12,11 @@ module.exports = class extends Command {
       permLevel: 10,
       botPerms: [],
       requiredConfigs: [],
-      description: (msg) => msg.language.get('COMMAND_EVAL_DESCRIPTION'),
+      description: 'Runs evaluate commands.',
       quotedStringSupport: true,
       usage: '<expression:str>',
       usageDelim: '',
-      extendedHelp: (msg) => msg.language.get('COMMAND_EVAL_EXTENDEDHELP'),
+      extendedHelp: 'No extended help available.'
     });
   }
 

@@ -13,29 +13,26 @@ module.exports = class extends Event {
 
   run(mem) {
     try {
-      /* Send welcome message if enabled. */
-      if (mem.guild.configs.welcomeMessgage && mem.guild.configs.welcomeMemberActive && mem.guild.configs.welcomeChannel) {
-        if (!mem.guild.configs.welcomeMemberActive) return;
-        let build = `Welcome, ${mem.user.tag}!`;
+      if (mem.guild.configs.welcomeMessage && mem.guild.configs.welcomeMemberActive && mem.guild.configs.welcomeChannel) {
         const chan = mem.guild.channels.find('id', mem.guild.configs.welcomeChannel);
-        const message = mem.guild.configs.welcomeMessgage;
-        if (message.search('$USER$')) build = message.replace('$USER$', mem.user);
-        chan.send(build).catch(err => console.log(err, 'error'));
+        let message = mem.guild.configs.welcomeMessage;
+        message = message.replace('$MENTION$', mem.user);
+        message = message.replace('$SERVER$', mem.guild);
+        chan.send(message).catch(err => console.log(err, 'error'));
       }
 
-      /* Log member joined if enabled. */
       if (mem.guild.configs.logMemberAdd && mem.guild.configs.memberLogChannel) {
-        const chan = mem.guild.channels.find('id', mem.guild.configs.memberLogChannel);
+        const memChan = mem.guild.channels.find('id', mem.guild.configs.memberLogChannel);
+        if (!memChan) return;
         const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
-
         const embed = new this.client.methods.Embed()
           .setColor('#00ffbb')
           .setTitle('Member Joined')
           .setThumbnail(avatar)
           .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
           .addField('Joined At', `${Moment.utc(mem.joinedTimestamp).format('llll')} UTC-0`)
-          .setTimestamp(new Date());
-        chan.send({ embed }).catch(err => console.log(err, 'error'));
+          .setTimestamp();
+        memChan.send({ embed }).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
     console.log(`Member '${mem.user.tag}' joined '${mem.guild.name}'. Account age '${mem.user.createdAt}'.`);

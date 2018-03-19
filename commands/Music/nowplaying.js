@@ -12,7 +12,7 @@ module.exports = class extends Command {
       bucket: 1,
       aliases: ['np'],
       permLevel: 0,
-      botPerms: ['CONNECT', 'SPEAK'],
+      botPerms: [],
       requiredConfigs: [],
       description: 'Shows the currently playing song.',
       quotedStringSupport: false,
@@ -33,14 +33,13 @@ module.exports = class extends Command {
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
-        .setTitle('Now Playing')
+        .setTitle(handler.songs[0].title)
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
-        .addField('Song', handler.songs[0].title)
         .addField('Time Remaining', timeRemaining, true)
         .addField('Length', handler.songs[0].length, true)
         .addField('Requested By', handler.songs[0].requester, true)
-        .addField('Video URL', handler.songs[0].url, true)
+        .setURL(handler.songs[0].url)
         .setTimestamp();
       msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
     } catch (err) { console.log(err); }

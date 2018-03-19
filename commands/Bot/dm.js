@@ -3,22 +3,22 @@ const { Command } = require('klasa');
 module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
-      name: 'botavatar',
+      name: 'dm',
       enabled: true,
       runIn: ['text'],
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 10,
+      permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
-      description: 'Sets the bot\'s avatar.',
+      description: 'DMs user(s).',
       quotedStringSupport: true,
-      usage: '<url:url>',
+      usage: '[member:member] <message:str>',
       usageDelim: '',
       extendedHelp: 'No extended help available.',
     });
   }
 
-  async run(msg, [url]) { return await msg.client.user.setAvatar(url).then(() => msg.delete()).catch(console.error); }
+  async run(msg, [mem = msg.author, ...str]) { msg.mentions.users.map(mem => { return mem.send(str.join(' ')); }); msg.delete(); }
 };
