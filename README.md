@@ -73,7 +73,7 @@ Maybe some day.
 
 # How to Run
 1. Create a new 'app' from https://discordapp.com/developers/applications/me
-2. Give it a fancy name / picture / description.inequality
+2. Give it a fancy name / picture / description.
 3. Click 'Create Bot User'.
 4. Download this repo.
 5. Modify 'config.ex.js' with 'config.js' and enter in your tokens.
