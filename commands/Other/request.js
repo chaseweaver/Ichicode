@@ -26,8 +26,8 @@ module.exports = class extends Command {
       if (!masterServer || !requestChannel) return;
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
-        .setAuthor(`${msg.client.user.tag} / ${msg.client.user.id}`, msg.client.user.displayAvatarURL())
-        .setThumbnail(msg.client.user.displayAvatarURL())
+        .setAuthor(`${msg.member.user.tag} / ${msg.member.user.id}`, msg.member.user.displayAvatarURL())
+        .setThumbnail(msg.member.user.displayAvatarURL())
         .addField('Guild', `${msg.guild.name} [${msg.guild.memberCount}] / ${msg.guild.id}`)
         .addField('Request', message.join(' '))
         .setTimestamp();
