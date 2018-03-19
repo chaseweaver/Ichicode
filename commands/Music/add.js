@@ -88,7 +88,7 @@ module.exports = class extends Command {
           .addField('Song', info.title)
           .addField('Length', await this.fmtMMS(info.length_seconds), true)
           .addField('Requested By', msg.author.username, true)
-          .addField('Video URL', info.video_url, true)
+          .url(info.video_url)
           .setTimestamp();
         return msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
       }

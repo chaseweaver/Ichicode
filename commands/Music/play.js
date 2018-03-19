@@ -55,7 +55,7 @@ module.exports = class extends Command {
             .addField('Song', song.title)
             .addField('Length', song.length, true)
             .addField('Requested By', song.requester, true)
-            .addField('Video URL', song.url, true)
+            .url(song.url)
             .setTimestamp();
           msg.sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
         }

@@ -25,7 +25,7 @@ module.exports = class extends Command {
       const { voiceChannel } = msg.member;
       if (!voiceChannel) return msg.send('You are not conected in a voice channel!');
       await voiceChannel.join();
-      return msg.send(`Connected to the voice channel \`${voiceChannel}\`.`).then((m) => { m.delete(5000); msg.delete(); });
+      return msg.send(`Connected to the voice channel \`${voiceChannel}\`.`).then(msg.delete());
     } catch (err) { console.log(err); }
   }
 };
