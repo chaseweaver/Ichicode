@@ -34,6 +34,6 @@ module.exports = class extends Command {
       this.client.guilds.find('id', masterServer).channels.find('id', reportChannel)
         .sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
       return msg.send('Report has been delievered!');
-    }
-  } catch(err) { console.log(err); }
+    } catch (err) { console.log(err); }
+  }
 };
