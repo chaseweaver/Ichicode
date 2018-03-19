@@ -20,7 +20,7 @@ module.exports = class extends Command {
       extendedHelp: 'Message must be less than 200 characters.',
     });
   }
-  async run(msg, [message]) {
+  async run(msg, [...message]) {
     try {
       const { voiceChannel } = msg.member;
       if (!voiceChannel) return msg.send('You are not conected to a voice channel!');
