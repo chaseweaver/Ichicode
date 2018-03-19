@@ -84,7 +84,7 @@ module.exports = class extends Command {
           .setColor('#ff003c')
           .setTitle(info.title)
           .setThumbnail(info.thumbnail_url)
-          .setAuthor(requester, msg.author.displayAvatarURL())
+          .setAuthor(msg.author.username, msg.author.displayAvatarURL())
           .addField('Length', await this.fmtMMS(info.length_seconds), true)
           .setURL(info.video_url)
           .setTimestamp();
