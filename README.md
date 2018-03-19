@@ -30,7 +30,7 @@ Ichicode is a multi-purpose mod / stat / fun / music / shitposting Discord bot!
   * info            : Fetches info about a member.
   * kick            : Kicks a mentioned member.
   * lock            : Locks a channel.
-  * Mute            : Mutes a member.
+  * mute            : Mutes a member.
   * prune           : Prunes messages in a channel with filter.
   * role            : Adds / Removes roles from mentioned member.
   * speak           : Has the bot speak in voice channel usign Google TTS.
