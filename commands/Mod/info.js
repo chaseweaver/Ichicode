@@ -31,7 +31,7 @@ module.exports = class extends Command {
       .addField('Presence', mem.user.presence.status, true)
       .addField(`Roles [${mem.roles.array().length > 0 ? mem.roles.array().length : 0}]`, rtmp, true)
       .addField('Joined At', mem.joinedAt, true)
-      .addField('Account Age', mem.user.createdAt, true)
+      .addField('Account Age', mem.user.createdAt ? mem.user.createdAt : 'N/A', true)
       .addField('Last Message Sent Time', mem.lastMessage.createdAt ? mem.lastMessage.createdAt : 'N/A', true)
       .addField('Last Active Channel', mem.lastMessage.channel ? mem.lastMessage.channel : 'N/A', true)
       .setTimestamp();
