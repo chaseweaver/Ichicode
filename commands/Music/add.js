@@ -84,11 +84,10 @@ module.exports = class extends Command {
           .setColor('#ff003c')
           .setTitle('Song Added')
           .setThumbnail(info.thumbnail_url)
-          .setAuthor(this.client.user.username, this.client.user.displayAvatarURL())
+          .setAuthor(msg.author.name, msg.author.displayAvatarURL())
           .addField('Song', info.title)
           .addField('Length', await this.fmtMMS(info.length_seconds), true)
-          .addField('Requested By', msg.author.username, true)
-          .url(info.video_url)
+          .setURL(info.video_url)
           .setTimestamp();
         return msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
       }

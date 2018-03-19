@@ -40,7 +40,7 @@ module.exports = class extends Command {
         .addField('Time Remaining', timeRemaining, true)
         .addField('Length', handler.songs[0].length, true)
         .addField('Requested By', handler.songs[0].requester, true)
-        .url(handler.songs[0].url)
+        .setURL(handler.songs[0].url)
         .setTimestamp();
       msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
     } catch (err) { console.log(err); }
