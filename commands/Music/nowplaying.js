@@ -33,10 +33,9 @@ module.exports = class extends Command {
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
-        .setTitle('Now Playing')
+        .setTitle(handler.songs[0].title)
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
-        .addField('Song', handler.songs[0].title)
         .addField('Time Remaining', timeRemaining, true)
         .addField('Length', handler.songs[0].length, true)
         .addField('Requested By', handler.songs[0].requester, true)

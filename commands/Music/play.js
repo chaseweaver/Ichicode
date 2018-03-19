@@ -49,10 +49,9 @@ module.exports = class extends Command {
         if (handler.songs.length !== 1) {
           const embed = new msg.client.methods.Embed()
             .setColor('#ff003c')
-            .setTitle('Now Playing')
+            .setTitle(song.title)
             .setThumbnail(song.thumbnail)
             .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
-            .addField('Song', song.title)
             .addField('Length', song.length, true)
             .addField('Requested By', song.requester, true)
             .setURL(song.url)

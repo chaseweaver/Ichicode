@@ -82,10 +82,9 @@ module.exports = class extends Command {
 
         const embed = new this.client.methods.Embed()
           .setColor('#ff003c')
-          .setTitle('Song Added')
+          .setTitle(info.title)
           .setThumbnail(info.thumbnail_url)
           .setAuthor(msg.author.name, msg.author.displayAvatarURL())
-          .addField('Song', info.title)
           .addField('Length', await this.fmtMMS(info.length_seconds), true)
           .setURL(info.video_url)
           .setTimestamp();
