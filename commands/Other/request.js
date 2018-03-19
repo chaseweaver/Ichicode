@@ -7,7 +7,7 @@ module.exports = class extends Command {
       name: 'request',
       enabled: true,
       runIn: ['text'],
-      cooldown: 0,
+      cooldown: 60,
       bucket: 1,
       aliases: ['feature'],
       permLevel: 0,

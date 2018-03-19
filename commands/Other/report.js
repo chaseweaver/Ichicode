@@ -7,7 +7,7 @@ module.exports = class extends Command {
       name: 'report',
       enabled: true,
       runIn: ['text'],
-      cooldown: 0,
+      cooldown: 60,
       bucket: 1,
       aliases: ['issue'],
       permLevel: 0,
