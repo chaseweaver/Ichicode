@@ -5,7 +5,7 @@ module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
       name: 'request',
-      enabled: false,
+      enabled: true,
       runIn: ['text'],
       cooldown: 0,
       bucket: 1,
