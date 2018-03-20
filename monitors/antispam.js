@@ -3,7 +3,7 @@ const { Monitor } = require('klasa');
 module.exports = class extends Monitor {
   constructor(...args) {
     super(...args, {
-      name: 'antiSpam',
+      name: 'antispam',
       enabled: true,
       ignoreBots: false,
       ignoreSelf: false,
@@ -15,8 +15,7 @@ module.exports = class extends Monitor {
   run(msg) {
     try {
       if (msg.guild.configs.antiSpam && msg.guild.configs.cooldown) {
-        
-        if (msg.author.id === (client.user.id || master)) return;
+        if (msg.author.id === (this.client.user.id || this.client.owner.id)) return;
         else if (msg.guild.configs.adminRole && msg.member.roles.has(msg.guild.configs.adminRole)) return;
         else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.modRole)) return;
         else if (msg.guild.configs.devRole && msg.member.roles.has(msg.guild.configs.devRole)) return;
@@ -39,7 +38,7 @@ module.exports = class extends Monitor {
             if (msgTS <= oldTS + (cooldown * 1000)) msg.delete();
           })
           .catch(console.error);
-      } else return;
+      } else { return; }
     } catch (error) { console.log(error); }
   }
 };
