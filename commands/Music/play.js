@@ -36,63 +36,65 @@ module.exports = class extends Command {
       handler.playing = true;
 
       (function play(song) {
-        if (song === undefined) {
-          return msg.send('The queue is empty! Leaving voice channel in 5 minutes.').then(() => {
-            handler.playing = false;
-            msg.client.user.setActivity('+help', { type: 'LISTENING' });
-            setTimeout(() => {
-              return msg.member.voiceChannel.leave();
-            }, 1000 * 60 * 5);
-          });
-        }
-
-        if (handler.songs.length !== 1) {
-          const embed = new msg.client.methods.Embed()
-            .setColor('#ff003c')
-            .setTitle(song.title)
-            .setThumbnail(song.thumbnail)
-            .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
-            .addField('Length', song.length, true)
-            .addField('Requested By', song.requester, true)
-            .setURL(song.url)
-            .setTimestamp();
-          msg.sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
-        }
-
-        if (!handler.songs[0].upload) msg.client.user.setActivity(song.title, { type: 'LISTENING' });
-
-        if (!handler.songs[0].upload) {
-          return msg.guild.voiceConnection.play(yt(song.url, { audioonly: true, quality: 'highestaudio' }),
-            { passes: 2, bitrate: 'auto' })
-            .on('end', (end) => {
-              console.log(end);
+        try {
+          if (song === undefined) {
+            return msg.send('The queue is empty! Leaving voice channel in 5 minutes.').then(() => {
+              handler.playing = false;
+              msg.client.user.setActivity('+help', { type: 'LISTENING' });
               setTimeout(() => {
+                return msg.member.voiceChannel.leave();
+              }, 1000 * 60 * 5);
+            });
+          }
+
+          if (handler.songs.length !== 1) {
+            const embed = new msg.client.methods.Embed()
+              .setColor('#ff003c')
+              .setTitle(song.title)
+              .setThumbnail(song.thumbnail)
+              .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
+              .addField('Length', song.length, true)
+              .addField('Requested By', song.requester, true)
+              .setURL(song.url)
+              .setTimestamp();
+            msg.sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
+          }
+
+          if (!handler.songs[0].upload) msg.client.user.setActivity(song.title, { type: 'LISTENING' });
+
+          if (!handler.songs[0].upload) {
+            return msg.guild.voiceConnection.play(yt(song.url, { audioonly: true, quality: 'highestaudio' }),
+              { passes: 2, bitrate: 'auto' })
+              .on('end', (end) => {
+                console.log(end);
+                setTimeout(() => {
+                  handler.songs.shift();
+                  play(handler.songs[0]);
+                }, 100);
+              })
+              .on('error', err => msg.send(`Error: ${err}`).then(() => {
+                console.log(err);              
+                msg.send('An error has occured. Perhaps the video is restricted, private, or the stream could not keep up. Please try again.');
                 handler.songs.shift();
                 play(handler.songs[0]);
-              }, 100);
-            })
-            .on('error', err => msg.send(`Error: ${err}`).then(() => {
-              console.log(err);              
-              msg.send('An error has occured. Perhaps the video is restricted, private, or the stream could not keep up. Please try again.');
-              handler.songs.shift();
-              play(handler.songs[0]);
-            }));
-        } else {
-          return msg.guild.voiceConnection.play((song.url), { passes: 2, bitrate: 'auto' })
-            .on('end', (end) => {
-              console.log(end);
-              setTimeout(() => {
+              }));
+          } else {
+            return msg.guild.voiceConnection.play((song.url), { passes: 2, bitrate: 'auto' })
+              .on('end', (end) => {
+                console.log(end);
+                setTimeout(() => {
+                  handler.songs.shift();
+                  play(handler.songs[0]);
+                }, 100);
+              })
+              .on('error', err => msg.send(`Error: ${err}`).then(() => {
+                console.log(err);              
+                msg.send('An error has occured. Perhaps the video is restricted, private, or the stream could not keep up. Please try again.');
                 handler.songs.shift();
                 play(handler.songs[0]);
-              }, 100);
-            })
-            .on('error', err => msg.send(`Error: ${err}`).then(() => {
-              console.log(err);              
-              msg.send('An error has occured. Perhaps the video is restricted, private, or the stream could not keep up. Please try again.');
-              handler.songs.shift();
-              play(handler.songs[0]);
-            }));
-        }
+              }));
+          }
+        } catch (err) { console.log(err); msg.send('YouTube could not handle the stream! Please try again!'); }
       }(handler.songs[0]));
       return null;
     } catch (err) { console.log(err); }
