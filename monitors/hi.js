@@ -14,7 +14,7 @@ module.exports = class extends Monitor {
 
   run(msg) {
     if (msg.content.length > 30 || msg.content.length <= 5 || msg.author.id === this.client.user.id) return;
-    if (msg.content.match(/(\b[iI]'?\s*a?[mM]\b)/)) {
+    if (msg.content.match(/(\b[iI]'?\s*a?[mM]\b)/) && msg.content.toUpperCase().startsWith('I')) {
       const str = msg.content.replace(/(\b[iI]'?\s*a?[mM]\b)/, '');
       return msg.send(`Hi,${str}, I'm Ichicode!`);
     }
