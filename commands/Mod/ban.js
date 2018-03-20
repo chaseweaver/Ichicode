@@ -34,7 +34,7 @@ module.exports = class extends Command {
     await member.ban(options);
 
     if (msg.guild.configs.modLogChannel && msg.guild.configs.goodbyeMemberActive) {
-      const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
+      const chan = msg.guild.channels.find('id', msg.guild.configs.modLogChannel);
       if (!chan) return;
       const embed = new this.client.methods.Embed()
         .setColor('#ff003c')
