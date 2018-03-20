@@ -97,13 +97,12 @@ module.exports = class extends Command {
           if (!active) {
             let avatar;
             if (member) avatar = member.user.displayAvatarURL();
-            else avatar = msg.guild.iconURL();
             const user = member ? member : 'Everyone';
             const embed = new msg.client.methods.Embed()
               .setColor('#ff003c')
               .setTitle('Total Messages')
               .setThumbnail(avatar)
-              .setAuthor(`${msg.guild.name} / ${msg.guild.id}`, avatar)
+              .setAuthor(`${msg.guild.name} / ${msg.guild.id}`, msg.guild.iconURL())
               .addField('Channel', `#${channel.name}`, true)
               .addField('Member', user, true)
               .addField('Time Frame', `${Moment.utc(end).format('llll')} UTC-0 - ${Moment.utc(start).format('llll')} UTC-0`)
