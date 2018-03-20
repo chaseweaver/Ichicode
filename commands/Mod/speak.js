@@ -16,7 +16,7 @@ module.exports = class extends Command {
       description: 'Speak in a voice chat.',
       quotedStringSupport: true,
       usage: '<message:str{0,200}>',
-      usageDelim: ' ',
+      usageDelim: '',
       extendedHelp: 'Message must be less than 200 characters.',
     });
   }
