@@ -21,7 +21,7 @@ module.exports = class extends Command {
   }
 
   async run(msg) {
-    if (!msg.mentions.users.size) await msg.send(msg.author.displayAvatarURL({ size: 2048 }));
-    msg.mentions.users.map(usr => { return msg.send(`${usr.username}'s avatar: ${usr.displayAvatarURL({ size: 2048 })}\n`); });
+    if (!msg.mentions.users.size) await msg.send(msg.author.displayAvatarURL({ format: 'png', size: 2048 }));
+    msg.mentions.users.map(usr => { return msg.send(`${usr.username}'s avatar: ${usr.displayAvatarURL({ format: 'png', size: 2048 })}\n`); });
   }
 };
