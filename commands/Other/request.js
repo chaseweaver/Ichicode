@@ -33,7 +33,7 @@ module.exports = class extends Command {
         .setTimestamp();
       this.client.guilds.find('id', masterServer).channels.find('id', requestChannel)
         .sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
-      return msg.send('Request has been delievered!');
+      return msg.send('Request has been delivered!');
     } catch (err) { console.log(err); }
   }
 };
