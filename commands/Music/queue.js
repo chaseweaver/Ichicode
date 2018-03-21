@@ -1,4 +1,6 @@
 const { Command } = require('klasa');
+const moment = require('moment');
+require('moment-duration-format');
 
 module.exports = class extends Command {
   constructor(...args) {
