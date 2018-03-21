@@ -83,9 +83,9 @@ module.exports = class extends Command {
 
         const handler = this.client.queue.get(msg.guild.id);
         let total = 0, totalTime = 0;
-        for (let i = 1; i < Math.min(handler.songs.length); i++) { total += parseInt(handler.songs[i].seconds); }
+        for (let i = 0; i < Math.min(handler.songs.length); i++) { total += parseInt(handler.songs[i].seconds); }
         if (handler.songs.length == 1) total = 'NOW';
-        else if (handler.songs.length > 1 && msg.guild.voiceConnection && handler.playing) total -= ((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime);
+        else if (handler.songs.length > 1 && msg.guild.voiceConnection) total -= ((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime);
         totalTime = (total === 'NOW' ? 'NOW' : await moment.duration(total).format('h:mm:ss', { trim: false }));
 
         const embed = new this.client.methods.Embed()
