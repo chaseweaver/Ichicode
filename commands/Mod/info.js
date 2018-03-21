@@ -21,6 +21,7 @@ module.exports = class extends Command {
   }
 
   async run(msg, [mem = msg.member]) {
+    /*
     let rtmp = '';
     let kicks = 0, bans = 0;
     msg.guild.fetchAuditLogs({ user: mem }).then(logs => {
@@ -30,7 +31,8 @@ module.exports = class extends Command {
         else if (ele.action === 'MEMBER_BAN') bans++;
       });
     }).catch(console.error);
-
+    */
+    let rtmp = '';
     mem.roles.filter(r => rtmp += `\`${r.name}\`\t`);
     const embed = new this.client.methods.Embed()
       .setColor('#00ffbf')
@@ -41,11 +43,11 @@ module.exports = class extends Command {
       .addField(`Roles [${mem.roles.array().length > 0 ? mem.roles.array().length : 0}]`, rtmp, true)
       .addField('Joined At', mem.joinedAt, true)
       .addField('Account Age', mem.user.createdAt, true)
-      .addField('Total Kicks', kicks, true)
-      .addField('Total Bans', bans, true)
+      // .addField('Total Kicks', kicks, true)
+      // .addField('Total Bans', bans, true)
       // .addField('Last Message Sent Time', mem.lastMessage.createdAt ? mem.lastMessage.createdAt : 'N/A', true)
       // .addField('Last Active Channel', mem.lastMessage.channel ? mem.lastMessage.channel : 'N/A', true)
-      .setTimestamp();  
+      .setTimestamp();
     return await msg.sendEmbed(embed).catch(console.error);
   }
 };
