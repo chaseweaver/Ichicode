@@ -20,7 +20,6 @@ module.exports = class extends Command {
     });
   }
 
-  async fmtMMS(s) { return(s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + s; } // eslint-disable-line yoda
   async run(msg) {
     try {
       const handler = this.client.queue.get(msg.guild.id);
@@ -34,14 +33,12 @@ module.exports = class extends Command {
         output.push(`${tmp}. ${handler.songs[i].title} [${handler.songs[i].length}]\nRequested by: ${handler.songs[i].requester}\n`);
       }
 
-      const totalTime = await this.fmtMMS(total);
-
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
         .setTitle(`${msg.guild.name} Music Queue`)
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
-        .addField('Total Time', totalTime)
+        .addField('Total Time', await moment.duration(total * 1000).format('h:mm:ss', { trim: false }))
         .addField(`Queue [${handler.songs.length}]`, output)
         .setTimestamp();
       return msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
