@@ -46,8 +46,12 @@ module.exports = class extends Command {
         if (id.requesterID !== msg.author.id && !msg.member.roles.find('id', msg.guild.configs.musicRole)) return msg.send('You cannot remove items from the queue you did not add!');
         handler.songs.splice(index - 1, 1);
         return msg.send(`**${id.title}** requested by **${id.requester}** has been removed!`);
-      } else { return msg.send('I cannot find that index in the queue!'); }
-
+      } else { 
+        const id = handler.songs[index];
+        if (id.requesterID !== msg.author.id && !msg.member.roles.find('id', msg.guild.configs.musicRole)) return msg.send('You cannot remove items from the queue you did not add!');
+        handler.songs.splice(index, 1);
+        return msg.send(`**${id.title}** requested by **${id.requester}** has been removed!`);
+      }
     } catch (err) { console.log(err); }
   }
 };
