@@ -29,7 +29,7 @@ module.exports = class extends Command {
 
       let total = 0;
       const output = [];
-      for (let i = 0; i < Math.min(handler.songs.length, 15); i++) {
+      for (let i = 0; i < Math.min(handler.songs.length, 10); i++) {
         total += parseInt(handler.songs[i].seconds);
         const tmp = ((i + 1) <= 9) ? `0${i + 1}` : `${i + 1}`;
         output.push(`${tmp}. ${handler.songs[i].title} [${handler.songs[i].length}]\nRequested by: ${handler.songs[i].requester}\n`);
@@ -37,7 +37,7 @@ module.exports = class extends Command {
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
-        .setTitle(`${msg.guild.name} Music Queue`)
+        .setTitle(`${msg.guild.name} Music Queue (First 10)`)
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
         .addField('Total Time', await moment.duration(total * 1000).format('h:mm:ss', { trim: false }))
