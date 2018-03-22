@@ -1,3 +1,5 @@
+/* Intended to override Klasa default. */
+
 const { Command } = require('klasa');
 
 module.exports = class extends Command {

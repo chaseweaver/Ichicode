@@ -5,7 +5,7 @@ const { Command } = require('klasa');
 module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
-      name: 'stats',
+      name: 'userconf',
       enabled: false,
       runIn: ['text'],
       cooldown: 2,
