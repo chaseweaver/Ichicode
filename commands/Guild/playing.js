@@ -28,7 +28,7 @@ module.exports = class extends Command {
     stat.push(`== ${msg.guild.name} :: '${game}' ==`);
     await msg.guild.members.array().forEach(mem => {
       if (!mem.user.presence.activity || !mem.user.presence.activity.name) return;
-      if (sim.compareTwoStrings(mem.user.presence.activity.name, str) >= 0.65) stat.push(`${ctr <= 9 ? ' ' + ctr : ctr}. :: ${mem.user.tag} is playing ${mem.user.presence.activity.name}`);
+      if (sim.compareTwoStrings(mem.user.presence.activity.name, str) >= 0.65) stat.push(`${ctr <= 9 ? ' ' + ctr++ : ctr++}. :: ${mem.user.tag} is playing ${mem.user.presence.activity.name}`);
     });
     if (stat.length <= 1) return msg.send(`I could not find any guild members playing \`${game}\``);
     else return msg.send(stat, { code: 'asciidoc', split: true });
