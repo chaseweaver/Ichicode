@@ -31,8 +31,8 @@ module.exports = class extends Command {
       if (!mem.user.presence.activity || !mem.user.presence.activity.name) return;
       if (sim.compareTwoStrings(mem.user.presence.activity.name, str) >= 0.65) pad.push(mem.user.tag);
     });
-    
-    const pctr = pad.sort((a, b) => a.length < b.length)[0].length;
+
+    if (pad) const pctr = pad.sort((a, b) => a.length < b.length)[0].length;
 
     stat.push(`== ${msg.guild.name} :: '${game}' ==\n`);
     await msg.guild.members.array().forEach(mem => {
