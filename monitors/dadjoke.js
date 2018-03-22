@@ -16,23 +16,19 @@ module.exports = class extends Monitor {
     if (!msg.guild.configs.dadjokeMonitor || !msg.guild.configs.monitorCooldown || msg.content.length > 30 || 
       msg.content.length <= 5 || msg.author.id === this.client.user.id) return;
     if (msg.content.toUpperCase().startsWith('IM') || msg.content.toUpperCase().startsWith('I\'M')) {
-      let active = true;
-      msg.channel.messages.fetch({ limit: 100 })
+      const data = [];
+      msg.channel.messages.fetch({ limit: 50 })
         .then(m => {
           const arr = m.array();
-          for (let i = 0; i < arr.length; i++) {
-            if ((arr[i].content.toUpperCase().startsWith('IM') || arr[i].content.toUpperCase().startsWith('I\'M')) &&
-              msg.createdTimestamp >= (arr[i].createdTimestamp + msg.guild.configs.monitorCooldown * 1000))
-              return active = false;
-          }
+          for (let i = 0; i < arr.length; i++) { if (arr[i].content.startsWith('Hi,') && arr[i].author.id === this.client.user.id) data.push(arr[i].createdTimestamp); }
         })
         .then(function() {
-          if (!active) {
+          if (msg.createdTimestamp >= (data[0] + msg.guild.configs.monitorCooldown * 1000)) {
             if (msg.content.toUpperCase().startsWith('IM')) return msg.send(`Hi,${msg.content.substr(2)}, I'm Ichicode!`);
             if (msg.content.toUpperCase().startsWith('I\'M')) return msg.send(`Hi,${msg.content.substr(3)}, I'm Ichicode!`);
           }
         })
         .catch(console.error);
-    }
+    } else return;
   }
 };

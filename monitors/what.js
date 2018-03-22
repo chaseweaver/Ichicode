@@ -15,19 +15,22 @@ module.exports = class extends Monitor {
   run(msg) {
     if (!msg.guild.configs.whatMonitor || !msg.guild.configs.monitorCooldown || msg.content.length >= 5 || msg.author.id === this.client.user.id) return;
     if (msg.content.toUpperCase().startsWith('WHAT') || msg.content.toUpperCase().startsWith('WAT')) {
-      let active = true;
-      let last = '';
-      msg.channel.messages.fetch({ limit: 100 })
+      const data = [];
+      msg.channel.messages.fetch({ limit: 50 })
         .then(m => {
           const arr = m.array();
           for (let i = 0; i < arr.length; i++) {
-            if ((arr[i].content.toUpperCase().startsWith('WHAT') || arr[i].content.toUpperCase().startsWith('WAT')) &&
-              msg.createdTimestamp >= (arr[i].createdTimestamp + msg.guild.configs.monitorCooldown * 1000))
-              return last = arr[1].content.toUpperCase(), active = false;
+            if ((arr[i].content.startsWith('**') && arr[i].content.endWith('**') && arr[i].author.id === this.client.user.id)) {
+              data.push(arr[i].createdTimestamp);
+              data.push(arr[i].content.toUpperCase());
+            }
           }
         })
-        .then(function() { if (!active) return msg.send(`**${last}**`); })
+        .then(function() {
+          if (msg.createdTimestamp >= (data[0] + msg.guild.configs.monitorCooldown * 1000))
+            return msg.send(`**${data[1]}**`); 
+        })
         .catch(console.error);
-    }
+    } else return;
   }
 };
