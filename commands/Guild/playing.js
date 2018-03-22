@@ -1,5 +1,7 @@
 const { Command } = require('klasa');
 const sim = require('string-similarity');
+const moment = require('moment');
+require('moment-duration-format');
 
 module.exports = class extends Command {
   constructor(...args) {
@@ -38,7 +40,14 @@ module.exports = class extends Command {
     stat.push(`== ${msg.guild.name} :: '${game}' ==\n`);
     await msg.guild.members.array().forEach(mem => {
       if (!mem.user.presence.activity || !mem.user.presence.activity.name) return;
-      if (sim.compareTwoStrings(mem.user.presence.activity.name, str) >= 0.65) stat.push(`${ctr <= 9 ? ' ' + ctr++ : ctr++}. :: ${String(mem.user.tag).padEnd(pctr)} is playing ${mem.user.presence.activity.name}\n`);
+
+      if (sim.compareTwoStrings(mem.user.presence.activity.name, str) >= 0.65) {
+        let time = '';
+        if (mem.user.presence.activity.timestamps)
+          time = `for ${moment.duration(msg.createdTimestamp - mem.user.presence.activity.timestamps.start).format('h:mm:ss', { trim: true })}`;
+        stat.push(`${ctr <= 9 ? ' ' + ctr++ : ctr++}. :: ${String(mem.user.tag).padEnd(pctr)} is playing ${mem.user.presence.activity.name} ${time}\n`);
+      }
+        
     });
     if (stat.length <= 1) return msg.send(`I could not find any guild members playing \`${game}\``);
     else return msg.send(stat, { code: 'asciidoc', split: true });
