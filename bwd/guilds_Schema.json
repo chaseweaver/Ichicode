@@ -197,11 +197,46 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "antiSpam": {
+  "antispamMonitor": {
     "type": "Boolean",
     "default": false,
     "min": null,
     "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "wakemeupMonitor": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "dadjokeMonitor": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "whatMonitor": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "monitorCooldown": {
+    "type": "Float",
+    "default": 30,
+    "min": 0,
     "array": false,
     "configurable": true,
     "sql": "TEXT"
