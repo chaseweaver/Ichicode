@@ -27,7 +27,7 @@ module.exports = class extends Command {
     let ctr = 1;
     let str = game.join(' ');
 
-    for (let i = 0; i < msg.guild.members.array().length; i++) { if (sim.compareTwoStrings(mem.user.presence.activity.name, str) >= 0.65) stat.push(mem.user.tag); }
+    await msg.guild.members.array().forEach(mem => { if (sim.compareTwoStrings(mem.user.presence.activity.name, str) >= 0.65) pad.push(mem.user.tag); });
     const pctr = pad.sort((a, b) => a.length < b.length)[0].length;
 
     stat.push(`== ${msg.guild.name} :: '${game}' ==\n`);
