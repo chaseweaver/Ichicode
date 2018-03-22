@@ -24,7 +24,6 @@ module.exports = class extends Command {
     let kicks = 0, bansAdd = 0, bansRemove = 0;
     let active = true;
 
-
     const fetch = (time) => {
       msg.guild.fetchAuditLogs({ before: time, user: mem, limit: 100 }).then(logs => {
         const arr = logs.entries.values();
@@ -53,8 +52,6 @@ module.exports = class extends Command {
       .catch(console.error);
     };
 
-
     await fetch(msg.guild.createdTimestamp);
-
   }
 };
