@@ -23,7 +23,7 @@ module.exports = class extends Monitor {
           const arr = m.array();
           for (let i = 0; i < arr.length; i++) {
             if ((arr[i].content.toUpperCase().startsWith('WAKE') || arr[i].content.toUpperCase().endsWith('UP')) &&
-              msg.createdTimestamp <= (arr[i].createdTimestamp + msg.guild.configs.monitorCooldown * 1000))
+              msg.createdTimestamp >= (arr[i].createdTimestamp + msg.guild.configs.monitorCooldown * 1000))
               return active = false;
           }
         })
