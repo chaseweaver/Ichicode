@@ -66,7 +66,10 @@ Ichicode is a multi-purpose mod / stat / fun / music / shitposting Discord bot!
 * ready             : Logs ready info.
 
 # Monitors
-* antiSpam          : Prevents chat spamming guild wide.
+* antispam          : Prevents chat spamming guild wide.
+* dadjoke           : "I'm Chase" "Hi, Chase, I'm Ichicode!"
+* wakemeup          : "Wake me up inside!"
+* what              : "WHAT"
 
 # Invite Link
 Maybe some day.
