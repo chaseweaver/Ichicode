@@ -27,8 +27,8 @@ module.exports = class extends Command {
 
       if (!handler) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
       if (handler.songs[0].requesterID !== msg.author.id && !msg.member.roles.find('id', msg.guild.configs.musicRole)) return msg.send('You can only skip a song you have added!');
-      msg.guild.voiceConnection.dispatcher.end();
-      return msg.send('Skipped!');
+      msg.send(`Skipped **${handler.songs[0].title}** requested by **${handler.songs[0].requester}**`);
+      return msg.guild.voiceConnection.dispatcher.end();
     } catch (err) { console.log(err); }
   }
 };
