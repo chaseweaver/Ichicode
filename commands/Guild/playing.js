@@ -33,7 +33,7 @@ module.exports = class extends Command {
     });
 
     let pctr = 5;
-    if (pad) pctr = pad.sort((a, b) => a.length < b.length)[0].length;
+    if (pad.length !== 0) pctr = pad.sort((a, b) => a.length < b.length)[0].length;
 
     stat.push(`== ${msg.guild.name} :: '${game}' ==\n`);
     await msg.guild.members.array().forEach(mem => {
