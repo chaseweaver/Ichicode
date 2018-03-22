@@ -15,7 +15,7 @@ module.exports = class extends Monitor {
   run(msg) {
     if (msg.channel.type !== 'text') return;
     try {
-      if (msg.guild.configs.antiSpam && msg.guild.configs.cooldown) {
+      if (msg.guild.configs.antispamMonitor && msg.guild.configs.cooldown) {
         if (msg.author.id === (this.client.user.id || this.client.owner.id)) return;
         else if (msg.guild.configs.adminRole && msg.member.roles.has(msg.guild.configs.adminRole)) return;
         else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.modRole)) return;
@@ -28,7 +28,7 @@ module.exports = class extends Monitor {
           .then(m => {
             const arr = m.array();
             for (let i = 0; i < arr.length; i++) {
-              if (msg.author.id === arr[i].author.id) {data.push(arr[i].createdTimestamp);}
+              if (msg.author.id === arr[i].author.id) { data.push(arr[i].createdTimestamp); }
               if (data.length >= 2) return;
             }
           })
