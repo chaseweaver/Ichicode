@@ -13,6 +13,7 @@ module.exports = class extends Monitor {
   }
 
   run(msg) {
+    if (msg.channel.type !== 'text') return;
     try {
       if (msg.guild.configs.antiSpam && msg.guild.configs.cooldown) {
         if (msg.author.id === (this.client.user.id || this.client.owner.id)) return;
@@ -20,8 +21,6 @@ module.exports = class extends Monitor {
         else if (msg.guild.configs.modRole && msg.member.roles.has(msg.guild.configs.modRole)) return;
         else if (msg.guild.configs.devRole && msg.member.roles.has(msg.guild.configs.devRole)) return;
         else if (msg.guild.configs.extRole && msg.member.roles.has(msg.guild.configs.extRole)) return;
-
-        if (msg.channel.type === 'dm') return;
         const cooldown = msg.guild.configs.cooldown;
         const msgTS = msg.createdTimestamp;
         const data = [];
