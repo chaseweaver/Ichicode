@@ -38,7 +38,11 @@ module.exports = class extends Command {
       (function play(song) {
         try {
           if (song === undefined) {
-            return msg.send('The queue is empty! Leaving voice channel in 5 minutes.').then(() => {
+            if (!handler.song.length !== 0) {
+              msg.send('There was an error with the stream! Playing next song in queue!');
+              handler.songs.shift();
+              play(handler.songs[0]);
+            } else return msg.send('The queue is empty! Leaving voice channel in 5 minutes.').then(() => {
               handler.playing = false;
               msg.client.user.setActivity('+help', { type: 'LISTENING' });
               setTimeout(() => {
