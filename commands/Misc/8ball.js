@@ -10,7 +10,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: ['8', 'question'],
-      permLevel: 3,
+      permLevel: 0,
       botPerms: [],
       requiredConfigs: [],
       description: 'Does what the toy does.',
