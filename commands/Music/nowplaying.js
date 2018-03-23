@@ -29,7 +29,7 @@ module.exports = class extends Command {
       if (!handler) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
       if (!handler.playing) return msg.send('I am not playing anything!');
 
-      const timeRemaining = !handler.songs[0].upload ? `${moment.duration((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime).format('h:mm:ss', { trim: false })}` : 'N/A';
+      const timeRemaining = !handler.songs[0].upload ? `${moment.duration((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime).format('h:mm:ss', { trim: true })}` : 'N/A';
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
