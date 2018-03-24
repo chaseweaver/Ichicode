@@ -22,5 +22,5 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg) { return; }
+  async run() { return; }
 };
