@@ -20,5 +20,5 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg, [member]) { msg.send(`🔔 SHAME 🔔 ${member} 🔔 SHAME 🔔`).then(() => msg.delete()); }
+  async run(msg, [member]) { msg.send(`🔔 SHAME 🔔 ${member} 🔔 SHAME 🔔  https://i.imgur.com/olB0hX5.gif`).then(() => msg.delete()); }
 };
