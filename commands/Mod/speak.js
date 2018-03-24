@@ -37,7 +37,6 @@ module.exports = class extends Command {
         .catch(function(err) {
           console.error(err.stack);
         });
-        
     } catch (err) { console.log(err); }
   }
 };
