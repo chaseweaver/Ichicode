@@ -7,7 +7,7 @@ module.exports = class extends Command {
       enabled: true,
       runIn: ['text'],
       cooldown: 2,
-      bucket: 1,  
+      bucket: 1,
       aliases: [],
       permLevel: 3,
       botPerms: ['MANAGE_ROLES'],
@@ -34,9 +34,9 @@ module.exports = class extends Command {
     if (msg.guild.configs.modLogChannel && msg.guild.configs.modLogChannel) {
       const chan = mem.guild.channels.find('id', mem.guild.configs.modLogChannel);
       if (!chan) return;
-      const embed = new this.client.methods.Embed() 
+      const embed = new this.client.methods.Embed()
         .setColor('#faff00')
-        .setTitle(`Member Muted`)
+        .setTitle('Member Muted')
         .setThumbnail(mem.user.displayAvatarURL())
         .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL())
         .addField('Member', `${mem.user.tag} / ${mem.user.id}`)
