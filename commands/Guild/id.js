@@ -13,8 +13,8 @@ module.exports = class extends Command {
       botPerms: [],
       requiredConfigs: [],
       description: 'Returns ID.',
-      quotedStringSupport: false,
-      usage: '<guild|member|role|channel> [member:member] [value:str]',
+      quotedStringSupport: true,
+      usage: '<guild|member|role|channel> [member:member] [channel:channel] [value:str]',
       usageDelim: ' ',
       extendedHelp: 'No extended help available.',
     });
@@ -35,9 +35,8 @@ module.exports = class extends Command {
           .catch(err => console.log(err, 'error'));
       break;
     case 'channel':
-      if (msg.guild.channels.find('name', value)) 
-        return msg.send(`#${msg.guild.channels.find('name', value).name} / ${msg.guild.channels.find('name', value).id}`, { code: 'xl' })
-          .catch(err => console.log(err, 'error'));
+      return msg.send(`#${channel.name} / ${channel.id}`, { code: 'xl' })
+        .catch(err => console.log(err, 'error'));
       break;
     default:
       return msg.send(`I cannot find the ID of \`${value}\``).catch(err => console.log(err, 'error'));
