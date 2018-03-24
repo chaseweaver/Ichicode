@@ -85,7 +85,8 @@ module.exports = class extends Command {
         let total = 0, totalTime = 0;
         for (let i = 0; i < Math.min(handler.songs.length); i++) { total += parseInt(handler.songs[i].seconds); }
         if (handler.songs.length == 1) total = 'NOW';
-        else if (handler.songs.length > 1 && msg.guild.voiceConnection && handler.playing) total -= parseInt(((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime));
+        else if (handler.songs.length > 1 && msg.guild.voiceConnection && handler.playing)
+          total -= ((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime);
         totalTime = (total === 'NOW' ? 'NOW' : this.fmtHMS(total));
 
         const embed = new this.client.methods.Embed()
@@ -108,9 +109,9 @@ module.exports = class extends Command {
     seconds -= hours * 3600;
     let minutes = Math.floor(seconds / 60);
     seconds -= minutes * 60;
-    if (hours   < 10) { hours   = '0' + hours; }
-    if (minutes < 10) { minutes = '0' + minutes; }
-    if (seconds < 10) { seconds = '0' + seconds; }
+    if (hours   < 10) hours   = '0' + hours;
+    if (minutes < 10) minutes = '0' + minutes;
+    if (seconds < 10) seconds = '0' + seconds;
     return hours + 'h ' + minutes + 'm ' + seconds + 's';
   }
 
