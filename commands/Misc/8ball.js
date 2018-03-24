@@ -52,5 +52,10 @@ const answers = [
 	'Possibly.',
 	'Never, ever, ever.',
 	'There is a small chance.',
-	'Yes!'
+	'Yes!',
+	'lol no.',
+	'There is a high probability.',
+	'What difference does it makes?',
+	'Not my problem.',
+	'Ask someone else.'
 ];
