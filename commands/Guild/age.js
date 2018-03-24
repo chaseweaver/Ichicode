@@ -20,7 +20,7 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg, [type, member, ...value]) {
+  async run(msg, [type, member, user, channel, ...value]) {
     value = value.length > 0 ? value.join(' ') : null;
     let final;
     switch (type) {
@@ -33,8 +33,8 @@ module.exports = class extends Command {
           .catch(err => console.log(err, 'error'));
       } else { return msg.send('Invalid name!'); }
     case 'user':
-      if (member) {
-        return msg.send(`@${member.user.username} / ${member.id} / ${member.user.createdAt}`, { code: 'xl' })
+      if (user) {
+        return msg.send(`@${user.user.username} / ${user.id} / ${user.user.createdAt}`, { code: 'xl' })
           .catch(err => console.log(err, 'error'));
       } else { return msg.send('Invalid name!'); }
     case 'role':

@@ -20,7 +20,7 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg, [type, member, ...value]) {
+  async run(msg, [type, member, channel, ...value]) {
     value = value.length > 0 ? value.join(' ') : null;
     
     switch (type) {
