@@ -38,7 +38,8 @@ module.exports = class extends Command {
       (function play(song) {
         try {
           if (song === undefined) {
-            if (!handler.song.length !== 0) {
+            if (!handler.song) return  msg.send('There was an error with the stream! Blame Discord.');
+            else if (!handler.song.length !== 0) {
               msg.send('There was an error with the stream! Playing next song in queue!');
               handler.songs.shift();
               play(handler.songs[0]);
@@ -67,7 +68,7 @@ module.exports = class extends Command {
           if (!handler.songs[0].upload) msg.client.user.setActivity(song.title, { type: 'LISTENING' });
 
           if (!handler.songs[0].upload) {
-            return msg.guild.voiceConnection.play(yt(song.url, { audioonly: true, quality: 'highestaudio' }),
+            return msg.guild.voiceConnection.play(yt(song.url, { quality: 'highestaudio' }),
               { passes: 2, bitrate: 'auto' })
               .on('end', () => {
                 setTimeout(() => {

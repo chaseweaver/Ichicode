@@ -74,7 +74,7 @@ module.exports = class extends Command {
           url: info.video_url,
           title: info.title,
           seconds: info.length_seconds,
-          length: await moment.duration(info.length_seconds * 1000).format('h:mm:ss', { trim: true }),
+          length: this.fmtHMS(info.length_seconds),
           thumbnail: info.thumbnail_url,
           requester: msg.author.username,
           requesterID: msg.author.id,
@@ -86,14 +86,14 @@ module.exports = class extends Command {
         for (let i = 0; i < Math.min(handler.songs.length); i++) { total += parseInt(handler.songs[i].seconds); }
         if (handler.songs.length == 1) total = 'NOW';
         else if (handler.songs.length > 1 && msg.guild.voiceConnection && handler.playing) total -= parseInt(((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime));
-        totalTime = (total === 'NOW' ? 'NOW' : await moment.duration(total).format('h:mm:ss', { trim: true }));
+        totalTime = (total === 'NOW' ? 'NOW' : this.fmtHMS(total));
 
         const embed = new this.client.methods.Embed()
           .setColor('#ff003c')
           .setTitle(info.title)
           .setThumbnail(info.thumbnail_url)
           .setAuthor(msg.author.username, msg.author.displayAvatarURL())
-          .addField('Length', await moment.duration(info.length_seconds * 1000).format('h:mm:ss', { trim: true }), true)
+          .addField('Length', this.fmtHMS(info.length_seconds))
           .addField('Position in Queue', msg.client.queue.get(msg.guild.id).songs.length, true)
           .addField('Estimated Time Until Playing', totalTime, true)
           .setURL(info.video_url)
@@ -102,12 +102,22 @@ module.exports = class extends Command {
       }
     } catch (err) { console.log(err); }
   }
+  
+  fmtHMS(sec) {
+    let seconds = Math.floor(sec), hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+    let minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+    if (hours   < 10) { hours   = '0' + hours; }
+    if (minutes < 10) { minutes = '0' + minutes; }
+    if (seconds < 10) { seconds = '0' + seconds; }
+    return hours + 'h ' + minutes + 'm ' + seconds + 's';
+  }
 
   async getURL(song) {
     const id = this.exp.exec(song);
     if (id) return `https://youtu.be/${id[1]}`;
     const data = await fetchURL(encodeURIComponent(song));
-    console.log(data);
     const video = data.items.find(item => item.id.kind !== 'youtube#channel');
     return video ? `https://youtu.be/${video.id.videoId}` : null;
   }
