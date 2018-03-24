@@ -38,8 +38,10 @@ module.exports = class extends Command {
       (function play(song) {
         try {
           if (song === undefined) {
-            if (!handler.song) return  msg.send('There was an error with the stream! Blame Discord.');
-            else if (!handler.song.length !== 0) {
+            if (!handler.song) {
+              console.log(handler);
+              return  msg.send('There was an error with the stream! Blame Discord.');
+            } else if (!handler.song.length !== 0) {
               msg.send('There was an error with the stream! Playing next song in queue!');
               handler.songs.shift();
               play(handler.songs[0]);
