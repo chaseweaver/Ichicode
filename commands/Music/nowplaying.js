@@ -29,7 +29,7 @@ module.exports = class extends Command {
       if (!handler) return msg.send(`Add some songs to the queue first with ${msg.guild.configs.prefix}add`);
       if (!handler.playing) return msg.send('I am not playing anything!');
 
-      const timeRemaining = !handler.songs[0].upload ? `${moment.duration((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime).format('h:mm:ss', { trim: true })}` : 'N/A';
+      const timeRemaining = !handler.songs[0].upload ? `${this.fmtHMS(((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime) / 1000)}` : 'N/A';
 
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
@@ -43,5 +43,16 @@ module.exports = class extends Command {
         .setTimestamp();
       msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
     } catch (err) { console.log(err); }
+  }
+
+  fmtHMS(sec) {
+    let seconds = Math.floor(sec), hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+    let minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+    if (hours   < 10) { hours   = '0' + hours; }
+    if (minutes < 10) { minutes = '0' + minutes; }
+    if (seconds < 10) { seconds = '0' + seconds; }
+    return hours + 'h ' + minutes + 'm ' + seconds + 's';
   }
 };
