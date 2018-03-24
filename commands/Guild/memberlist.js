@@ -30,7 +30,7 @@ module.exports = class extends Command {
       else data.push(`${ctr}. <${mem.user.id}> ${mem.user.username}`);
       ctr++;
     });
-    
+
     await msg.author.send(data, { code: 'xl', split: true })
       .then(() => {if (msg.channel.type !== 'dm') msg.reply('I`ve sent you a DM with the member list!');})
       .catch(() => msg.reply('It seems like I can`t DM you!'));

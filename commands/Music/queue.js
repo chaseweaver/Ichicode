@@ -1,6 +1,4 @@
 const { Command } = require('klasa');
-const moment = require('moment');
-require('moment-duration-format');
 
 module.exports = class extends Command {
   constructor(...args) {
@@ -40,7 +38,7 @@ module.exports = class extends Command {
         .setTitle(`${msg.guild.name} Music Queue (First 10)`)
         .setThumbnail(handler.songs[0].thumbnail)
         .setAuthor(msg.client.user.username, msg.client.user.displayAvatarURL())
-        .addField('Total Time', fmtHMS(total))
+        .addField('Total Time', this.fmtHMS(total))
         .addField(`Queue [${handler.songs.length}]`, output)
         .setTimestamp();
       return msg.sendEmbed(embed).catch(err => this.client.emit('log', err, 'error'));
@@ -53,7 +51,7 @@ module.exports = class extends Command {
     seconds -= hours * 3600;
     let minutes = Math.floor(seconds / 60);
     seconds -= minutes * 60;
-    if (hours   < 10) hours   = '0' + hours;
+    if (hours < 10) hours = '0' + hours;
     if (minutes < 10) minutes = '0' + minutes;
     if (seconds < 10) seconds = '0' + seconds;
     return hours + 'h ' + minutes + 'm ' + seconds + 's';

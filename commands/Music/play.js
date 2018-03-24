@@ -40,18 +40,20 @@ module.exports = class extends Command {
           if (song === undefined) {
             if (!handler.song) {
               console.log(handler);
-              return  msg.send('There was an error with the stream! Blame Discord.');
+              return msg.send('There was an error with the stream! Blame Discord.');
             } else if (!handler.song.length !== 0) {
               msg.send('There was an error with the stream! Playing next song in queue!');
               handler.songs.shift();
               play(handler.songs[0]);
-            } else return msg.send('The queue is empty! Leaving voice channel in 5 minutes.').then(() => {
-              handler.playing = false;
-              msg.client.user.setActivity('+help', { type: 'LISTENING' });
-              setTimeout(() => {
-                return msg.member.voiceChannel.leave();
-              }, 1000 * 60 * 5);
-            });
+            } else {
+              return msg.send('The queue is empty! Leaving voice channel in 5 minutes.').then(() => {
+                handler.playing = false;
+                msg.client.user.setActivity('+help', { type: 'LISTENING' });
+                setTimeout(() => {
+                  return msg.member.voiceChannel.leave();
+                }, 1000 * 60 * 5);
+              });
+            }
           }
 
           if (handler.songs.length !== 1) {

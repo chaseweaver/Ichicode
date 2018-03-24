@@ -48,7 +48,6 @@ module.exports = class extends Command {
     case 'channel':
       return msg.send(`#${channel.name} / ${channel.id} / ${channel.createdAt}`, { code: 'xl' })
         .catch(err => console.log(err, 'error'));
-      break;
     default:
       return msg.send(`I cannot find the created date of \`${value}\``)
         .catch(err => console.log(err, 'error'));

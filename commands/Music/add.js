@@ -3,8 +3,6 @@ const { ytkey } = require('../../config.js');
 const snekfetch = require('snekfetch');
 const yt = require('ytdl-core');
 const getInfo = require('util').promisify(yt.getInfo);
-const moment = require('moment');
-require('moment-duration-format');
 const fetchURL = url => snekfetch.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${url}&key=${ytkey}`)
   .then(result => result.body);
 
@@ -84,9 +82,7 @@ module.exports = class extends Command {
         const handler = this.client.queue.get(msg.guild.id);
         let total = 0, totalTime = 0;
         for (let i = 0; i < Math.min(handler.songs.length); i++) { total += parseInt(handler.songs[i].seconds); }
-        if (handler.songs.length == 1) total = 'NOW';
-        else if (handler.songs.length > 1 && msg.guild.voiceConnection && handler.playing)
-          total -= ((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime);
+        if (handler.songs.length == 1) {total = 'NOW';} else if (handler.songs.length > 1 && msg.guild.voiceConnection && handler.playing) {total -= ((handler.songs[0].seconds * 1000) - msg.guild.voiceConnection.dispatcher.streamTime);}
         totalTime = (total === 'NOW' ? 'NOW' : this.fmtHMS(total));
 
         const embed = new this.client.methods.Embed()
@@ -103,13 +99,13 @@ module.exports = class extends Command {
       }
     } catch (err) { console.log(err); }
   }
-  
+
   fmtHMS(sec) {
     let seconds = Math.floor(sec), hours = Math.floor(seconds / 3600);
     seconds -= hours * 3600;
     let minutes = Math.floor(seconds / 60);
     seconds -= minutes * 60;
-    if (hours   < 10) hours   = '0' + hours;
+    if (hours < 10) hours = '0' + hours;
     if (minutes < 10) minutes = '0' + minutes;
     if (seconds < 10) seconds = '0' + seconds;
     return hours + 'h ' + minutes + 'm ' + seconds + 's';

@@ -20,7 +20,7 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg) {  
+  async run(msg) {
     try {
       if (!msg.guild.voiceConnection) return msg.send('I am not connected in a voice channel!');
       const handler = this.client.queue.get(msg.guild.id);
