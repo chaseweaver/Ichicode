@@ -13,24 +13,10 @@ module.exports = class extends Monitor {
   }
 
   run(msg) {
-    if (!msg.guild.configs.whatMonitor || !msg.guild.configs.monitorCooldown || msg.content.length >= 5 || msg.author.id === this.client.user.id) return;
-    if (msg.content.toUpperCase().startsWith('WHAT') || msg.content.toUpperCase().startsWith('WAT')) {
-      const data = [];
-      msg.channel.messages.fetch({ limit: 50 })
-        .then(m => {
-          const arr = m.array();
-          for (let i = 0; i < arr.length; i++) {
-            if ((arr[i].content.startsWith('**') && arr[i].content.endWith('**') && arr[i].author.id === this.client.user.id)) {
-              data.push(arr[i].createdTimestamp);
-              data.push(arr[i].content.toUpperCase());
-            }
-          }
-        })
-        .then(function() {
-          if (msg.createdTimestamp >= (data[0] + msg.guild.configs.monitorCooldown * 1000))
-            return msg.send(`**${data[1]}**`); 
-        })
-        .catch(console.error);
-    } else return;
+    if (!msg.content || !msg.guild.configs.whatMonitor || msg.content.length >= 5 || msg.author.id === this.client.user.id) return;
+    if (Math.floor(Math.random() * 6) !== 0) return;
+    else if ((msg.content.toUpperCase().startsWith('WHAT') || msg.content.toUpperCase().startsWith('WAT') || msg.content.toUpperCase().startsWith('WUT')) && msg.author.id !== this.client.user.id) {
+      msg.channel.messages.fetch({ before: msg.id, limit: 1 }).then(m => { console.log(m.first().content); return msg.send(`**${m.first().content.toUpperCase()}**`) });
+    }
   }
 };
