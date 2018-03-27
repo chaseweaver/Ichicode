@@ -13,10 +13,7 @@ module.exports = class extends Monitor {
   }
 
   run(msg) {
-    if (!msg.guild.configs.dadjokeMonitor || msg.content.length > 30 || msg.content.length <= 5 || msg.author.id === this.client.user.id) return;
-    if (msg.content.toUpperCase().startsWith('IM') || msg.content.toUpperCase().startsWith('I\'M')) {
-      if (msg.content.toUpperCase().startsWith('IM')) return msg.send(`Hi,${msg.content.substr(2)}, I'm Ichicode!`);
-      if (msg.content.toUpperCase().startsWith('I\'M')) return msg.send(`Hi,${msg.content.substr(3)}, I'm Ichicode!`);
-    }
+    if (!msg.guild.configs.iagreeMonitor || msg.content.length > 30 || msg.content.length !== 1 || msg.author.id === this.client.user.id) return;
+    if (msg.content === '^' && msg.channel.messages.fetch({ before: msg.id, limit: 1 }).then(m => { if (m.first().content !== '^' || m.author.id !== this.client.user.id) return msg.send('I agree!') }));
   }
 };
