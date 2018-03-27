@@ -233,10 +233,11 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "monitorCooldown": {
-    "type": "Float",
-    "default": 30,
-    "min": 0,
+  "iagreeMonitor": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
     "array": false,
     "configurable": true,
     "sql": "TEXT"
