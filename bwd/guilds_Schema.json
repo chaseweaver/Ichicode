@@ -242,6 +242,15 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "nahMonitor": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "cooldown": {
     "type": "Float",
     "default": 2.5,
