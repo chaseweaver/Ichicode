@@ -134,15 +134,6 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "logRoleChange": {
-    "type": "Boolean",
-    "default": false,
-    "min": null,
-    "max": null,
-    "array": false,
-    "configurable": true,
-    "sql": "TEXT"
-  },
   "welcomeMemberActive": {
     "type": "Boolean",
     "default": false,
@@ -260,7 +251,7 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "modLogChannel": {
+  "modChannel": {
     "type": "Channel",
     "default": false,
     "min": null,
@@ -269,7 +260,16 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "chatLogChannel": {
+  "messageDeleteChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "messageUpdateChannel": {
     "type": "Channel",
     "default": false,
     "min": null,
