@@ -23,7 +23,7 @@ module.exports = class extends Event {
           .addField('Channel', msg.channel)
           .addField('Deleted Content', msg.content)
           .setTimestamp();
-        chan.send({ embed }).catch(err => console.log(err, 'error'));
+        return chan.send({ embed });
       }
     } catch (error) { console.log(error); }
   }

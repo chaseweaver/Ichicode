@@ -25,7 +25,7 @@ module.exports = class extends Event {
           .addField('Old Content', oldMsg.content)
           .addField('New Content', newMsg.content)
           .setTimestamp();
-        chan.send({ embed }).catch(err => console.log(err, 'error'));
+        return chan.send({ embed });
       }
     } catch (error) { console.log(error); }
   }
