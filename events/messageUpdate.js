@@ -13,7 +13,7 @@ module.exports = class extends Event {
   run(oldMsg, newMsg) {
     try {
       if (oldMsg.guild.configs.logMessageEdit && oldMsg.guild.configs.messageEditChannel) {
-        const chan = newMsg.guild.channels.find('id', newMsg.guild.configs.messageEditChannel);
+        const chan = newMsg.guild.channels.find('id', oldMsg.guild.configs.messageEditChannel);
         if (!chan) return;
         const avatar = newMsg.author.displayAvatarURL();
         const embed = new this.client.methods.Embed()
@@ -21,6 +21,7 @@ module.exports = class extends Event {
           .setTitle('Message Edited')
           .setThumbnail(avatar)
           .setAuthor(`${newMsg.author.tag} / ${newMsg.author.id}`, avatar)
+          .addField('Channel', oldMsg.channel)
           .addField('Old Content', oldMsg.content)
           .addField('New Content', newMsg.content)
           .setTimestamp();

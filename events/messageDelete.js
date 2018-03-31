@@ -20,6 +20,7 @@ module.exports = class extends Event {
           .setColor('#ff003c')
           .setThumbnail(avatar)
           .setAuthor(`${msg.author.tag} / ${msg.author.id}`, avatar)
+          .addField('Channel', msg.channel)
           .addField('Deleted Content', msg.content)
           .setTimestamp();
         chan.send({ embed }).catch(err => console.log(err, 'error'));
