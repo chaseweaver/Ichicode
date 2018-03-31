@@ -9,7 +9,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: ['roles'],
-      permLevel: 3,
+      permLevel: 5,
       botPerms: [],
       requiredConfigs: [],
       description: 'Gets member count per role.',

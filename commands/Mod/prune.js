@@ -9,7 +9,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: ['purge'],
-      permLevel: 3,
+      permLevel: 5,
       botPerms: ['MANAGE_MESSAGES'],
       requiredConfigs: [],
       description: 'Prunes a certain amount of messages w/o filter.',

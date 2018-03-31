@@ -9,7 +9,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: ['guild'],
-      permLevel: 3,
+      permLevel: 0,
       botPerms: [],
       requiredConfigs: [],
       description: 'Returns server info.',

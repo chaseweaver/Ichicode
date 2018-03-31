@@ -12,8 +12,8 @@ module.exports = class extends Command {
       permLevel: 5,
       botPerms: [],
       requiredConfigs: [],
-      description: 'Adds birthday to a member for 24 hours.',
-      quotedStringSupport: true,
+      description: 'Adds birthday role to a member for 24 hours.',
+      quotedStringSupport: false,
       usage: '<member:member>',
       usageDelim: '',
       extendedHelp: 'No extended help available.',
@@ -23,7 +23,7 @@ module.exports = class extends Command {
   async run(msg, [mem]){
     if (!msg.guild.configs.birthdayRole) return msg.send('The birthday role is not set! Please set it in Guild configs!');
     const role = msg.guild.configs.birthdayRole;
-    mem.roles.add(role).catch(error => console.log(error));
+    await mem.roles.add(role).catch(error => console.log(error));
     const birthday = await this.client.schedule.create('removeBirthday', Date.now() + (1000 * 60), {
 			data: {
 				member: mem,

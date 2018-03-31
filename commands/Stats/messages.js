@@ -10,7 +10,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 3,
+      permLevel: 5,
       botPerms: ['READ_MESSAGES', 'SEND_MESSAGES'],
       requiredConfigs: [],
       description: 'Returns message count across channel from potential user/channel.',

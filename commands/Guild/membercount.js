@@ -9,7 +9,7 @@ module.exports = class extends Command {
       cooldown: 2,
       bucket: 1,
       aliases: [],
-      permLevel: 3,
+      permLevel: 5,
       botPerms: [],
       requiredConfigs: [],
       description: 'Returns the member count of the guild.',
