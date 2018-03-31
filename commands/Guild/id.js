@@ -31,13 +31,11 @@ module.exports = class extends Command {
       break;
     case 'role':
       if (msg.guild.roles.find('name', value)) {
-        return msg.send(`${msg.guild.channels.find('name', value).name} / ${msg.guild.channels.find('name', value).id}`, { code: 'xl' })
-          .catch(err => console.log(err, 'error'));
+        return msg.send(`${msg.guild.roles.find('name', value).name} / ${msg.guild.roles.find('name', value).id}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
       }
       break;
     case 'channel':
-      return msg.send(`#${channel.name} / ${channel.id}`, { code: 'xl' })
-        .catch(err => console.log(err, 'error'));
+      return msg.send(`#${channel.name} / ${channel.id}`, { code: 'xl' }).catch(err => console.log(err, 'error'));
     default:
       return msg.send(`I cannot find the ID of \`${value}\``).catch(err => console.log(err, 'error'));
     }
