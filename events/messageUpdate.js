@@ -15,11 +15,12 @@ module.exports = class extends Event {
       if (oldMsg.guild.configs.logMessageEdit && oldMsg.guild.configs.messageEditChannel) {
         const chan = newMsg.guild.channels.find('id', newMsg.guild.configs.messageEditChannel);
         if (!chan) return;
+        const avatar = newMsg.author.displayAvatarURL();
         const embed = new this.client.methods.Embed()
           .setColor('#f6ff00')
           .setTitle('Message Edited')
-          .setThumbnail(newMsg.author.displayAvatarURL())
-          .setAuthor(`${newMsg.author.tag} / ${newMsg.author.id}`, newMsg.author.displayAvatarURL())
+          .setThumbnail(avatar)
+          .setAuthor(`${newMsg.author.tag} / ${newMsg.author.id}`, avatar)
           .addField('Old Content', oldMsg.content)
           .addField('New Content', newMsg.content)
           .setTimestamp();
