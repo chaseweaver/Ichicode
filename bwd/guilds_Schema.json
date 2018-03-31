@@ -107,7 +107,7 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "logMessageUpdate": {
+  "logMessageEdit": {
     "type": "Boolean",
     "default": false,
     "min": null,
@@ -269,7 +269,7 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "messageUpdateChannel": {
+  "messageEditChannel": {
     "type": "Channel",
     "default": false,
     "min": null,
@@ -278,7 +278,16 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "memberLogChannel": {
+  "guildMemberAddChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "guildMemberRemoveChannel": {
     "type": "Channel",
     "default": false,
     "min": null,

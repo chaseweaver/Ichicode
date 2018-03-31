@@ -21,8 +21,8 @@ module.exports = class extends Event {
         chan.send(message).catch(err => console.log(err, 'error'));
       }
 
-      if (mem.guild.configs.logMemberRemove && mem.guild.configs.memberLogChannel) {
-        const memChan = mem.guild.channels.find('id', mem.guild.configs.memberLogChannel);
+      if (mem.guild.configs.logMemberRemove && mem.guild.configs.guildMemberRemoveChannel) {
+        const memChan = mem.guild.channels.find('id', mem.guild.configs.guildMemberRemoveChannel);
         if (!memChan) return;
         const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
         const embed = new this.client.methods.Embed()
@@ -37,6 +37,6 @@ module.exports = class extends Event {
         memChan.send({ embed }).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
-    console.log(`Member '${mem.user.tag}' left '${mem.guild.name}'. Account age '${mem.user.createdAt}'.`);
+    console.log(`Member Left:\n\t'Member: ${mem.user.tag}'\n\t'Guild:  ${mem.guild.name}'\n\tAge:    '${mem.user.createdAt}'.`);
   }
 };
