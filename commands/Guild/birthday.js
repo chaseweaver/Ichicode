@@ -24,12 +24,13 @@ module.exports = class extends Command {
     if (!msg.guild.configs.birthdayRole) return msg.send('The birthday role is not set! Please set it in Guild configs!');
     const role = msg.guild.configs.birthdayRole;
     await mem.roles.add(role).catch(error => console.log(error));
-    const birthday = await this.client.schedule.create('removeBirthday', Date.now() + (1000 * 60), {
+    const birthday = await this.client.schedule.create('removeBirthday', Date.now() + (1000 * 60 * 60 * 24), {
 			data: {
 				member: mem,
 				role: role
       },
 			catchUp: true
-		});
+    });
+    return msg.send(`\`${role.name}\` has been added to \`${mem.user.tag}\``);
   }
 };
