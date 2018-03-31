@@ -14,7 +14,8 @@ module.exports = class extends Command {
 			data: {
 				member: msg.author,
 				text: text
-			}
+			},
+			catchUp: true
 		});
 		return msg.send(`I will remind you then!`);
 	}
