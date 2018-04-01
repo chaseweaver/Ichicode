@@ -21,8 +21,8 @@ module.exports = class extends Command {
   }
 
   async run(msg) {
+    let Level = '';
     switch (msg.guild.verificationLevel) {
-      let Level = '';
       case 0: lvl = 'None: Unrestricted';
       case 1: lvl = 'Low : Must have a verified email on their Discord account.';
       case 2: lvl = 'Medium : Must have a verified email on their Discord account and also be registered on Discord for longer than 5 minutes.';
