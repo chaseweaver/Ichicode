@@ -242,7 +242,7 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "ctrMonitor": {
+  "ctrOneMonitor": {
     "type": "Boolean",
     "default": false,
     "min": null,
