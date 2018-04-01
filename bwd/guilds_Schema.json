@@ -242,6 +242,15 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "ctrMonitor": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "ctrOne": {
     "type": "Integer",
     "default": 0,
