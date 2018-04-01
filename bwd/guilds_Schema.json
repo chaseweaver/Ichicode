@@ -242,6 +242,15 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "ctrOne": {
+    "type": "int",
+    "default": 0,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "cooldown": {
     "type": "Float",
     "default": 2.5,
