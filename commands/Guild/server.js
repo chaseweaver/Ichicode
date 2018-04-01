@@ -22,11 +22,12 @@ module.exports = class extends Command {
 
   async run(msg) {
     switch (msg.guild.verificationLevel) {
-      case 0: const lvl = 'None: Unrestricted';
-      case 1: const lvl = 'Low : Must have a verified email on their Discord account.';
-      case 2: const lvl = 'Medium : Must have a verified email on their Discord account and also be registered on Discord for longer than 5 minutes.';
-      case 3: const lvl = '(╯°□°）╯︵ ┻━┻ : Must have a verified email on their Discord account, be registered on Discord for longer than 5 minutes, and be a member of this server for longer than 10 minutes.';
-      case 4: const lvl = ' ┻━┻彡 ヽ(ಠ益ಠ)ノ彡┻━┻ : Must have a verified email on their Discord account, be registered on Discord for longer than 5 minutes, be a member of this server for longer than 10 minutes, and have a verified phone attached to their Discord account.';
+      let Level = '';
+      case 0: lvl = 'None: Unrestricted';
+      case 1: lvl = 'Low : Must have a verified email on their Discord account.';
+      case 2: lvl = 'Medium : Must have a verified email on their Discord account and also be registered on Discord for longer than 5 minutes.';
+      case 3: lvl = '(╯°□°）╯︵ ┻━┻ : Must have a verified email on their Discord account, be registered on Discord for longer than 5 minutes, and be a member of this server for longer than 10 minutes.';
+      case 4: lvl = ' ┻━┻彡 ヽ(ಠ益ಠ)ノ彡┻━┻ : Must have a verified email on their Discord account, be registered on Discord for longer than 5 minutes, be a member of this server for longer than 10 minutes, and have a verified phone attached to their Discord account.';
     }
 
     const embed = new this.client.methods.Embed()
