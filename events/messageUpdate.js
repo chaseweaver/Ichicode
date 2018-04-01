@@ -14,14 +14,14 @@ module.exports = class extends Event {
     if (oldMsg.channel.type !== 'text') return;
     try {
       if (oldMsg.guild.configs.logMessageEdit && oldMsg.guild.configs.messageEditChannel) {
-        const chan = newMsg.guild.channels.find('id', oldMsg.guild.configs.messageEditChannel);
+        const chan = oldMsg.guild.channels.find('id', oldMsg.guild.configs.messageEditChannel);
         if (!chan) return;
-        const avatar = newMsg.author.displayAvatarURL();
+        const avatar = oldMsg.author.displayAvatarURL();
         const embed = new this.client.methods.Embed()
           .setColor('#f6ff00')
           .setTitle('Message Edited')
           .setThumbnail(avatar)
-          .setAuthor(`${newMsg.author.tag} / ${newMsg.author.id}`, avatar)
+          .setAuthor(`${oldMsg.author.tag} / ${oldMsg.author.id}`, avatar)
           .addField('Channel', oldMsg.channel)
           .addField('Old Content', oldMsg.content)
           .addField('New Content', newMsg.content)
