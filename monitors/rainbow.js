@@ -15,8 +15,6 @@ module.exports = class extends Monitor {
   async run(msg) {
     if (msg.channel.type !== 'text' || !msg.content || !msg.guild.configs.rainbowMonitor || !msg.guild.configs.rainbowRole) return;
     if (Math.floor(Math.random() * 6) !== 0) return;
-    const role = msg.guild.configs.rainbowRole;
-    const color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-    await msg.guild.roles.find('id', role.id).setColor(color);
+    await msg.guild.roles.find('id', msg.guild.configs.rainbowRole.id).setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16));
   }
 };
