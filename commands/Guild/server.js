@@ -24,9 +24,9 @@ module.exports = class extends Command {
     let Level = 'N/A';
     if (msg.guild.verificationLevel == 0) lvl = 'None: Unrestricted';
     else if (msg.guild.verificationLevel == 1) lvl = 'Low : Must have a verified email on their Discord account.';
-    else if (msg.guild.verificationLevel == 2) lvl = lvl = 'Medium : Must have a verified email on their Discord account and also be registered on Discord for longer than 5 minutes.';
-    else if (msg.guild.verificationLevel == 3) lvl = lvl = '(╯°□°）╯︵ ┻━┻ : Must have a verified email on their Discord account, be registered on Discord for longer than 5 minutes, and be a member of this server for longer than 10 minutes.';
-    else if (msg.guild.verificationLevel == 4) lvl = lvl = ' ┻━┻彡 ヽ(ಠ益ಠ)ノ彡┻━┻ : Must have a verified email on their Discord account, be registered on Discord for longer than 5 minutes, be a member of this server for longer than 10 minutes, and have a verified phone attached to their Discord account.';
+    else if (msg.guild.verificationLevel == 2) lvl = 'Medium : Must have a verified email on their Discord account and also be registered on Discord for longer than 5 minutes.';
+    else if (msg.guild.verificationLevel == 3) lvl = '(╯°□°）╯︵ ┻━┻ : Must have a verified email on their Discord account, be registered on Discord for longer than 5 minutes, and be a member of this server for longer than 10 minutes.';
+    else if (msg.guild.verificationLevel == 4) lvl = ' ┻━┻彡 ヽ(ಠ益ಠ)ノ彡┻━┻ : Must have a verified email on their Discord account, be registered on Discord for longer than 5 minutes, be a member of this server for longer than 10 minutes, and have a verified phone attached to their Discord account.';
 
     const embed = new this.client.methods.Embed()
       .setColor('#ff003c')
