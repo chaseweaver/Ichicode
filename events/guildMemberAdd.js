@@ -31,6 +31,7 @@ module.exports = class extends Event {
           .setThumbnail(avatar)
           .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
           .addField('Joined At', `${Moment.utc(mem.joinedTimestamp).format('llll')} UTC-0`)
+          .addField('Account Age', `${Moment.utc(mem.user.createdAt).format('llll')} UTC-0`)
           .setTimestamp();
         memChan.send({ embed }).catch(err => console.log(err, 'error'));
       }
