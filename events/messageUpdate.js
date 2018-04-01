@@ -11,6 +11,7 @@ module.exports = class extends Event {
   }
 
   run(oldMsg, newMsg) {
+    if (msg.channel.type !== 'text') return;
     try {
       if (oldMsg.guild.configs.logMessageEdit && oldMsg.guild.configs.messageEditChannel) {
         const chan = newMsg.guild.channels.find('id', oldMsg.guild.configs.messageEditChannel);
