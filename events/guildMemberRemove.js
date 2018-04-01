@@ -37,6 +37,6 @@ module.exports = class extends Event {
         memChan.send({ embed }).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
-    console.log(`Member Left:\n\t'Member: ${mem.user.tag}'\n\t'Guild:  ${mem.guild.name}'\n\tAge:    '${mem.user.createdAt}'.`);
+    console.log(`Member Left:\n  Member: ${mem.user.tag}\n  Guild:  ${mem.guild.name}\n  Age:    ${mem.user.createdAt}`);
   }
 };
