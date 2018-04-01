@@ -98,6 +98,15 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "rainbowRole": {
+    "type": "Role",
+    "default": null,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "logMessageDelete": {
     "type": "Boolean",
     "default": false,
