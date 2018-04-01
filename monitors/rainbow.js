@@ -12,9 +12,9 @@ module.exports = class extends Monitor {
     });
   }
 
-  async run(msg) {
+  run(msg) {
     if (msg.channel.type !== 'text' || !msg.content || !msg.guild.configs.rainbowMonitor || !msg.guild.configs.rainbowRole) return;
     if (Math.floor(Math.random() * 6) !== 0) return;
-    await msg.guild.roles.find('id', msg.guild.configs.rainbowRole.id).setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16));
+    msg.guild.roles.find('id', msg.guild.configs.rainbowRole).setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16));
   }
 };
