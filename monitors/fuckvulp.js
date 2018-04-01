@@ -13,6 +13,7 @@ module.exports = class extends Monitor {
   }
 
   async run(msg) {
+    if (msg.channel.type !== 'text') return;
     if (!msg.guild.configs.ctrMonitor || msg.content.length <= 3) return;
     if (msg.author.id == '198706708560871424' && msg.content.toUpperCase().includes('fuck')) {
       const data = msg.guild.configs.ctrOne;

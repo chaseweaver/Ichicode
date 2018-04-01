@@ -13,6 +13,7 @@ module.exports = class extends Monitor {
   }
 
   run(msg) {
+    if (msg.channel.type !== 'text') return;
     if (!msg.content || !msg.guild.configs.whatMonitor || msg.content.length >= 5 || msg.author.id === this.client.user.id) return;
     if (Math.floor(Math.random() * 31) !== 0) return;
     else if ((msg.content.toUpperCase() === 'WHAT' || msg.content.toUpperCase() === 'WAT' || msg.content.toUpperCase() === 'WUT') && msg.author.id !== this.client.user.id) {

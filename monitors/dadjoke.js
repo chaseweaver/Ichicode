@@ -13,6 +13,7 @@ module.exports = class extends Monitor {
   }
 
   run(msg) {
+    if (msg.channel.type !== 'text') return;
     if (!msg.guild.configs.dadjokeMonitor || msg.content.length > 30 || msg.content.length <= 5 || msg.author.id === this.client.user.id) return;
     if (Math.floor(Math.random() * 31) !== 0) return;
     if ((msg.content.toUpperCase().startsWith('IM ') || msg.content.toUpperCase().startsWith('I\'M ') || msg.content.toUpperCase().startsWith('I AM ')) && msg.author.id !== this.client.user.id) {

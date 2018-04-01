@@ -14,44 +14,17 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Whatever test.',
       quotedStringSupport: true,
-      usage: '<member:member>',
+      usage: '',
       usageDelim: '',
       extendedHelp: '',
     });
   }
 
-  async run(msg, [mem]) {
-    let kicks = 0, bansAdd = 0, bansRemove = 0;
-    let active = true;
-
-    const fetch = (time) => {
-      msg.guild.fetchAuditLogs({ before: time, user: mem, limit: 100 }).then(logs => {
-        const arr = logs.entries.values();
-
-        for (let i = 0; i < arr.length; i++) {
-          let ts = arr[i].createdTimestamp;
-          if (arr[i].id !== (undefined || null)) ts = arr[i].id;
-          if (!arr[i].target || arr[i].targetType !== 'USER' || arr[i].target.id !== mem.id) return;
-          console.log(arr[i].executor.tag + ' / ' + arr[i].executor.id + '\t' + arr[i].action + '\t' + 
-            arr[i].target.tag + ' / ' + arr[i].target.id + '\t' + new Date(arr[i].createdTimestamp));
-          if (arr[i].action === 'MEMBER_KICK') kicks++;
-          if (arr[i].action === 'MEMBER_BAN_ADD') bansAdd++;
-          if (arr[i].action === 'MEMBER_BAN_REMOVE') bansRemove++;
-        }
-
-        if (ts >= time) return fetch(ts);
-        else return active = false;
-      })
-      .then(function() {
-        if (!active) {
-          console.log('Kicks:\t' + kicks);
-          console.log('Add:\t' + bansAdd);
-          console.log('Remove:\t' + bansRemove);
-        }
-      })
-      .catch(console.error);
-    };
-
-    await fetch(msg.guild.createdTimestamp);
+  async run(msg) {
+    let str = '';
+    for (let i = 0; i < 10; i++) {
+      str += `:rusy_${i}1::rusy_${i}2::rusy_${i}3::rusy_${i}4::rusy_${i}5::rusy_${i}6::rusy_${i}7::rusy_${i}8::rusy_${i}9::rusy_${i + 1}0:\n`;
+    }
+    return msg.send(str);
   }
 };
