@@ -11,7 +11,7 @@ module.exports = class extends Event {
     });
   }
 
-  run(mem) {
+  run(mem) {  
     try {
       if (mem.guild.configs.welcomeMessage && mem.guild.configs.welcomeMemberActive && mem.guild.configs.welcomeChannel) {
         const chan = mem.guild.channels.find('id', mem.guild.configs.welcomeChannel);
