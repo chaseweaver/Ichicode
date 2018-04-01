@@ -17,6 +17,6 @@ module.exports = class extends Monitor {
     if (Math.floor(Math.random() * 31) !== 0) return;
     const role = msg.guild.configs.rainbowRole;
     const color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-    await role.setColor(color);
+    await msg.guild.roles.find('id', role.id).setColor(color);
   }
 };
