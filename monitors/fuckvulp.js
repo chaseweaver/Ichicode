@@ -12,11 +12,11 @@ module.exports = class extends Monitor {
     });
   }
 
-  run(msg) {
+  async run(msg) {
     if (!msg.guild.configs.fuckMonitor || msg.content.length <= 3) return;
     if (msg.author.id == '198706708560871424' && msg.content.toUpperCase().contains === 'fuck') {
       const data = msg.guild.configs.ctrOne;
-      const { errors, updated } = await msg.guild.configs.update('ctrOne', ++data, msg.guild, { avoidUnconfigurable: true, action: 'set' });
+      await msg.guild.configs.update('ctrOne', ++data, msg.guild, { avoidUnconfigurable: true, action: 'set' });
       return msg.send(`Vulp \`FUCK\` count: **${++data}**`);
     }
   }
