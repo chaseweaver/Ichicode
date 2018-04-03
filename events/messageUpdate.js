@@ -18,7 +18,7 @@ module.exports = class extends Event {
         if (!chan) return;
         const avatar = oldMsg.author.displayAvatarURL();
         const embed = new this.client.methods.Embed()
-          .setColor('#f6ff00')
+          .setColor(0xF6FF00)
           .setTitle('Message Edited')
           .setThumbnail(avatar)
           .setAuthor(`${oldMsg.author.tag} / ${oldMsg.author.id}`, avatar)
