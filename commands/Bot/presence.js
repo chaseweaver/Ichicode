@@ -16,7 +16,7 @@ module.exports = class extends Command {
       quotedStringSupport: true,
       usage: '<status|playing|watching|listening|streaming> [online|idle|invisible|dnd] [playing:str] [watching:str] [listening:str] [streaming:url]',
       usageDelim: ' ',
-      extendedHelp: 'No extended help available.',
+      extendedHelp: null,
     });
   }
 
@@ -26,23 +26,23 @@ module.exports = class extends Command {
     case 'status':
       await this.client.user.setStatus(status);
       return msg.send(`Status changed to ***${status}***`)
-        .then(m => m.delete(5000)).then(() => msg.delete()).catch(console.error);
+        .catch(console.error);
     case 'watching':
       await this.client.user.setActivity(str, { type: 'WATCHING' });
       return msg.send(`${str ? `Watching changed to ***${str}***` : 'Watching cleared'}`)
-        .then(m => m.delete(5000)).then(() => msg.delete()).catch(console.error);
+        .catch(console.error);
     case 'listening':
       await this.client.user.setActivity(str, { type: 'LISTENING' });
       return msg.send(`${str ? `Listening changed to ***${str}***` : 'Listening cleared'}`)
-        .then(m => m.delete(5000)).then(() => msg.delete()).catch(console.error);
+        .catch(console.error);
     case 'streaming':
       await this.client.user.setActivity(str, { type: 'STREAMING' });
       return msg.send(`${str ? `Streaming changed to ***${str}***` : 'Streaming cleared'}`)
-        .then(m => m.delete(5000)).then(() => msg.delete()).catch(console.error);
+        .catch(console.error);
     default:
       await this.client.user.setActivity(str);
       return msg.send(`${str ? `Game changed to ***${str}***` : 'Game cleared'}`)
-        .then(m => m.delete(5000)).then(() => msg.delete()).catch(console.error);
+        .catch(console.error);
     }
   }
 };

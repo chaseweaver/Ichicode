@@ -16,9 +16,12 @@ module.exports = class extends Command {
       quotedStringSupport: true,
       usage: '[member:member] <message:str>',
       usageDelim: '',
-      extendedHelp: 'No extended help available.',
+      extendedHelp: null,
     });
   }
 
-  async run(msg, [mem = msg.author, ...str]) { msg.mentions.users.map(mem => { return mem.send(str.join(' ')); }); msg.delete(); }
+  async run(msg, [mem = msg.author, ...str]) { 
+    return msg.mentions.users.map(mem => mem.send(str.join(' '))); 
+    msg.delete(); 
+  }
 };

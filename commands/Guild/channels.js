@@ -16,27 +16,27 @@ module.exports = class extends Command {
       quotedStringSupport: true,
       usage: '[text|voice|category]',
       usageDelim: ' ',
-      extendedHelp: 'No extended help available.',
+      extendedHelp: null,
     });
   }
 
   async run(msg, [type]) {
-    let str = `${msg.guild.name} channels:\n\n`;
+    let str = `== ${msg.guild.name} channels ==\n\n`;
     let num = 1;
     switch (type) {
     case 'text':
       msg.guild.channels.array().forEach(e => {
-        if (e.type === 'text') str = num <= 9 ? str += `0${num++}. #${e.name}\n` : str += `${num++}. #${e.name}\n`;
+        if (e.type === 'text') str = num <= 9 ? str += ` ${num++} :: #${e.name}\n` : str += `${num++} :: #${e.name}\n`;
       });
       break;
     case 'voice':
       msg.guild.channels.array().forEach(e => {
-        if (e.type === 'voice') str = num <= 9 ? str += `0${num++}. #${e.name}\n` : str += `${num++}. #${e.name}\n`;
+        if (e.type === 'voice') str = num <= 9 ? str += ` ${num++} :: #${e.name}\n` : str += `${num++} :: #${e.name}\n`;
       });
       break;
     case 'category':
       msg.guild.channels.array().forEach(e => {
-        if (e.type === 'category') str = num <= 9 ? str += `0${num++}. #${e.name}\n` : str += `${num++}. #${e.name}\n`;
+        if (e.type === 'category') str = num <= 9 ? str += ` ${num++} :: #${e.name}\n` : str += `${num++} :: #${e.name}\n`;
       });
       break;
     default:
@@ -45,10 +45,9 @@ module.exports = class extends Command {
         if (e.type === 'category') tmp += '  ';
         if (e.type === 'text') tmp += '      ';
         if (e.type === 'voice') tmp += '     ';
-        str = num <= 9 ? str += `0${num++}. [${e.type}]${tmp}#${e.name}\n` :
-          str += `${num++}. [${e.type}]${tmp}#${e.name}\n`;
+        str = num <= 9 ? str += ` ${num++} :: [${e.type}]${tmp}#${e.name}\n` : str += `${num++} :: [${e.type}]${tmp}#${e.name}\n`;
       });
     }
-    return msg.send(str, { code: 'xl' }).catch(err => console.log(err, 'error'));
+    return msg.send(str, { code: 'asciidoc' }).catch(err => console.log(err, 'error'));
   }
 };

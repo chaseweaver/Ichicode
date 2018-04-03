@@ -16,7 +16,7 @@ module.exports = class extends Command {
       quotedStringSupport: false,
       usage: '[channel:channel] <message:string> [...]',
       usageDelim: ' ',
-      extendedHelp: 'No extended help available.',
+      extendedHelp: null,
     });
   }
 

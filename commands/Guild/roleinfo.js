@@ -14,9 +14,9 @@ module.exports = class extends Command {
       requiredConfigs: [],
       description: 'Fetches role permissions and info.',
       quotedStringSupport: true,
-      usage: '<role:role>',
-      usageDelim: '',
-      extendedHelp: 'No extended help available.',
+      usage: '[role:role] [value:str]',
+      usageDelim: ' ',
+      extendedHelp: null,
     });
     this.perms = {
       ADMINISTRATOR: 'Administrator',
@@ -51,7 +51,10 @@ module.exports = class extends Command {
     this.timestamp = new Timestamp('MMMM dd YYYY');
   }
 
-  async run(msg, [role]) {
+  async run(msg, [role, ...value]) {
+    if (value) role = msg.guild.roles.find('name', value.length > 0 ? value : value.join(' '));
+    else return msg.send(`I cannot find \`${value}\``);
+    console.log(msg.guild.roles.find('name', value.length > 0 ? value : value.join(' ')));
     const allPermissions = Object.entries(role.permissions.serialize()).filter(perm => perm[1]).map(([perm]) => this.perms[perm]).join(' | ');
     const roleInfo = new this.client.methods.Embed()
       .setColor(role.hexColor || 0xFFFFFF)
@@ -60,9 +63,9 @@ module.exports = class extends Command {
       .addField('❯ Color', role.hexColor || 'None', true)
       .addField('❯ Creation Date', this.timestamp.display(role.createdAt), true)
       .addField('❯ Hoisted', role.hoist ? 'Yes' : 'No', true)
+      .addField('❯ Raw Position', role.rawPossition, true)
       .addField('❯ Mentionable', role.mentionable ? 'Yes' : 'No', true)
       .addField('❯ Permissions', allPermissions);
-
     return msg.sendEmbed(roleInfo);
   }
 };

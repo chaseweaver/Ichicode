@@ -16,7 +16,7 @@ module.exports = class extends Command {
       quotedStringSupport: false,
       usage: '<member:member>',
       usageDelim: '',
-      extendedHelp: 'No extended help available.',
+      extendedHelp: null,
     });
   }
 

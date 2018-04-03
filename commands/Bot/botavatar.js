@@ -16,9 +16,12 @@ module.exports = class extends Command {
       quotedStringSupport: true,
       usage: '<url:url>',
       usageDelim: '',
-      extendedHelp: 'No extended help available.',
+      extendedHelp: null,
     });
   }
 
-  async run(msg, [url]) { return await msg.client.user.setAvatar(url).then(() => msg.delete()).catch(console.error); }
+  async run(msg, [url]) { 
+    return await msg.client.user.setAvatar(url)
+      .then(() => msg.delete()).catch(console.error);
+  }
 };
