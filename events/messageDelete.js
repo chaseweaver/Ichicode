@@ -11,7 +11,7 @@ module.exports = class extends Event {
   }
 
   run(msg) {
-    if (msg.channel.type !== 'text') return;
+    if (msg.channel.type !== 'text' || msg.author.bot) return;
     try {
       if (msg.guild.configs.logMessageDelete && msg.guild.configs.messageDeleteChannel) {
         const chan = msg.guild.channels.find('id', msg.guild.configs.messageDeleteChannel);
