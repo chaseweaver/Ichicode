@@ -1,5 +1,4 @@
 const { Command } = require('klasa');
-const { masterServer, reportChannel } = require('../../config.js');
 
 module.exports = class extends Command {
   constructor(...args) {
@@ -13,7 +12,7 @@ module.exports = class extends Command {
       permLevel: 0,
       botPerms: [],
       requiredConfigs: [],
-      description: 'Sends a message to the bot developer.',
+      description: 'Sends an anonymous message to the mods.',
       quotedStringSupport: true,
       usage: '<message:str>',
       usageDelim: '',
@@ -23,18 +22,13 @@ module.exports = class extends Command {
 
   async run(msg, [...message]) {
     try {
-      if (!masterServer || !reportChannel) return;
+      const chan = msg.guild.configs.reportChannel;
+      if (!chan) return;
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
-        .setAuthor(`${msg.member.user.tag} / ${msg.member.user.id}`, msg.member.user.displayAvatarURL())
-        .setThumbnail(msg.member.user.displayAvatarURL())
-        .addField('Guild', `${msg.guild.name} [${msg.guild.memberCount}] / ${msg.guild.id}`)
-        .addField('Report', message.join(' '))
+        .addField('Request', message.join(' '))
         .setTimestamp();
-      this.client.guilds.find('id', masterServer).channels.find('id', reportChannel)
-        .sendEmbed(embed).catch(err => msg.client.emit('log', err, 'error'));
-      msg.delete();
-      return msg.send('Report has been delivered!');
+      return chan.sendEmbed(embed).then(msg.delete()).catch(err => msg.client.emit('log', err, 'error'));
     } catch (err) { console.log(err); }
   }
 };
