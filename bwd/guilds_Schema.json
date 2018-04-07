@@ -341,6 +341,15 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "requestChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "disabledCommands": {
     "type": "Command",
     "default": [],
