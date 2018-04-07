@@ -28,7 +28,7 @@ module.exports = class extends Command {
         .setColor('#ff003c')
         .addField('Request', message.length > 0 ? message : message.join(' '))
         .setTimestamp();
-      return msg.guild.channels.find('id', chan.id).sendEmbed(embed)
+      return msg.guild.channels.find('id', chan).sendEmbed(embed)
         .then(msg.delete())
         .catch(err => msg.client.emit('log', err, 'error'));
     } catch (err) { console.log(err); }
