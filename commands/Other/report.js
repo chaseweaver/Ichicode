@@ -28,7 +28,7 @@ module.exports = class extends Command {
         .setColor('#ff003c')
         .addField('Request', message.join(' '))
         .setTimestamp();
-      return chan.sendEmbed(embed).then(msg.delete()).catch(err => msg.client.emit('log', err, 'error'));
+      return chan.send({ embed }).then(msg.delete()).catch(err => msg.client.emit('log', err, 'error'));
     } catch (err) { console.log(err); }
   }
 };
