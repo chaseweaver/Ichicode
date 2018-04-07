@@ -26,7 +26,7 @@ module.exports = class extends Command {
       if (!chan) return;
       const embed = new msg.client.methods.Embed()
         .setColor('#ff003c')
-        .addField('Request', message.join(' '))
+        .addField('Request', message.length > 0 ? message : message.join(' '))
         .setTimestamp();
       return msg.guild.channels.find('id', chan.id).sendEmbed(embed)
         .then(msg.delete())
