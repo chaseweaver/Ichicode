@@ -11,7 +11,7 @@ module.exports = class extends Event {
   }
 
   run(oldMsg, newMsg) {
-    if (oldMsg.channel.type !== 'text' || msg.author.bot) return;
+    if (oldMsg.channel.type !== 'text' || oldMsg.author.bot) return;
     try {
       if (oldMsg.guild.configs.logMessageEdit && oldMsg.guild.configs.messageEditChannel) {
         const chan = oldMsg.guild.channels.find('id', oldMsg.guild.configs.messageEditChannel);
