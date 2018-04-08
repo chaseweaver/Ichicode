@@ -11,7 +11,7 @@ module.exports = class extends Event {
     });
   }
 
-  run(mem) {  
+  run(mem) {
     try {
       if (mem.guild.configs.welcomeMessage && mem.guild.configs.welcomeMemberActive && mem.guild.configs.welcomeChannel) {
         const chan = mem.guild.channels.find('id', mem.guild.configs.welcomeChannel);
@@ -26,16 +26,16 @@ module.exports = class extends Event {
         if (!memChan) return;
         const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
         const embed = new this.client.methods.Embed()
-          .setColor('#00ffbb')
+          .setColor(0x00FFBB)
           .setTitle('Member Joined')
           .setThumbnail(avatar)
           .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
           .addField('Joined At', `${Moment.utc(mem.joinedTimestamp).format('llll')} UTC-0`)
           .addField('Account Age', `${Moment.utc(mem.user.createdAt).format('llll')} UTC-0`)
           .setTimestamp();
-        memChan.send({ embed }).catch(err => console.log(err, 'error'));
+        memChan.sendEmbed(embed).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
-    console.log(`Member Joined:\n\t'Member: ${mem.user.tag}'\n\t'Guild:  ${mem.guild.name}'\n\tAge:    '${mem.user.createdAt}'.`);
+    console.log(` == Member Joined ==\n 'Member: ${mem.user.tag}'\n 'Guild:  ${mem.guild.name}'\n Age:    '${mem.user.createdAt}'.`);
   }
 };

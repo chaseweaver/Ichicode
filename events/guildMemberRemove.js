@@ -26,7 +26,7 @@ module.exports = class extends Event {
         if (!memChan) return;
         const avatar = mem.user.displayAvatarURL() ? mem.user.displayAvatarURL() : mem.guild.iconURL();
         const embed = new this.client.methods.Embed()
-          .setColor('#ff003c')
+          .setColor(0xFF003C)
           .setTitle('Member Left')
           .setThumbnail(avatar)
           .setAuthor(`${mem.user.tag} / ${mem.user.id}`, avatar)
@@ -34,9 +34,9 @@ module.exports = class extends Event {
           .addField('Left At', `${Moment.utc(new Date()).format('llll')} UTC-0`)
           .addField('Account Age', `${Moment.utc(mem.user.createdAt).format('llll')} UTC-0`)
           .setTimestamp();
-        memChan.send({ embed }).catch(err => console.log(err, 'error'));
+        memChan.sendEmbed(embed).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
-    console.log(`Member Left:\n  Member: ${mem.user.tag}\n  Guild:  ${mem.guild.name}\n  Age:    ${mem.user.createdAt}`);
+    console.log(` == Member Left ==\n  Member: ${mem.user.tag}\n  Guild:  ${mem.guild.name}\n  Age:    ${mem.user.createdAt}`);
   }
 };
