@@ -20,8 +20,22 @@ module.exports = class extends Command {
     });
   }
 
-  async run(msg) {
-    if (!msg.mentions.users.size) await msg.send(msg.author.displayAvatarURL({ size: 2048 }));
-    msg.mentions.users.map(usr => { return msg.send(`${usr.username}'s avatar: ${usr.displayAvatarURL({ size: 2048 })}\n`); });
+  async run(msg, mem) {
+    if (!msg.mentions.users.size) {
+      const authorImg = new this.client.methods.Embed()
+        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
+        .setTitle(`${msg.member.nickname || msg.author.tag}'s Avatar`)
+        .setImage(msg.author.displayAvatarURL({ size: 2048 }))
+        .setURL(msg.author.displayAvatarURL({ size: 2048 }))
+      return msg.sendEmbed(authorImg).catch(console.error);
+    } else {
+      console.log(msg.mentions.members.first());
+      const memImg = new this.client.methods.Embed()
+        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
+        .setTitle(`${msg.mentions.members.first().nickname || msg.mentions.members.first().user.tag}'s Avatar`)
+        .setImage(msg.mentions.users.first().displayAvatarURL({ size: 2048 }))
+        .setURL(msg.mentions.users.first().displayAvatarURL({ size: 2048 }))
+      return msg.sendEmbed(memImg).catch(console.error);
+    }
   }
 };

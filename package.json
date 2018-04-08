@@ -44,5 +44,8 @@
     "node-opus": "^0.2.7",
     "string-similarity": "^1.2.0",
     "ytdl-core": "^0.18.7"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
   }
 }

@@ -1,4 +1,4 @@
-const { Command } = require('klasa');
+const { Command, Timestamp } = require('klasa');
 
 module.exports = class extends Command {
   constructor(...args) {
@@ -12,49 +12,20 @@ module.exports = class extends Command {
       permLevel: 3,
       botPerms: [],
       requiredConfigs: [],
-      description: 'Returns the created date of a guild/role/member/channel.',
+      description: 'Returns the age of a guild/role/member/channel.',
       quotedStringSupport: true,
       usage: '[member:member] [channel:channel] [role:role] [value:str]',
       usageDelim: '',
       extendedHelp: null,
     });
-    this.perms = {
-      ADMINISTRATOR: 'Administrator',
-      VIEW_AUDIT_LOG: 'View Audit Log',
-      MANAGE_GUILD: 'Manage Server',
-      MANAGE_ROLES: 'Manage Roles',
-      MANAGE_CHANNELS: 'Manage Channels',
-      KICK_MEMBERS: 'Kick Members',
-      BAN_MEMBERS: 'Ban Members',
-      CREATE_INSTANT_INVITE: 'Create Instant Invite',
-      CHANGE_NICKNAME: 'Change Nickname',
-      MANAGE_NICKNAMES: 'Manage Nicknames',
-      MANAGE_EMOJIS: 'Manage Emojis',
-      MANAGE_WEBHOOKS: 'Manage Webhooks',
-      VIEW_CHANNEL: 'Read Text Channels and See Voice Channels',
-      SEND_MESSAGES: 'Send Messages',
-      SEND_TTS_MESSAGES: 'Send TTS Messages',
-      MANAGE_MESSAGES: 'Manage Messages',
-      EMBED_LINKS: 'Embed Links',
-      ATTACH_FILES: 'Attach Files',
-      READ_MESSAGE_HISTORY: 'Read Message History',
-      MENTION_EVERYONE: 'Mention Everyone',
-      USE_EXTERNAL_EMOJIS: 'Use External Emojis',
-      ADD_REACTIONS: 'Add Reactions',
-      CONNECT: 'Connect',
-      SPEAK: 'Speak',
-      MUTE_MEMBERS: 'Mute Members',
-      DEAFEN_MEMBERS: 'Deafen Members',
-      MOVE_MEMBERS: 'Move Members',
-      USE_VAD: 'Use Voice Activity',
-    };
-    this.timestamp = new Timestamp('MMMM dd YYYY');
+    this.timestamp = new Timestamp('MM/DD/YYYY [@] HH:mm:ss UTC');
   }
 
   async run(msg, [member, channel, role, ...value]) {
+    
     value = value.length > 0 ? value.join(' ') : null;
     const out = [];
-    let type = '';
+    let type = 'guild';
 
     if (member) type = 'member';
     else if (channel) type = 'channel';
@@ -63,57 +34,42 @@ module.exports = class extends Command {
     else if (msg.guild.roles.find('name', value)) type = 'role';
     else if (msg.guild.channels.find('name', value)) type = 'channel';
 
+    else if (msg.guild.members.find('id', value)) type = 'member';
+    else if (msg.guild.roles.find('id', value)) type = 'role';
+    else if (msg.guild.channels.find('id', value)) type = 'channel';
+
     switch (type) {
     case 'guild':
-      out.push('Guild     :: ' + msg.guild.name);
-      out.push('Guild ID  :: ' + msg.guild.id);
-      out.push('Guild Age :: ' + msg.guild.createdAt);
-      break;
+      const guildAge = new this.client.methods.Embed()
+        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
+        .setThumbnail(msg.guild.iconURL() ? msg.guild.iconURL() : 'https://imgur.com/ik9S8V5.png')
+        .setAuthor(`${msg.guild.name} / ${msg.guild.id}`, msg.guild.iconURL() ? msg.guild.iconURL() : 'https://imgur.com/ik9S8V5.png')
+        .addField('Created On', this.timestamp.displayUTC(msg.guild.createdAt))
+      return msg.sendEmbed(guildAge).catch(console.error);
     case 'member':
-      if (member) {
-        out.push('Member     :: ' + member.user.tag);
-        out.push('Member ID  :: ' + member.id);
-        out.push('Member Age :: ' + member.user.createdAt);
-        out.push('Joined At  :: ' + member.user.joinedAt);
-      } else if (msg.guild.members.find('nickname', value)) {
-        const final = msg.guild.members.find('nickname', value);
-        out.push('Member     :: ' + final.user.tag);
-        out.push('Member ID  :: ' + final.id);
-        out.push('Member Age :: ' + final.user.createdAt);
-        out.push('Joined At  :: ' + final.user.joinedAt);
-      } else { return msg.send('Invalid name!'); }
-      break;
+      const memberAge = new this.client.methods.Embed()
+        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
+        .setAuthor(member.user.tag, member.user.displayAvatarURL())
+        .setThumbnail(member.user.displayAvatarURL())
+        .addField('❯ Member ID', member.id, true)
+        .addField('❯ Member Nickname', member.nickname || 'N/A', true)
+        .addField('❯ Member Age', this.timestamp.displayUTC(member.user.createdAt), true)
+        .addField('❯ Member Joined At', this.timestamp.displayUTC(member.user.joinedAt), true)
+      return msg.sendEmbed(memberAge).catch(console.error);
     case 'role':
-      if (!role) role = msg.guild.roles.find('name', value);
-      const allPermissions = Object.entries(role.permissions.serialize()).filter(perm => perm[1]).map(([perm]) => this.perms[perm]).join(' | ');
-      const roleInfo = new this.client.methods.Embed()
+      const roleAge = new this.client.methods.Embed()
         .setColor(role.hexColor || 0xFFFFFF)
-        .addField('❯ Name', role.name, true)
-        .addField('❯ ID', role.id, true)
-        .addField('❯ Color', role.hexColor || 'None', true)
-        .addField('❯ Creation Date', new Timestamp('MMMM dd YYYY').display(role.createdAt), true)
-        .addField('❯ Hoisted', role.hoist ? 'Yes' : 'No', true)
-        .addField('❯ Raw Position', role.rawPossition, true)
-        .addField('❯ Mentionable', role.mentionable ? 'Yes' : 'No', true)
-        .addField('❯ Permissions', allPermissions);
-      return msg.sendEmbed(roleInfo);
+        .addField('❯ Role Name', role, true)
+        .addField('❯ Role ID', role.id, true)
+        .addField('❯ Creation Date', this.timestamp.displayUTC(role.createdAt), true)
+      return msg.sendEmbed(roleAge).catch(console.error);
     case 'channel':
-      if (channel) {
-        out.push('Channel     :: ' + channel.name);
-        out.push('Channel ID  :: ' + channel.id);
-        out.push('Channel Age :: ' + channel.createdAt);
-      } else if (msg.guild.channels.find('name', value)) {
-        const final = msg.guild.channels.find('name', value);
-        out.push('Channel     :: ' + final.name);
-        out.push('Channel ID  :: ' + final.id);
-        out.push('Channel Age :: ' + final.createdAt);
-      } else { return msg.send('Invalid name!'); }
-      break;
-    default:
-      return msg.send(`I cannot find \`${value}\``)
-        .catch(err => console.log(err, 'error'));
+      const channelAge = new this.client.methods.Embed()
+        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
+        .addField('❯ Channel', channel.name, true)
+        .addField('❯ Channel ID', channel.id, true)
+        .addField('❯ Channel Age', this.timestamp.displayUTC(channel.createdAt))
+      return msg.sendEmbed(channelAge).catch(console.error);
     }
-    if (!out) return;
-    else return msg.send(out, { code: 'asciidoc' });
   }
 };
