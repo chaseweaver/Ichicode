@@ -29,7 +29,6 @@ module.exports = class extends Command {
         .setURL(msg.author.displayAvatarURL({ size: 2048 }))
       return msg.sendEmbed(authorImg).catch(console.error);
     } else {
-      console.log(msg.mentions.members.first());
       const memImg = new this.client.methods.Embed()
         .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
         .setTitle(`${msg.mentions.members.first().nickname || msg.mentions.members.first().user.tag}'s Avatar`)
