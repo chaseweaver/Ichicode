@@ -181,7 +181,7 @@
   },
   "welcomeMessage": {
     "type": "String",
-    "default": "Welcome, $MENTION$ to $SERVER$! Kick back and stay a while!",
+    "default": "Welcome, $MENTION$ to $SERVER$! It's not like I wanted you here or anything. B-baka!",
     "min": null,
     "max": null,
     "array": false,
@@ -190,7 +190,7 @@
   },
   "goodbyeMessage": {
     "type": "String",
-    "default": "Goodbye, $MENTION$! It was fun while it lasted (or maybe not)! What do I know? I'm just a bot.",
+    "default": "Bye-bye, $MENTION$! You little shit.",
     "min": null,
     "max": null,
     "array": false,
