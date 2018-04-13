@@ -37,6 +37,6 @@ module.exports = class extends Event {
         memChan.sendEmbed(embed).catch(err => console.log(err, 'error'));
       }
     } catch (error) { console.log(error); }
-    console.log(` == Member Left ==\n Member: ${mem.user.tag}\n Guild:  ${mem.guild.name}\n Age:    ${mem.user.createdAt}\s`);
+    console.log(` == Member Left ==\n Member: ${mem.user.tag}\n Guild:  ${mem.guild.name}\n Age:    ${mem.user.createdAt}\n`);
   }
 };

@@ -55,21 +55,56 @@ module.exports = class extends Command {
     
     value = value.length > 0 ? value.join(' ') : null;
     const out = [];
-    let type = 'guild';
+    let type = 'info';
 
     if (member) type = 'member';
     else if (channel) type = 'channel';
     else if (role) type = 'role';
-    else if (msg.guild.members.find('nickname', value)) type = 'member';
-    else if (msg.guild.roles.find('name', value)) type = 'role';
-    else if (msg.guild.channels.find('name', value)) type = 'channel';
-
-    else if (msg.guild.members.find('id', value)) type = 'member';
-    else if (msg.guild.roles.find('id', value)) type = 'role';
-    else if (msg.guild.channels.find('id', value)) type = 'channel';
+    else if (msg.guild.members.find('nickname', value) || msg.guild.members.find('id', value)) type = 'member';
+    else if (msg.guild.roles.find('name', value) || msg.guild.roles.find('id', value)) type = 'role';
+    else if (msg.guild.channels.find('name', value) || msg.guild.channels.find('id', value)) type = 'channel';
+    else return;
 
     switch (type) {
-    case 'guild':
+    case 'member':
+      if (!member) member = msg.guild.member.find('name', value) || msg.guild.member.find('id', value);
+      const allRoles = member.roles.map(role => role).join(' | ');
+      const memberInfo = new this.client.methods.Embed()
+        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
+        .setAuthor(member.user.tag, member.user.displayAvatarURL())
+        .setThumbnail(member.user.displayAvatarURL())
+        .addField('❯ Member ID', member.id, true)
+        .addField('❯ Member Nickname', member.nickname || 'N/A', true)
+        .addField('❯ Member Status', (member.presence.activity.name || member.presence.status) || 'N/A', true)
+        .addField('❯ Member Age', this.timestamp.displayUTC(member.user.createdAt), true)
+        .addField('❯ Member Joined At', this.timestamp.displayUTC(member.user.joinedAt), true)
+        .addField('❯ Member Roles', allRoles)
+      return msg.sendEmbed(memberInfo).catch(console.error);
+    case 'role':
+      if (!role) role = msg.guild.roles.find('name', value) || msg.guild.roles.find('id', value);
+      const allPermissions = Object.entries(role.permissions.serialize()).filter(perm => perm[1]).map(([perm]) => this.perms[perm]).join(' | ');
+      const roleInfo = new this.client.methods.Embed()
+        .setColor(role.hexColor || 0xFFFFFF)
+        .addField('❯ Role Name', role, true)
+        .addField('❯ Role ID', role.id, true)
+        .addField('❯ Color', role.hexColor || 'None', true)
+        .addField('❯ Hoisted', role.hoist ? 'Yes' : 'No', true)
+        .addField('❯ Mentionable', role.mentionable ? 'Yes' : 'No', true)
+        .addField('❯ Members With Role', msg.guild.roles.get(role.id).members.size, true)
+        .addField('❯ Creation Date', this.timestamp.displayUTC(role.createdAt), true)
+        .addField('❯ Permissions', allPermissions);
+      return msg.sendEmbed(roleInfo).catch(console.error);
+    case 'channel':
+      if (!channel) channel = msg.guild.channels.find('name', value) || msg.guild.channels.find('id', value);
+      const channelInfo = new this.client.methods.Embed()
+        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
+        .addField('❯ Channel', channel.name, true)
+        .addField('❯ Channel ID', channel.id, true)
+        .addField('❯ Channel Type', channel.type, true)
+        .addField('❯ Channel Position', `Local: ${channel.position + 1} / Global: ${channel.rawPosition + 1}`, true)
+        .addField('❯ Channel Age', this.timestamp.displayUTC(channel.createdAt))
+      return msg.sendEmbed(channelInfo).catch(console.error);
+    default:
       let lvl = 'N/A';
       if (msg.guild.verificationLevel == 0) lvl = 'None: Unrestricted';
       else if (msg.guild.verificationLevel == 1) lvl = 'Low : Must have a verified email on their Discord account.';
@@ -90,41 +125,6 @@ module.exports = class extends Command {
         .addField('❯ Created On', this.timestamp.displayUTC(msg.guild.createdAt))
         .addField('❯ Server Owner', `${msg.guild.owner.user.tag} / ${msg.guild.ownerID}`)
       return msg.sendEmbed(guildInfo).catch(console.error);
-    case 'member':
-      const allRoles = member.roles.map(role => role).join(' | ');
-      const memberInfo = new this.client.methods.Embed()
-        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
-        .setAuthor(member.user.tag, member.user.displayAvatarURL())
-        .setThumbnail(member.user.displayAvatarURL())
-        .addField('❯ Member ID', member.id, true)
-        .addField('❯ Member Nickname', member.nickname || 'N/A', true)
-        .addField('❯ Member Status', (member.presence.activity.name || member.presence.status) || 'N/A', true)
-        .addField('❯ Member Age', this.timestamp.displayUTC(member.user.createdAt), true)
-        .addField('❯ Member Joined At', this.timestamp.displayUTC(member.user.joinedAt), true)
-        .addField('❯ Member Roles', allRoles)
-      return msg.sendEmbed(memberInfo).catch(console.error);
-    case 'role':
-      const allPermissions = Object.entries(role.permissions.serialize()).filter(perm => perm[1]).map(([perm]) => this.perms[perm]).join(' | ');
-      const roleInfo = new this.client.methods.Embed()
-        .setColor(role.hexColor || 0xFFFFFF)
-        .addField('❯ Role Name', role, true)
-        .addField('❯ Role ID', role.id, true)
-        .addField('❯ Color', role.hexColor || 'None', true)
-        .addField('❯ Hoisted', role.hoist ? 'Yes' : 'No', true)
-        .addField('❯ Mentionable', role.mentionable ? 'Yes' : 'No', true)
-        .addField('❯ Members With Role', msg.guild.roles.get(role.id).members.size, true)
-        .addField('❯ Creation Date', this.timestamp.displayUTC(role.createdAt), true)
-        .addField('❯ Permissions', allPermissions);
-      return msg.sendEmbed(roleInfo).catch(console.error);
-    case 'channel':
-      const channelInfo = new this.client.methods.Embed()
-        .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
-        .addField('❯ Channel', channel.name, true)
-        .addField('❯ Channel ID', channel.id, true)
-        .addField('❯ Channel Type', channel.type, true)
-        .addField('❯ Channel Position', `Local: ${channel.position + 1} / Global: ${channel.rawPosition + 1}`, true)
-        .addField('❯ Channel Age', this.timestamp.displayUTC(channel.createdAt))
-      return msg.sendEmbed(channelInfo).catch(console.error);
     }
   }
 };
