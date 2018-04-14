@@ -206,6 +206,15 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "antiimageMonitor": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "rainbowMonitor": {
     "type": "Boolean",
     "default": false,
@@ -283,6 +292,14 @@
     "default": 2.5,
     "min": 0,
     "max": 10,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "imageCooldown": {
+    "type": "Float",
+    "default": 60,
+    "min": 0,
     "array": false,
     "configurable": true,
     "sql": "TEXT"
