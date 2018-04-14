@@ -38,7 +38,7 @@ module.exports = class extends Monitor {
             if (data.length <= 2) return;
             if (msg.createdTimestamp <= data[1] + (cooldown * 1000)) {
               msg.guild.members.find('id', msg.author.id).roles.add(msg.guild.configs.muteRole);
-              msg.guild.members.find('id', msg.author.id).user.send('You have been muted due to attachment spam. Please wait 10 minutes and cool down.');
+              msg.guild.members.find('id', msg.author.id).user.send('You have been muted due to attachment spam. Please wait 10 minutes.');
               active = true;
             }
           })
