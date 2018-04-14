@@ -44,7 +44,7 @@ module.exports = class extends Monitor {
           })
           .then(() => {
             if (active) {
-              return this.client.schedule.create('mute', Date.now() + (1000 * 5), {
+              return this.client.schedule.create('mute', Date.now() + (1000 * 60 * 10), {
                 data: {
                   member: msg.guild.members.find('id', msg.author.id),
                   role: msg.guild.configs.muteRole
