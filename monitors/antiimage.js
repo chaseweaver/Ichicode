@@ -38,19 +38,19 @@ module.exports = class extends Monitor {
             if (data.length <= 2) return;
             if (msg.createdTimestamp <= data[2] + (cooldown * 1000)) {
               msg.guild.members.find('id', msg.author.id).roles.add(msg.guild.configs.muteRole);
-              msg.guild.members.find('id', msg.author.id).user.send('You have been muted due to attachment spam. Please wait 10 minutes.');
+              msg.guild.members.find('id', msg.author.id).user.send('You have been muted due to attachment spam. Please wait 5 minutes.');
               active = true;
             }
           })
           .then(() => {
             if (active) {
-              return this.client.schedule.create('mute', Date.now() + (1000 * 60 * 10), {
+              return this.client.schedule.create('mute', Date.now() + (1000 * 60 * 5), {
                 data: {
                   member: msg.guild.members.find('id', msg.author.id),
                   role: msg.guild.configs.muteRole
                 },
                 catchUp: true
-              });
+              }); // +role remove Muted @Chaaaaaaase#0666 
             }
           })
           .catch(console.error);
