@@ -3,12 +3,12 @@ const { Command } = require('klasa');
 module.exports = class extends Command {
   constructor(...args) {
     super(...args, {
-      name: 'request',
+      name: 'guildreport',
       enabled: true,
       runIn: ['text'],
       cooldown: 60,
       bucket: 1,
-      aliases: [],
+      aliases: ['guildissue', 'gissue', 'greport'],
       permLevel: 0,
       botPerms: [],
       requiredConfigs: [],
@@ -22,11 +22,11 @@ module.exports = class extends Command {
 
   async run(msg, [...message]) {
     try {
-      const chan = msg.guild.configs.requestChannel;
+      const chan = msg.guild.configs.reportChannel;
       if (!chan) return;
       const embed = new msg.client.methods.Embed()
-        .setColor('#00ff94')
-        .addField('Request', message.length > 0 ? message : message.join(' '))
+        .setColor('#ff003c')
+        .addField('Report', message.length > 0 ? message : message.join(' '))
         .setTimestamp();
       return msg.guild.channels.find('id', chan).sendEmbed(embed)
         .then(msg.delete())
