@@ -197,6 +197,15 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "logger": {
+    "type": "Boolean",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "antispamMonitor": {
     "type": "Boolean",
     "default": false,
@@ -278,28 +287,11 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "ctrOne": {
-    "type": "Integer",
-    "default": 0,
-    "min": null,
-    "max": null,
-    "array": false,
-    "configurable": true,
-    "sql": "TEXT"
-  },
   "cooldown": {
     "type": "Float",
     "default": 2.5,
     "min": 0,
     "max": 10,
-    "array": false,
-    "configurable": true,
-    "sql": "TEXT"
-  },
-  "imageCooldown": {
-    "type": "Float",
-    "default": 60,
-    "min": 0,
     "array": false,
     "configurable": true,
     "sql": "TEXT"
@@ -358,7 +350,52 @@
     "configurable": true,
     "sql": "TEXT"
   },
+  "guildReportChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
   "requestChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "guildRequestChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "feedbackChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "guildFeedbackChannel": {
+    "type": "Channel",
+    "default": false,
+    "min": null,
+    "max": null,
+    "array": false,
+    "configurable": true,
+    "sql": "TEXT"
+  },
+  "loggerChannel": {
     "type": "Channel",
     "default": false,
     "min": null,
@@ -376,7 +413,7 @@
     "configurable": true,
     "sql": "TEXT"
   },
-  "birthdays": {
+  "events": {
     "type": "String",
     "default": [],
     "min": null,
@@ -385,7 +422,7 @@
     "configurable": true,
     "sql": "TEXT '[]'"
   },
-  "events": {
+  "loggerContent": {
     "type": "String",
     "default": [],
     "min": null,
