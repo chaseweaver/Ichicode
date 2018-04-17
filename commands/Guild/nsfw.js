@@ -21,6 +21,7 @@ module.exports = class extends Command {
   }
 
   async run(msg) {
-    return msg.send(`Assuming you have a job and your boss walks behind you and looks at your screen, would you be okay with them seeing this kind of content? Thank you for understanding.`, { code: 'txt' });
+    return msg.send(`Assuming you have a job and your boss walks behind you and looks at your screen, would you be okay with them seeing this kind of content? Thank you for understanding.`, { code: 'txt' })
+      .then(msg.delete());
   }
 };
