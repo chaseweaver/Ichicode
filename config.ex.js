@@ -6,3 +6,4 @@ exports.ytkey = 'YOUR_YOUTUBE_KEY_HERE';
 exports.masterServer = 'YOUR_MASTER_BOT_SERVER_ID_HERE';
 exports.reportChannel = 'YOUR_MASTER_BOT_SERVER_REPORT_CHANNEL_ID_HERE';
 exports.requestChannel = 'YOUR_MASTER_BOT_SERVER_REQUEST_CHANNEL_ID_HERE';
+exports.feedbackChannel = 'YOUR_MASTER_BOT_SERVER_FEEDBACK_CHANNEL_ID_HERE';
