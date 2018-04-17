@@ -54,7 +54,7 @@ module.exports = class extends Command {
         .addField('❯ Member ID', member.id, true)
         .addField('❯ Member Nickname', member.nickname || 'N/A', true)
         .addField('❯ Member Age', this.timestamp.displayUTC(member.user.createdAt), true)
-        .addField('❯ Member Joined At', this.timestamp.displayUTC(member.user.joinedAt), true)
+        .addField('❯ Member Joined At', this.timestamp.displayUTC(member.joinedAt), true)
       return msg.sendEmbed(memberAge).catch(console.error);
     case 'role':
       const roleAge = new this.client.methods.Embed()
