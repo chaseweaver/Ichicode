@@ -22,10 +22,10 @@ module.exports = class extends Command {
 
   async run(msg, [...message]) {
     try {
-      const chan = msg.guild.configs.requestChannel;
+      const chan = msg.guild.configs.guildRequestChannel;
       if (!chan) return;
       const embed = new msg.client.methods.Embed()
-        .setColor('#00ff94')
+        .setColor(0x00FF94)
         .addField('Request', message.length > 0 ? message : message.join(' '))
         .setTimestamp();
       return msg.guild.channels.find('id', chan).sendEmbed(embed)
