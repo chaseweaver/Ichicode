@@ -9,7 +9,7 @@ module.exports = class extends Command {
       runIn: ['text'],
       cooldown: 60,
       bucket: 1,
-      aliases: ['issue'],
+      aliases: [],
       permLevel: 0,
       botPerms: [],
       requiredConfigs: [],
@@ -25,7 +25,7 @@ module.exports = class extends Command {
     try {
       if (!masterServer || !feedbackChannel) return;
       const embed = new msg.client.methods.Embed()
-        .setColor('#ff003c')
+        .setColor(0xFF003C)
         .setAuthor(`${msg.member.user.tag} / ${msg.member.user.id}`, msg.member.user.displayAvatarURL())
         .setThumbnail(msg.member.user.displayAvatarURL())
         .addField('Guild', `${msg.guild.name} [${msg.guild.memberCount}] / ${msg.guild.id}`)
