@@ -19,8 +19,8 @@ module.exports = class extends Monitor {
       if (!masterServer || !mentionsChannel) return;
       const embed = new msg.client.methods.Embed()
         .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
-        .setAuthor(`${msg.author.tag} / ${msg.author.user.id}`, msg.author.user.displayAvatarURL())
-        .setThumbnail(msg.author.user.displayAvatarURL())
+        .setAuthor(`${msg.author.tag} / ${msg.author.id}`, msg.author.displayAvatarURL())
+        .setThumbnail(msg.author.displayAvatarURL())
         .addField('❯ Guild', `${msg.guild.name} [${msg.guild.memberCount}] / ${msg.guild.id}`)
         .addField('❯ Message', msg.content)
       return this.client.guilds.find('id', masterServer).channels.find('id', mentionsChannel)
