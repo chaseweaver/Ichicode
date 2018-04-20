@@ -14,7 +14,7 @@ module.exports = class extends Monitor {
   }
 
   run(msg) {
-    if (msg.channel.type !== 'text' || !msg.content.includes(`<@!${this.client.id}>`)) return;
+    if (msg.channel.type !== 'text' || !msg.content.includes(`<@!${this.client.user.id}>`)) return;
     try {
       if (!masterServer || !mentionsChannel) return;
       const embed = new msg.client.methods.Embed()
