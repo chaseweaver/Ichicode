@@ -14,13 +14,13 @@ module.exports = class extends Monitor {
   }
 
   run(msg) {
-    if (msg.channel.type !== 'dm') return;
+    if (msg.channel.type !== 'dm' || msg.user.id === this.client.owner.id) return;
     try {
       if (!masterServer || !dmChannel) return;
       const embed = new msg.client.methods.Embed()
         .setColor('#'+(Math.random()*0xFFFFFF<<0).toString(16))
-        .setAuthor(`${msg.member.user.tag} / ${msg.member.user.id}`, msg.member.user.displayAvatarURL())
-        .setThumbnail(msg.member.user.displayAvatarURL())
+        .setAuthor(`${msg.user.tag} / ${msg.user.id}`, msg.user.displayAvatarURL())
+        .setThumbnail(msg.user.displayAvatarURL())
         .addField('Message', msg.content)
         .setTimestamp();
       return this.client.guilds.find('id', masterServer).channels.find('id', dmChannel)
