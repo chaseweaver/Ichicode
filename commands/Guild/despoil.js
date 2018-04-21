@@ -8,7 +8,7 @@ module.exports = class extends Command {
       runIn: ['text'],
       cooldown: 2,
       bucket: 1,
-      aliases: ['unspoil'],
+      aliases: ['nospoil'],
       permLevel: 0,
       botPerms: [],
       requiredConfigs: [],
