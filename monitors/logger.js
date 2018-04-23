@@ -14,7 +14,7 @@ module.exports = class extends Monitor {
   }
 
   run(msg) {
-    if (msg.channel.type !== 'text' || !msg.guild.configs.logger || !msg.guild.configs.loggerContent || !msg.guild.configs.loggerChannel) return;
+    if (msg.channel.type !== 'text' || !msg.guild.configs.logger || !msg.guild.configs.loggerContent || !msg.guild.configs.loggerChannel || msg.author.bot) return;
     const arr = msg.guild.configs.loggerContent;
 
     const chan = msg.guild.channels.find('id', msg.guild.configs.loggerChannel);
