@@ -28,8 +28,8 @@ module.exports = class extends Monitor {
 
     arr.some(a => {
       if (msg.content.toUpperCase().includes(' ' + a.toUpperCase() + ' ') ||
-          msg.content.toUpperCase().startsWith(a.toUpperCase()) ||
-          msg.content.toUpperCase().endsWith(a.toUpperCase())) {
+          msg.content.toUpperCase().startsWith(a.toUpperCase() + ' ') ||
+          msg.content.toUpperCase().endsWith(' ' + a.toUpperCase())) {
         member = msg.author;
         channel = msg.channel;
         content = msg.content;
