@@ -23,7 +23,6 @@ module.exports = class extends Command {
   async run(msg, [message]) {
     return await msg.channel.messages.fetch({ limit: 1, around: message.id })
       .then(msg.delete())
-      .then(message.react('441350009506627586'))
       .then(message.react('441350022232145922'))
       .then(message.react('441350051273375754'))
       .then(message.react('441350074237190164'))
@@ -42,6 +41,7 @@ module.exports = class extends Command {
       .then(message.react('441350234698678293'))
       .then(message.react('441350241992572938'))
       .then(message.react('441350250490232833'))
-      .then(message.react('441350258786828288'));
+      .then(message.react('441350258786828288'))
+      .then(message.react('441350266282049556'));
   }
 };
